@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gameon/home_page.dart';
+import 'package:gameon/features/home_page/presentation/home_page.dart';
 
 void main() {
   runApp(
