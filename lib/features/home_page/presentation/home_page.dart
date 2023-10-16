@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gameon/features/home_page/presentation/widgets/data_provider_button.dart';
+import 'package:gameon/features/home_page/presentation/widgets/games_genres.dart';
+import 'package:gameon/features/home_page/presentation/widgets/games_list.dart';
 import 'package:gameon/features/home_page/presentation/widgets/on_will_pop_alert_dialog.dart';
 
 class HomePage extends StatelessWidget {
@@ -15,16 +17,17 @@ class HomePage extends StatelessWidget {
         );
         return exitResult ?? false;
       },
-      child: SafeArea(
+      child: const SafeArea(
         child: Scaffold(
-          backgroundColor: const Color.fromARGB(255, 43, 42, 48),
+          backgroundColor: Color.fromARGB(255, 43, 42, 48),
           body: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(8),
+              padding: EdgeInsets.all(8),
               child: Column(
                 children: [
-                  const Row(
+                  Row(
                     children: [
+                      SizedBox(width: 15),
                       Text(
                         'Games',
                         style: TextStyle(
@@ -36,22 +39,8 @@ class HomePage extends StatelessWidget {
                       DataProviderButton()
                     ],
                   ),
-                  Container(
-                    height: 50,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                      itemCount: 15,
-                      itemBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Container(
-                          width: 100,
-                          height: 50,
-                          color: Colors.red,
-                        ),
-                      ),
-                    ),
-                  ),
+                  GamesGenres(),
+                  GamesList(),
                 ],
               ),
             ),
