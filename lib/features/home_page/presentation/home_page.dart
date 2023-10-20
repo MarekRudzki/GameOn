@@ -1,11 +1,44 @@
-import 'package:flutter/material.dart';
-import 'package:gameon/features/home_page/presentation/widgets/data_provider_button.dart';
-import 'package:gameon/features/home_page/presentation/widgets/games_genres.dart';
-import 'package:gameon/features/home_page/presentation/widgets/games_list.dart';
-import 'package:gameon/features/home_page/presentation/widgets/on_will_pop_alert_dialog.dart';
+import 'dart:async';
 
-class HomePage extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:gameon/features/home_page/presentation/widgets/no_network.dart';
+import 'package:gameon/features/games_genres/presentation/games_genres_screen.dart';
+import 'package:gameon/features/home_page/presentation/widgets/on_will_pop_alert_dialog.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late StreamSubscription<InternetConnectionStatus> _internetSubscription;
+  bool hasInternet = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _internetSubscription =
+        InternetConnectionChecker().onStatusChange.listen((status) {
+      if (status == InternetConnectionStatus.disconnected) {
+        setState(() {
+          hasInternet = false;
+        });
+      } else {
+        setState(() {
+          hasInternet = true;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _internetSubscription.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,33 +50,13 @@ class HomePage extends StatelessWidget {
         );
         return exitResult ?? false;
       },
-      child: const SafeArea(
+      child: SafeArea(
         child: Scaffold(
-          backgroundColor: Color.fromARGB(255, 43, 42, 48),
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.all(8),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(width: 15),
-                      Text(
-                        'Games',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 21,
-                        ),
-                      ),
-                      Spacer(),
-                      DataProviderButton()
-                    ],
-                  ),
-                  GamesGenres(),
-                  GamesList(),
-                ],
-              ),
-            ),
+          body: Stack(
+            children: [
+              const GamesGenresScreen(),
+              if (!hasInternet) const NoNetwork(),
+            ],
           ),
         ),
       ),

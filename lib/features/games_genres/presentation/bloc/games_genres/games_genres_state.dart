@@ -7,11 +7,13 @@ class GamesGenresState extends Equatable {
 
 class GamesGenresInitial extends GamesGenresState {}
 
-class GenreChangeSuccess extends GamesGenresState {
-  final String genre;
+class GamesGenresLoading extends GamesGenresState {}
 
-  GenreChangeSuccess({required this.genre});
+class GameGenreSuccess extends GamesGenresState {
+  final List<GameGenreModel> gameGenreModels;
+
+  GameGenreSuccess({required this.gameGenreModels});
 
   @override
-  List<Object> get props => [genre];
+  List<Object> get props => [gameGenreModels];
 }

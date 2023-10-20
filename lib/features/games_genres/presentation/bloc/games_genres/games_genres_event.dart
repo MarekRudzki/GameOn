@@ -5,11 +5,7 @@ class GamesGenresEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GameGenreChanged extends GamesGenresEvent {
-  final String genre;
-
-  GameGenreChanged({required this.genre});
-
+class GameGenreRequested extends GamesGenresEvent {
   @override
-  List<Object> get props => [genre];
+  List<Object> get props => [];
 }
