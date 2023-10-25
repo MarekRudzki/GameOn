@@ -25,6 +25,19 @@ class DataProviderButton extends StatelessWidget {
               ),
               contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
               backgroundColor: const Color.fromARGB(255, 40, 40, 42),
+              actions: [
+                Center(
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    icon: const Icon(
+                      Icons.check,
+                      color: Colors.green,
+                    ),
+                  ),
+                ),
+              ],
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -35,6 +48,12 @@ class DataProviderButton extends StatelessWidget {
                     ),
                   ),
                   TextButton(
+                    child: const Text(
+                      'Visit RAWG site',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
                     onPressed: () async {
                       final Uri url = Uri.parse('https://rawg.io/');
                       try {
@@ -75,28 +94,9 @@ class DataProviderButton extends StatelessWidget {
                         );
                       }
                     },
-                    child: const Text(
-                      'Visit RAWG site',
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
                   ),
                 ],
               ),
-              actions: [
-                Center(
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    icon: const Icon(
-                      Icons.check,
-                      color: Colors.green,
-                    ),
-                  ),
-                ),
-              ],
             );
           },
         );
