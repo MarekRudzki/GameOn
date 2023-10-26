@@ -1,27 +1,27 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gameon/features/games_genres/data/models/game_genre_model.dart';
-import 'package:gameon/features/games_genres/domain/repositories/genres_repository.dart';
-import 'package:gameon/features/games_genres/presentation/bloc/games_genres/games_genres_bloc.dart';
+import 'package:gameon/features/genres/data/models/genre_model.dart';
+import 'package:gameon/features/genres/domain/repositories/genres_repository.dart';
+import 'package:gameon/features/genres/presentation/bloc/genres/genres_bloc.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockGenresRepository extends Mock implements GenresRepository {}
 
 void main() {
-  late GamesGenresBloc sut;
+  late GenresBloc sut;
   late GenresRepository genresRepository;
 
   setUp(() {
     genresRepository = MockGenresRepository();
-    sut = GamesGenresBloc(genresRepository: genresRepository);
+    sut = GenresBloc(genresRepository: genresRepository);
   });
 
-  blocTest<GamesGenresBloc, GamesGenresState>(
-    'emits [GamesGenresLoading] and [GameGenreSuccess] when GameGenreRequested is added.',
+  blocTest<GenresBloc, GenresState>(
+    'emits [GenresLoading] and [GameGenreSuccess] when GameGenreRequested is added.',
     build: () {
       when(() => genresRepository.getGenres()).thenAnswer(
         (_) async => [
-          GameGenreModel(
+          GenreModel(
             name: 'name',
             url: 'url',
             id: 1,
@@ -31,11 +31,11 @@ void main() {
       );
       return sut;
     },
-    act: (bloc) => bloc.add(GameGenreRequested()),
+    act: (bloc) => bloc.add(GenresRequested()),
     expect: () => [
-      GamesGenresLoading(),
-      GameGenreSuccess(gameGenreModels: [
-        GameGenreModel(
+      GenresLoading(),
+      GenresSuccess(gameGenreModels: [
+        GenreModel(
           name: 'name',
           url: 'url',
           id: 1,

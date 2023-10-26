@@ -38,3 +38,8 @@ flutter:
   assets:
     - .env
     - assets/
+
+  fonts:
+    - family: MyIcons
+      fonts:
+      - asset: assets/MyIcons.ttf

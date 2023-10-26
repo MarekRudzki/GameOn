@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:gameon/features/favorites/presentation/favorites.dart';
+import 'package:gameon/features/home_page/presentation/widgets/icons.dart';
 import 'package:gameon/features/home_page/presentation/widgets/no_network.dart';
-import 'package:gameon/features/games_genres/presentation/games_genres_screen.dart';
+import 'package:gameon/features/genres/presentation/genres_screen.dart';
 import 'package:gameon/features/home_page/presentation/widgets/on_will_pop_alert_dialog.dart';
 import 'package:gameon/features/search/presentation/search.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -20,8 +21,9 @@ class _HomePageState extends State<HomePage> {
   late StreamSubscription<InternetConnectionStatus> _internetSubscription;
   bool hasInternet = true;
   int index = 0;
+
   final List<Widget> pages = [
-    const GamesGenresScreen(),
+    const GenresScreen(),
     const Search(),
     const Favorites(),
   ];
@@ -68,14 +70,14 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           bottomNavigationBar: GNav(
-            gap: 8,
+            gap: 10,
             backgroundColor: const Color.fromARGB(255, 58, 57, 65),
             color: Colors.white,
-            activeColor: Colors.pink,
+            activeColor: Colors.pinkAccent,
             padding: const EdgeInsets.all(16),
             tabs: [
               GButton(
-                icon: Icons.gamepad,
+                icon: MyIcons.gamepad,
                 text: 'Games',
                 onPressed: () {
                   setState(() {
