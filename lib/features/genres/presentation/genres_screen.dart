@@ -9,7 +9,6 @@ class GenresScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double tileHeight = (MediaQuery.of(context).size.height) / 7;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -42,7 +41,6 @@ class GenresScreen extends StatelessWidget {
                   children: List.generate(
                     19,
                     (index) => GenreTile(
-                      tileHeight: tileHeight,
                       genreId: state.gameGenreModels[index].id,
                       genreName: state.gameGenreModels[index].name,
                       genreUrl: state.gameGenreModels[index].url,

@@ -23,12 +23,12 @@ void main() {
         (_) async => [
           GenreGameModel(
             name: 'Cyberpunk 2077',
-            rating: 5.0,
+            popularity: 1,
             url: 'url',
           ),
           GenreGameModel(
             name: 'The Witcher 3: Wild Hunt',
-            rating: 5.0,
+            popularity: 1,
             url: 'url',
           )
         ],
@@ -42,12 +42,12 @@ void main() {
         genreGames: [
           GenreGameModel(
             name: 'Cyberpunk 2077',
-            rating: 5.0,
+            popularity: 1,
             url: 'url',
           ),
           GenreGameModel(
             name: 'The Witcher 3: Wild Hunt',
-            rating: 5.0,
+            popularity: 1,
             url: 'url',
           )
         ],

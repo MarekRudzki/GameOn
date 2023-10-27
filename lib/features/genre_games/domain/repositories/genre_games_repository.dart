@@ -14,14 +14,19 @@ class GenreGamesRepository {
     final gamesMap = genreGames.asMap();
 
     for (final index in gamesMap.keys) {
-      gamesList.add(GenreGameModel.fromJson(gamesMap[index]!));
+      final int gameVotes = gamesMap[index]!['added'] as int;
+      final Map<String, dynamic> gameVotesByStatus =
+          gamesMap[index]!['added_by_status'] as Map<String, dynamic>;
+      final int gameVotesToPlay;
+
+      gameVotesByStatus.containsKey('toplay')
+          ? gameVotesToPlay = gameVotesByStatus['toplay'] as int
+          : gameVotesToPlay = 0;
+
+      final int gamePopularity = gameVotes - gameVotesToPlay;
+
+      gamesList.add(GenreGameModel.fromJson(gamesMap[index]!, gamePopularity));
     }
-
-    // Sort game genres by rating
-    gamesList.sort(
-      (a, b) => b.rating.compareTo(a.rating),
-    );
-
     return gamesList;
   }
 }

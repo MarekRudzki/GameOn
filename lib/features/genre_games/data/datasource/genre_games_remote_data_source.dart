@@ -7,7 +7,7 @@ class GenreGamesRemoteDataSource {
   Future<List<Map<String, dynamic>>> getGenreGames(int genreId) async {
     try {
       final response = await Dio().get<Map<String, dynamic>>(
-          'https://api.rawg.io/api/games?key=$rawgKey&genres=$genreId&ordering=-rating');
+          'https://api.rawg.io/api/games?key=$rawgKey&genres=$genreId');
       final List<dynamic> genreGames =
           response.data!['results'] as List<dynamic>;
       return genreGames.map((e) => e as Map<String, dynamic>).toList();

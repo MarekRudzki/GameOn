@@ -2,18 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gameon/features/genre_games/presentation/bloc/genre_games/genre_games_bloc.dart';
-import 'package:gameon/features/genre_games/presentation/genre_games.dart';
+import 'package:gameon/features/genre_games/presentation/genre_games_screen.dart';
 
 class GenreTile extends StatelessWidget {
   const GenreTile({
     super.key,
-    required this.tileHeight,
     required this.genreId,
     required this.genreName,
     required this.genreUrl,
   });
 
-  final double tileHeight;
   final int genreId;
   final String genreName;
   final String genreUrl;
@@ -27,7 +25,7 @@ class GenreTile extends StatelessWidget {
             .add(GenreGamesRequested(genreId: genreId));
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => GenreGames(
+            builder: (context) => GenreGamesScreen(
               genreId: genreId,
               name: genreName,
             ),
@@ -53,7 +51,7 @@ class GenreTile extends StatelessWidget {
               imageBuilder: (context, imageProvider) => Column(
                 children: [
                   Container(
-                    height: tileHeight,
+                    height: (MediaQuery.of(context).size.height) / 7,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: imageProvider,
@@ -63,7 +61,7 @@ class GenreTile extends StatelessWidget {
                   ),
                   Expanded(
                     child: Container(
-                      color: const Color.fromARGB(192, 187, 182, 182),
+                      color: const Color.fromARGB(192, 105, 103, 103),
                       child: Center(
                         child: Text(
                           genreName.replaceAll('Massively Multiplayer', 'MMO'),
