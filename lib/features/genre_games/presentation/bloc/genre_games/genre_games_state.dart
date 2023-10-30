@@ -1,21 +1,13 @@
 part of 'genre_games_bloc.dart';
 
-class GenreGamesState extends Equatable {
-  const GenreGamesState();
+class GenreGamesState {
+  final List<GenreGameModel>? genreGames;
+  final dynamic error;
+  final int? page;
 
-  @override
-  List<Object> get props => [];
-}
-
-class GenreGamesInitial extends GenreGamesState {}
-
-class GenreGamesLoading extends GenreGamesState {}
-
-class GenreGamesSuccess extends GenreGamesState {
-  final List<GenreGameModel> genreGames;
-
-  GenreGamesSuccess({required this.genreGames});
-
-  @override
-  List<Object> get props => [genreGames];
+  GenreGamesState({
+    this.genreGames,
+    this.error,
+    this.page = 1,
+  });
 }

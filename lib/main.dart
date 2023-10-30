@@ -14,14 +14,14 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider(
+        BlocProvider<GenresBloc>(
           create: (context) => GenresBloc(
               genresRepository: GenresRepository(
             genresRemoteDataSource: GenresRemoteDataSource(),
           ))
             ..add(GenresRequested()),
         ),
-        BlocProvider(
+        BlocProvider<GenreGamesBloc>(
           create: (context) => GenreGamesBloc(
               genreGamesRepository: GenreGamesRepository(
             genreGamesRemoteDataSource: GenreGamesRemoteDataSource(),

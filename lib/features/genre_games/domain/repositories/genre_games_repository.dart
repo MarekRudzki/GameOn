@@ -8,25 +8,26 @@ class GenreGamesRepository {
       {required GenreGamesRemoteDataSource genreGamesRemoteDataSource})
       : _genreGamesRemoteDataSource = genreGamesRemoteDataSource;
 
-  Future<List<GenreGameModel>> getGameModels(int genreId) async {
+  Future<List<GenreGameModel>> getGameModels({
+    required int genreId,
+    required int page,
+  }) async {
     final List<GenreGameModel> gamesList = [];
-    final genreGames = await _genreGamesRemoteDataSource.getGenreGames(genreId);
+    final genreGames = await _genreGamesRemoteDataSource.getGenreGames(
+      genreId: genreId,
+      page: page,
+    );
     final gamesMap = genreGames.asMap();
 
     for (final index in gamesMap.keys) {
-      final int gameVotes = gamesMap[index]!['added'] as int;
-      final Map<String, dynamic> gameVotesByStatus =
-          gamesMap[index]!['added_by_status'] as Map<String, dynamic>;
-      final int gameVotesToPlay;
-
-      gameVotesByStatus.containsKey('toplay')
-          ? gameVotesToPlay = gameVotesByStatus['toplay'] as int
-          : gameVotesToPlay = 0;
-
-      final int gamePopularity = gameVotes - gameVotesToPlay;
+      final int gamePopularity = gamesMap[index]!['added'] as int;
 
       gamesList.add(GenreGameModel.fromJson(gamesMap[index]!, gamePopularity));
     }
+    gamesList.sort(
+      (a, b) => b.popularity.compareTo(a.popularity),
+    );
+
     return gamesList;
   }
 }

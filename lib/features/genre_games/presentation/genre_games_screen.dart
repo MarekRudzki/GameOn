@@ -32,11 +32,8 @@ class GenreGamesScreen extends StatelessWidget {
           ],
         ),
         backgroundColor: const Color.fromARGB(255, 43, 42, 48),
-        body: const SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(12),
-            child: DisplayOptions(),
-          ),
+        body: DisplayOptions(
+          genreId: genreId,
         ),
       ),
     );

@@ -4,10 +4,13 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 class GenreGamesRemoteDataSource {
   final rawgKey = dotenv.get('RAWG_Key');
 
-  Future<List<Map<String, dynamic>>> getGenreGames(int genreId) async {
+  Future<List<Map<String, dynamic>>> getGenreGames({
+    required int genreId,
+    required int page,
+  }) async {
     try {
       final response = await Dio().get<Map<String, dynamic>>(
-          'https://api.rawg.io/api/games?key=$rawgKey&genres=$genreId');
+          'https://api.rawg.io/api/games?genres=$genreId&key=$rawgKey&page=$page');
       final List<dynamic> genreGames =
           response.data!['results'] as List<dynamic>;
       return genreGames.map((e) => e as Map<String, dynamic>).toList();
