@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:gameon/features/genre_games/data/datasource/genre_games_remote_data_source.dart';
+import 'package:gameon/features/genre_games/data/datasources/genre_games_remote_data_source.dart';
 import 'package:gameon/features/genre_games/data/models/genre_game_model.dart';
 import 'package:gameon/features/genre_games/data/models/genre_page_model.dart';
 import 'package:gameon/features/genre_games/domain/repositories/genre_games_repository.dart';
-import 'package:gameon/features/genre_games/presentation/bloc/genre_games/genre_games_bloc.dart';
+import 'package:gameon/features/genre_games/presentation/bloc/genre_games_bloc/genre_games_bloc.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/gridview_tile.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/listview_tile.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -141,6 +141,7 @@ class _DisplayOptionsState extends State<DisplayOptions> {
                   itemBuilder: (context, item, index) => GridViewTile(
                     name: item.name,
                     url: item.url,
+                    gameId: item.gameId,
                     popularity: item.popularity,
                   ),
                 ),
@@ -153,8 +154,9 @@ class _DisplayOptionsState extends State<DisplayOptions> {
                 builderDelegate: PagedChildBuilderDelegate<GenreGameModel>(
                   itemBuilder: (context, item, index) => ListViewTile(
                     name: item.name,
-                    url: item.url,
                     popularity: item.popularity,
+                    gameId: item.gameId,
+                    url: item.url,
                   ),
                 ),
               ),

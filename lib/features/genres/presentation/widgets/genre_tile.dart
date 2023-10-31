@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gameon/features/genre_games/data/models/genre_page_model.dart';
-import 'package:gameon/features/genre_games/presentation/bloc/genre_games/genre_games_bloc.dart';
+import 'package:gameon/features/genre_games/presentation/bloc/genre_games_bloc/genre_games_bloc.dart';
 import 'package:gameon/features/genre_games/presentation/genre_games_screen.dart';
 
 class GenreTile extends StatelessWidget {

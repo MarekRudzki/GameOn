@@ -1,4 +1,4 @@
-import 'package:gameon/features/genre_games/data/datasource/genre_games_remote_data_source.dart';
+import 'package:gameon/features/genre_games/data/datasources/genre_games_remote_data_source.dart';
 import 'package:gameon/features/genre_games/data/models/genre_game_model.dart';
 
 class GenreGamesRepository {
