@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gameon/common_widgets/data_provider_button.dart';
-import 'package:gameon/features/genres/presentation/bloc/genres/genres_bloc.dart';
+import 'package:gameon/features/genres/presentation/bloc/genres_bloc/genres_bloc.dart';
 import 'package:gameon/features/genres/presentation/widgets/genre_tile.dart';
 
 class GenresScreen extends StatelessWidget {

@@ -3,11 +3,13 @@ import 'package:equatable/equatable.dart';
 class GenreGameModel extends Equatable {
   final String name;
   final int popularity;
+  final int gameId;
   final String url;
 
   GenreGameModel({
     required this.name,
     required this.popularity,
+    required this.gameId,
     required this.url,
   });
 
@@ -15,6 +17,7 @@ class GenreGameModel extends Equatable {
     return GenreGameModel(
       name: json['name'] as String,
       popularity: popularity,
+      gameId: json['id'] as int,
       url: json['background_image'] as String,
     );
   }
@@ -23,6 +26,7 @@ class GenreGameModel extends Equatable {
   List<Object?> get props => [
         name,
         popularity,
+        gameId,
         url,
       ];
 }

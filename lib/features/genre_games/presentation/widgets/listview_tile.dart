@@ -1,8 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gameon/features/game_details_screen/presentation/bloc/game_details_bloc/game_details_bloc.dart';
+import 'package:gameon/features/game_details_screen/presentation/game_details_screen.dart';
 
 class ListViewTile extends StatelessWidget {
   final String name;
+  final int gameId;
   final String url;
   final int popularity;
 
@@ -11,14 +15,32 @@ class ListViewTile extends StatelessWidget {
     required this.name,
     required this.url,
     required this.popularity,
+    required this.gameId,
   });
 
   @override
   Widget build(BuildContext context) {
+    final String heroId = '${gameId}_list';
+    ImageProvider? loadedImage;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7),
       child: InkWell(
-        onTap: () {}, //TODO
+        onTap: () {
+          context.read<GameDetailsBloc>().add(
+                GameDetailsRequested(gameId: gameId),
+              );
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => GameDetailsScreen(
+                image: loadedImage ?? CachedNetworkImageProvider(url),
+                name: name,
+                id: gameId,
+                heroId: heroId,
+              ),
+            ),
+          );
+        },
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(
@@ -44,23 +66,33 @@ class ListViewTile extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                       child: CachedNetworkImage(
                         imageUrl: url,
-                        placeholder: (context, url) => Image.asset(
-                          'assets/loading.gif',
-                          fit: BoxFit.fill,
+                        placeholder: (context, url) => Hero(
+                          tag: gameId,
+                          child: Image.asset(
+                            'assets/loading.gif',
+                            fit: BoxFit.fill,
+                          ),
                         ),
                         errorWidget: (context, url, error) => const Icon(
                           Icons.error,
                           size: 100,
                           color: Colors.red,
                         ),
-                        imageBuilder: (context, imageProvider) => Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.fill,
+                        imageBuilder: (context, imageProvider) {
+                          loadedImage = imageProvider;
+
+                          return Hero(
+                            tag: heroId,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: imageProvider,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
+                          );
+                        },
                       ),
                     ),
                   ),
