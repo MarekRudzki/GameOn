@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_glow/flutter_glow.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DataProviderButton extends StatelessWidget {
@@ -7,10 +8,12 @@ class DataProviderButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: const Icon(
+      icon: const GlowIcon(
         Icons.info_outline,
         color: Colors.white,
         size: 22,
+        glowColor: Colors.black,
+        blurRadius: 5,
       ),
       onPressed: () {
         showDialog(
@@ -18,7 +21,7 @@ class DataProviderButton extends StatelessWidget {
           builder: (context) {
             return AlertDialog(
               title: const Text(
-                'Data source provider',
+                'Data provider',
                 style: TextStyle(
                   color: Colors.white,
                 ),

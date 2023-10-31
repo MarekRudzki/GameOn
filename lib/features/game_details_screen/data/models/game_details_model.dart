@@ -65,5 +65,19 @@ class GameDetailsModel extends Equatable {
   }
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [
+        popularity,
+        url,
+        description,
+        developers,
+        id,
+        metacritic,
+        name,
+        platforms,
+        playtime,
+        rating,
+        reviewsCount,
+        userRating,
+        released,
+      ];
 }

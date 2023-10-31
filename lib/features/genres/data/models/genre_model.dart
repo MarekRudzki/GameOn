@@ -13,14 +13,6 @@ class GenreModel extends Equatable {
     required this.gamesCount,
   });
 
-  @override
-  List<Object?> get props => [
-        name,
-        url,
-        id,
-        gamesCount,
-      ];
-
   factory GenreModel.fromJson(Map<String, dynamic> json, String url) {
     return GenreModel(
       name: json['name'] as String,
@@ -29,4 +21,12 @@ class GenreModel extends Equatable {
       gamesCount: json['games_count'] as int,
     );
   }
+
+  @override
+  List<Object?> get props => [
+        name,
+        url,
+        id,
+        gamesCount,
+      ];
 }

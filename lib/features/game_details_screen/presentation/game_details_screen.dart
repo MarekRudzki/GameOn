@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gameon/common_widgets/data_provider_button.dart';
 import 'package:gameon/features/game_details_screen/presentation/bloc/game_details_bloc/game_details_bloc.dart';
+import 'package:gameon/features/game_details_screen/presentation/widgets/custom_sliver_app_bar.dart';
 
 class GameDetailsScreen extends StatelessWidget {
   final ImageProvider image;
@@ -24,35 +24,10 @@ class GameDetailsScreen extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 43, 42, 48),
         body: CustomScrollView(
           slivers: [
-            SliverAppBar(
-              backgroundColor: const Color.fromARGB(255, 58, 57, 65),
-              expandedHeight: MediaQuery.of(context).size.height * 0.35,
-              pinned: true,
-              flexibleSpace: FlexibleSpaceBar(
-                centerTitle: true,
-                title: Text(
-                  name,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 21,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-                background: Hero(
-                  tag: heroId,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: image,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              actions: [
-                const DataProviderButton(),
-              ],
+            CustomSliverAppBar(
+              name: name,
+              heroId: heroId,
+              image: image,
             ),
             SliverList(
               delegate: SliverChildListDelegate(
@@ -60,10 +35,19 @@ class GameDetailsScreen extends StatelessWidget {
                   BlocBuilder<GameDetailsBloc, GameDetailsState>(
                       builder: (context, state) {
                     if (state is GameDetailsSuccess) {
-                      return Container(
-                        width: 100,
-                        height: 1000,
-                        color: Colors.red,
+                      return Column(
+                        children: [
+                          const Text(
+                            '',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                          ),
+                          Container(
+                            height: 1500,
+                          )
+                        ],
                       );
                     } else {
                       return const Center(
