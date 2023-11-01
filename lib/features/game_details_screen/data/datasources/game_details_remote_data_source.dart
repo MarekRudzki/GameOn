@@ -15,4 +15,16 @@ class GameDetailsRemoteDataSource {
       throw Exception();
     }
   }
+
+  Future<Map<String, dynamic>> getGameScreenshots({
+    required int gameId,
+  }) async {
+    try {
+      final response = await Dio().get<Map<String, dynamic>>(
+          'https://api.rawg.io/api/games/$gameId/screenshots?key=$rawgKey');
+      return response.data!;
+    } on DioException {
+      throw Exception();
+    }
+  }
 }

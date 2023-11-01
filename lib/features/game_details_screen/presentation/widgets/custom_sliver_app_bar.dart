@@ -16,16 +16,47 @@ class CustomSliverAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int calculateNumberOfLines(String text) {
+      final TextSpan textSpan = TextSpan(
+        text: text,
+        style: const TextStyle(
+          fontSize: 21,
+        ),
+      );
+
+      final TextPainter textPainter = TextPainter(
+        text: textSpan,
+        textDirection: TextDirection.ltr,
+        maxLines: 5,
+      );
+
+      textPainter.layout(maxWidth: MediaQuery.of(context).size.width - 56 - 48);
+
+      final int numberOfLines = textPainter.computeLineMetrics().length;
+      return numberOfLines;
+    }
+
+    double getCollapsedHeight(String text) {
+      final textLines = calculateNumberOfLines(text);
+      if (textLines == 1) {
+        return AppBar().preferredSize.height;
+      } else if (textLines == 2) {
+        return AppBar().preferredSize.height + (10 * textLines);
+      } else {
+        return AppBar().preferredSize.height + (15 * textLines);
+      }
+    }
+
     final double height = MediaQuery.of(context).size.height;
     return SliverAppBar(
-      backgroundColor: const Color.fromARGB(255, 58, 57, 65),
+      backgroundColor: const Color.fromARGB(255, 15, 47, 91),
       expandedHeight: height * 0.35,
-      collapsedHeight: height * 0.08,
+      collapsedHeight: getCollapsedHeight(name),
       pinned: true,
       flexibleSpace: LayoutBuilder(
         builder: (context, constraints) {
           final double appBarHeight = constraints.biggest.height;
-          final bool isExpanded = appBarHeight > height * 0.08;
+          final bool isExpanded = appBarHeight > height * 0.1;
           return FlexibleSpaceBar(
             expandedTitleScale: 1.3,
             centerTitle: true,
@@ -48,7 +79,7 @@ class CustomSliverAppBar extends StatelessWidget {
                   glowColor: Colors.black,
                   blurRadius: 10,
                   softWrap: true,
-                  maxLines: 3,
+                  maxLines: isExpanded ? 3 : 2,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Container(),
