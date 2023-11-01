@@ -17,6 +17,8 @@ class GameDetailsModel extends Equatable {
   final int reviewsCount;
   final UserRatingModel userRating;
   final String released;
+  final String esrbRating;
+  final List<String> screenshots;
 
   GameDetailsModel({
     required this.popularity,
@@ -32,15 +34,27 @@ class GameDetailsModel extends Equatable {
     required this.reviewsCount,
     required this.userRating,
     required this.released,
+    required this.esrbRating,
+    required this.screenshots,
   });
 
   factory GameDetailsModel.fromJson(Map<String, dynamic> json) {
     final List<String> platformsList = [];
     final listDynamic = json['parent_platforms'] as List<dynamic>;
-    final abc = listDynamic.map((e) => e as Map<String, dynamic>).toList();
+    final platforms =
+        listDynamic.map((e) => e as Map<String, dynamic>).toList();
 
-    for (final platform in abc) {
+    for (final platform in platforms) {
       platformsList.add(platform['platform']['name'] as String);
+    }
+
+    final List<String> screenshotsList = [];
+    final screenshotListDynamic = json['results'] as List<dynamic>;
+    final screenshots =
+        screenshotListDynamic.map((e) => e as Map<String, dynamic>).toList();
+
+    for (final screenshot in screenshots) {
+      screenshotsList.add(screenshot['image'] as String);
     }
 
     return GameDetailsModel(
@@ -61,6 +75,8 @@ class GameDetailsModel extends Equatable {
       ),
       released: json['released'] as String,
       id: json['id'] as int,
+      esrbRating: json['esrb_rating']['name'] as String,
+      screenshots: screenshotsList,
     );
   }
 
@@ -79,5 +95,7 @@ class GameDetailsModel extends Equatable {
         reviewsCount,
         userRating,
         released,
+        esrbRating,
+        screenshots,
       ];
 }

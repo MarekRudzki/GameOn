@@ -13,7 +13,7 @@ class GenresScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           elevation: 5,
-          backgroundColor: const Color.fromARGB(255, 58, 57, 65),
+          backgroundColor: const Color.fromARGB(255, 15, 47, 91),
           title: const Text(
             'Genres',
             style: TextStyle(
@@ -26,7 +26,7 @@ class GenresScreen extends StatelessWidget {
             const DataProviderButton(),
           ],
         ),
-        backgroundColor: const Color.fromARGB(255, 43, 42, 48),
+        backgroundColor: const Color.fromARGB(255, 2, 31, 68),
         body: BlocBuilder<GenresBloc, GenresState>(
           builder: (context, state) {
             if (state is GenresSuccess) {

@@ -34,6 +34,8 @@ void main() {
     userRating:
         UserRatingModel(exceptional: 1, recommended: 1, meh: 1, skip: 1),
     released: 'released',
+    esrbRating: 'esrbRating',
+    screenshots: ['screenshots'],
   );
 
   blocTest<GameDetailsBloc, GameDetailsState>(

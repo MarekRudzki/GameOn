@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gameon/features/game_details_screen/presentation/bloc/game_details_bloc/game_details_bloc.dart';
+import 'package:gameon/features/game_details_screen/presentation/widgets/available_platforms.dart';
 import 'package:gameon/features/game_details_screen/presentation/widgets/custom_sliver_app_bar.dart';
+import 'package:gameon/features/game_details_screen/presentation/widgets/game_description.dart';
+import 'package:gameon/features/game_details_screen/presentation/widgets/game_screenshots.dart';
+import 'package:gameon/features/game_details_screen/presentation/widgets/overall_game_info.dart';
+import 'package:gameon/features/game_details_screen/presentation/widgets/user_rating.dart';
 
 class GameDetailsScreen extends StatelessWidget {
   final ImageProvider image;
@@ -21,7 +26,7 @@ class GameDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 43, 42, 48),
+        backgroundColor: const Color.fromARGB(255, 2, 31, 68),
         body: CustomScrollView(
           slivers: [
             CustomSliverAppBar(
@@ -33,28 +38,46 @@ class GameDetailsScreen extends StatelessWidget {
               delegate: SliverChildListDelegate(
                 [
                   BlocBuilder<GameDetailsBloc, GameDetailsState>(
-                      builder: (context, state) {
-                    if (state is GameDetailsSuccess) {
-                      return Column(
-                        children: [
-                          const Text(
-                            '',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                            ),
+                    builder: (context, state) {
+                      if (state is GameDetailsSuccess) {
+                        return Padding(
+                          padding: const EdgeInsets.all(14),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              OverallGameInfo(
+                                developers: state.gameDetails.developers,
+                                metacritic: state.gameDetails.metacritic,
+                                playtime: state.gameDetails.playtime,
+                                released: state.gameDetails.released,
+                                esrbRating: state.gameDetails.esrbRating,
+                              ),
+                              UserRating(
+                                reviewsCount: state.gameDetails.reviewsCount,
+                                userRating: state.gameDetails.userRating,
+                              ),
+                              AvailablePlatforms(
+                                platforms: state.gameDetails.platforms,
+                              ),
+                              GameDescription(
+                                description: state.gameDetails.description,
+                              ),
+                              GameScreenshots(
+                                screenshots: state.gameDetails.screenshots,
+                              ),
+                            ],
                           ),
-                          Container(
-                            height: 1500,
-                          )
-                        ],
-                      );
-                    } else {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                  })
+                        );
+                      } else {
+                        return Container(
+                          height: 200,
+                          child: const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      }
+                    },
+                  )
                 ],
               ),
             ),

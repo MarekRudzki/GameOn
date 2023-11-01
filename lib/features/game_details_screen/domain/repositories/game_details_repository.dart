@@ -11,6 +11,9 @@ class GameDetailsRepository {
   Future<GameDetailsModel> getGameDetails({required int gameId}) async {
     final gameData =
         await _gameDetailsRemoteDataSource.getGameDetails(gameId: gameId);
+    final gameScreenshots =
+        await _gameDetailsRemoteDataSource.getGameScreenshots(gameId: gameId);
+    gameData.addAll(gameScreenshots);
 
     return GameDetailsModel.fromJson(gameData);
   }

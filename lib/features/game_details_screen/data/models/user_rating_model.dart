@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
 class UserRatingModel extends Equatable {
-  final int exceptional;
-  final int recommended;
-  final int meh;
-  final int skip;
+  final int? exceptional;
+  final int? recommended;
+  final int? meh;
+  final int? skip;
 
   UserRatingModel({
     required this.exceptional,
@@ -23,10 +23,10 @@ class UserRatingModel extends Equatable {
       ratings.addAll(rating);
     }
     return UserRatingModel(
-      exceptional: ratings['exceptional']!,
-      recommended: ratings['recommended']!,
-      meh: ratings['meh']!,
-      skip: ratings['skip']!,
+      exceptional: ratings['exceptional'],
+      recommended: ratings['recommended'],
+      meh: ratings['meh'],
+      skip: ratings['skip'],
     );
   }
 

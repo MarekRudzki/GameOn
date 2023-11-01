@@ -18,7 +18,7 @@ class GenreGamesScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           elevation: 5,
-          backgroundColor: const Color.fromARGB(255, 58, 57, 65),
+          backgroundColor: const Color.fromARGB(255, 15, 47, 91),
           title: Text(
             name,
             style: const TextStyle(
@@ -31,7 +31,7 @@ class GenreGamesScreen extends StatelessWidget {
             const DataProviderButton(),
           ],
         ),
-        backgroundColor: const Color.fromARGB(255, 43, 42, 48),
+        backgroundColor: const Color.fromARGB(255, 2, 31, 68),
         body: DisplayOptions(
           genreId: genreId,
         ),

@@ -80,7 +80,7 @@ class _DisplayOptionsState extends State<DisplayOptions> {
                 height: 40,
                 width: MediaQuery.of(context).size.width * 0.35,
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 58, 57, 65),
+                  color: const Color.fromARGB(255, 15, 47, 91),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: IntrinsicHeight(

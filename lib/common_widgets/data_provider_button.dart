@@ -27,7 +27,7 @@ class DataProviderButton extends StatelessWidget {
                 ),
               ),
               contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
-              backgroundColor: const Color.fromARGB(255, 40, 40, 42),
+              backgroundColor: const Color.fromARGB(255, 15, 47, 91),
               actions: [
                 Center(
                   child: IconButton(
