@@ -45,6 +45,7 @@ class GenreGamesBloc extends Bloc<GenreGamesEvent, GenreGamesState> {
         genreId: genrePage.id,
         page: genrePage.page,
       );
+
       final isLastPage = newItems.length < _pageSize;
       final nextPageKey = isLastPage ? null : genrePage.page + 1;
 

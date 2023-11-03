@@ -6,7 +6,7 @@ import 'package:gameon/features/home_page/presentation/widgets/icons.dart';
 import 'package:gameon/features/home_page/presentation/widgets/no_network.dart';
 import 'package:gameon/features/genres/presentation/genres_screen.dart';
 import 'package:gameon/features/home_page/presentation/widgets/on_will_pop_alert_dialog.dart';
-import 'package:gameon/features/search/presentation/search.dart';
+import 'package:gameon/features/search/presentation/search_screen.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
 
   final List<Widget> pages = [
     const GenresScreen(),
-    const Search(),
+    const SearchScreen(),
     const Favorites(),
   ];
 
@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
           ),
           bottomNavigationBar: GNav(
             gap: 10,
-            backgroundColor: const Color.fromARGB(255, 58, 57, 65),
+            backgroundColor: const Color.fromARGB(255, 15, 47, 91),
             color: Colors.white,
             activeColor: Colors.pinkAccent,
             padding: const EdgeInsets.all(16),

@@ -18,24 +18,18 @@ void main() {
       gameDetailsRepository: gameDetailsRepository,
     );
   });
-
   final GameDetailsModel testModel = GameDetailsModel(
-    popularity: 1,
-    url: 'url',
     description: 'description',
     developers: 'developers',
-    id: 1,
+    esrbRating: 'esrbRating',
     metacritic: 1,
-    name: 'name',
     platforms: ['platforms'],
     playtime: 1,
-    rating: 1,
+    released: 'released',
     reviewsCount: 1,
+    screenshots: ['screenshots'],
     userRating:
         UserRatingModel(exceptional: 1, recommended: 1, meh: 1, skip: 1),
-    released: 'released',
-    esrbRating: 'esrbRating',
-    screenshots: ['screenshots'],
   );
 
   blocTest<GameDetailsBloc, GameDetailsState>(

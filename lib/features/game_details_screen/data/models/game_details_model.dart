@@ -4,38 +4,28 @@ import 'package:equatable/equatable.dart';
 import 'package:gameon/features/game_details_screen/data/models/user_rating_model.dart';
 
 class GameDetailsModel extends Equatable {
-  final int popularity;
-  final String url;
-  final int id;
   final String description;
   final String developers;
+  final String esrbRating;
   final int metacritic;
-  final String name;
   final List<String> platforms;
   final int playtime;
-  final double rating;
-  final int reviewsCount;
-  final UserRatingModel userRating;
   final String released;
-  final String esrbRating;
+  final int reviewsCount;
   final List<String> screenshots;
+  final UserRatingModel userRating;
 
   GameDetailsModel({
-    required this.popularity,
-    required this.url,
     required this.description,
     required this.developers,
-    required this.id,
+    required this.esrbRating,
     required this.metacritic,
-    required this.name,
     required this.platforms,
     required this.playtime,
-    required this.rating,
-    required this.reviewsCount,
-    required this.userRating,
     required this.released,
-    required this.esrbRating,
+    required this.reviewsCount,
     required this.screenshots,
+    required this.userRating,
   });
 
   factory GameDetailsModel.fromJson(Map<String, dynamic> json) {
@@ -58,44 +48,44 @@ class GameDetailsModel extends Equatable {
     }
 
     return GameDetailsModel(
-      popularity: json['added'] as int,
-      url: json['background_image'] as String,
-      description: json['description_raw'] as String,
-      developers: (json['developers'] as List<dynamic>)[0]['name'] as String,
-      metacritic: json['metacritic'] as int,
-      name: json['name'] as String,
-      platforms: platformsList,
-      playtime: json['playtime'] as int,
-      rating: json['rating'] as double,
-      reviewsCount: json['reviews_count'] as int,
-      userRating: UserRatingModel.fromJsonList(
-        (json['ratings'] as List<dynamic>)
-            .map((e) => e as Map<String, dynamic>)
-            .toList(),
-      ),
-      released: json['released'] as String,
-      id: json['id'] as int,
-      esrbRating: json['esrb_rating']['name'] as String,
-      screenshots: screenshotsList,
+      description: json['description_raw'] != ''
+          ? json['description_raw'] as String
+          : 'No game description available',
+      developers: json['developers'] != null
+          ? (json['developers'] as List<dynamic>)[0]['name'] as String
+          : 'No Data',
+      esrbRating: json['esrb_rating'] != null
+          ? json['esrb_rating']['name'] as String
+          : 'No Data',
+      metacritic: json['metacritic'] != null ? json['metacritic'] as int : 0,
+      platforms: json['parent_platforms'] != null ? platformsList : ['No Data'],
+      playtime: json['playtime'] != null ? json['playtime'] as int : 0,
+      released:
+          json['released'] != null ? json['released'] as String : 'No Data',
+      reviewsCount:
+          json['reviews_count'] != null ? json['reviews_count'] as int : 0,
+      screenshots: json['results'] != null ? screenshotsList : ['No Data'],
+      userRating: json['ratings'] != null
+          ? UserRatingModel.fromJsonList(
+              (json['ratings'] as List<dynamic>)
+                  .map((e) => e as Map<String, dynamic>)
+                  .toList(),
+            )
+          : UserRatingModel(exceptional: 0, recommended: 0, meh: 0, skip: 0),
     );
   }
 
   @override
   List<Object?> get props => [
-        popularity,
-        url,
         description,
         developers,
-        id,
+        esrbRating,
         metacritic,
-        name,
         platforms,
         playtime,
-        rating,
-        reviewsCount,
-        userRating,
         released,
-        esrbRating,
+        reviewsCount,
         screenshots,
+        userRating,
       ];
 }

@@ -52,19 +52,25 @@ class GameDetailsScreen extends StatelessWidget {
                                 released: state.gameDetails.released,
                                 esrbRating: state.gameDetails.esrbRating,
                               ),
-                              UserRating(
-                                reviewsCount: state.gameDetails.reviewsCount,
-                                userRating: state.gameDetails.userRating,
-                              ),
+                              if (state.gameDetails.reviewsCount == 0)
+                                const SizedBox.shrink()
+                              else
+                                UserRating(
+                                  reviewsCount: state.gameDetails.reviewsCount,
+                                  userRating: state.gameDetails.userRating,
+                                ),
                               AvailablePlatforms(
                                 platforms: state.gameDetails.platforms,
                               ),
                               GameDescription(
                                 description: state.gameDetails.description,
                               ),
-                              GameScreenshots(
-                                screenshots: state.gameDetails.screenshots,
-                              ),
+                              if (state.gameDetails.screenshots == ['No Data'])
+                                const SizedBox.shrink()
+                              else
+                                GameScreenshots(
+                                  screenshots: state.gameDetails.screenshots,
+                                ),
                             ],
                           ),
                         );

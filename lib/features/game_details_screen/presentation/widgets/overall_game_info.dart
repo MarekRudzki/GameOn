@@ -82,7 +82,7 @@ class OverallGameInfo extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '${playtime} h',
+                      playtime == 0 ? 'No data' : '${playtime} h',
                       style: const TextStyle(
                         color: Colors.white,
                       ),
@@ -103,7 +103,7 @@ class OverallGameInfo extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      metacritic.toString(),
+                      metacritic == 0 ? 'No data' : metacritic.toString(),
                       style: const TextStyle(
                         color: Colors.white,
                       ),
