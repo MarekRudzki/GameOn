@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gameon/common_widgets/data_provider_button.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/display_options.dart';
 
-class GenreGamesScreen extends StatelessWidget {
+class GenreGamesScreen extends StatefulWidget {
   final int genreId;
   final String name;
 
@@ -13,6 +13,11 @@ class GenreGamesScreen extends StatelessWidget {
   });
 
   @override
+  State<GenreGamesScreen> createState() => _GenreGamesScreenState();
+}
+
+class _GenreGamesScreenState extends State<GenreGamesScreen> {
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -20,7 +25,7 @@ class GenreGamesScreen extends StatelessWidget {
           elevation: 5,
           backgroundColor: const Color.fromARGB(255, 15, 47, 91),
           title: Text(
-            name,
+            widget.name,
             style: const TextStyle(
               color: Colors.white,
               fontSize: 21,
@@ -33,7 +38,7 @@ class GenreGamesScreen extends StatelessWidget {
         ),
         backgroundColor: const Color.fromARGB(255, 2, 31, 68),
         body: DisplayOptions(
-          genreId: genreId,
+          genreId: widget.genreId,
         ),
       ),
     );

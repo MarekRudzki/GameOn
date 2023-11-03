@@ -1,47 +1,47 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:gameon/features/genre_games/data/datasources/genre_games_remote_data_source.dart';
-import 'package:gameon/features/genre_games/data/models/genre_game_model.dart';
-import 'package:gameon/features/genre_games/data/models/genre_page_model.dart';
-import 'package:gameon/features/genre_games/domain/repositories/genre_games_repository.dart';
-import 'package:gameon/features/genre_games/presentation/bloc/genre_games_bloc/genre_games_bloc.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/gridview_tile.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/listview_tile.dart';
+import 'package:gameon/features/search/data/datasources/search_remote_data_source.dart';
+import 'package:gameon/features/search/data/models/search_page_model.dart';
+import 'package:gameon/features/search/data/models/searched_game_model.dart';
+import 'package:gameon/features/search/domain/repositories/search_repository.dart';
+import 'package:gameon/features/search/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-class DisplayOptions extends StatefulWidget {
-  final int genreId;
+class SearchOutcome extends StatefulWidget {
+  final String searchQuery;
 
-  const DisplayOptions({
+  const SearchOutcome({
     super.key,
-    required this.genreId,
+    required this.searchQuery,
   });
 
   @override
-  State<DisplayOptions> createState() => _DisplayOptionsState();
+  State<SearchOutcome> createState() => _SearchOutcomeState();
 }
 
-class _DisplayOptionsState extends State<DisplayOptions> {
+class _SearchOutcomeState extends State<SearchOutcome> {
   int selectedIndex = 0;
 
-  final GenreGamesBloc _bloc = GenreGamesBloc(
-    genreGamesRepository: GenreGamesRepository(
-      genreGamesRemoteDataSource: GenreGamesRemoteDataSource(),
+  final SearchBloc _bloc = SearchBloc(
+    searchRepository: SearchRepository(
+      searchRemoteDataSource: SearchRemoteDataSource(),
     ),
   );
-  late StreamSubscription<GenreGamesState> _blocListingStateSubscription;
+  late StreamSubscription<SearchState> _blocListingStateSubscription;
 
-  final PagingController<int, GenreGameModel> _pagingController =
+  final PagingController<int, SearchedGameModel> _pagingController =
       PagingController(firstPageKey: 1);
 
   @override
   void initState() {
     _pagingController.addPageRequestListener((pageKey) {
       _bloc.onPageRequestSink.add(
-        GenrePageModel(
+        SearchPageModel(
           page: pageKey,
-          id: widget.genreId,
+          searchQuery: widget.searchQuery,
         ),
       );
     });
@@ -51,7 +51,7 @@ class _DisplayOptionsState extends State<DisplayOptions> {
       _pagingController.value = PagingState(
         nextPageKey: listingState.page,
         error: listingState.error,
-        itemList: listingState.genreGames,
+        itemList: listingState.searchedGames,
       );
     });
     super.initState();
@@ -67,8 +67,7 @@ class _DisplayOptionsState extends State<DisplayOptions> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(12),
+    return Expanded(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -144,7 +143,7 @@ class _DisplayOptionsState extends State<DisplayOptions> {
                   mainAxisSpacing: 5,
                   childAspectRatio: 1 / 1.1,
                 ),
-                builderDelegate: PagedChildBuilderDelegate<GenreGameModel>(
+                builderDelegate: PagedChildBuilderDelegate<SearchedGameModel>(
                   itemBuilder: (context, item, index) => GridViewTile(
                     name: item.name,
                     url: item.url,
@@ -158,7 +157,7 @@ class _DisplayOptionsState extends State<DisplayOptions> {
             Expanded(
               child: PagedListView(
                 pagingController: _pagingController,
-                builderDelegate: PagedChildBuilderDelegate<GenreGameModel>(
+                builderDelegate: PagedChildBuilderDelegate<SearchedGameModel>(
                   itemBuilder: (context, item, index) => ListViewTile(
                     name: item.name,
                     popularity: item.popularity,
@@ -167,7 +166,7 @@ class _DisplayOptionsState extends State<DisplayOptions> {
                   ),
                 ),
               ),
-            )
+            ),
         ],
       ),
     );

@@ -11,6 +11,9 @@ import 'package:gameon/features/genres/data/datasources/genres_remote_data_sourc
 import 'package:gameon/features/genres/domain/repositories/genres_repository.dart';
 import 'package:gameon/features/genres/presentation/bloc/genres_bloc/genres_bloc.dart';
 import 'package:gameon/features/home_page/presentation/home_page.dart';
+import 'package:gameon/features/search/data/datasources/search_remote_data_source.dart';
+import 'package:gameon/features/search/domain/repositories/search_repository.dart';
+import 'package:gameon/features/search/presentation/bloc/search_bloc/search_bloc.dart';
 
 void main() async {
   await dotenv.load();
@@ -36,7 +39,14 @@ void main() async {
               gameDetailsRemoteDataSource: GameDetailsRemoteDataSource(),
             ),
           ),
-        )
+        ),
+        BlocProvider(
+          create: (context) => SearchBloc(
+            searchRepository: SearchRepository(
+              searchRemoteDataSource: SearchRemoteDataSource(),
+            ),
+          ),
+        ),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
