@@ -5,11 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gameon/features/search/data/models/search_page_model.dart';
 import 'package:gameon/features/search/data/models/searched_game_model.dart';
 import 'package:gameon/features/search/domain/repositories/search_repository.dart';
+import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
 part 'search_event.dart';
 part 'search_state.dart';
 
+@injectable
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final SearchRepository _searchRepository;
   SearchBloc({

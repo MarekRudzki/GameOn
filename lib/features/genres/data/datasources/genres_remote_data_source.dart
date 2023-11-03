@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:injectable/injectable.dart';
 
+@lazySingleton
 class GenresRemoteDataSource {
   Future<List<Map<String, dynamic>>> getGenres() async {
     try {

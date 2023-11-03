@@ -1,6 +1,8 @@
 import 'package:gameon/features/genres/data/datasources/genres_remote_data_source.dart';
 import 'package:gameon/features/genres/data/models/genre_model.dart';
+import 'package:injectable/injectable.dart';
 
+@lazySingleton
 class GenresRepository {
   final GenresRemoteDataSource _genresRemoteDataSource;
 

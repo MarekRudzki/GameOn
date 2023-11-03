@@ -1,6 +1,8 @@
 import 'package:gameon/features/search/data/datasources/search_remote_data_source.dart';
 import 'package:gameon/features/search/data/models/searched_game_model.dart';
+import 'package:injectable/injectable.dart';
 
+@lazySingleton
 class SearchRepository {
   final SearchRemoteDataSource _searchRemoteDataSource;
 
