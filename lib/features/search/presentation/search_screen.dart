@@ -13,10 +13,9 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  int selectedIndex = 0;
-  bool test = false;
-  String text = '';
   final TextEditingController _controller = TextEditingController();
+  bool gamesVisible = false;
+  String text = '';
 
   @override
   void dispose() {
@@ -26,7 +25,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final searchBarWidth = MediaQuery.of(context).size.width * 0.7;
+    final searchTextFieldWidth = MediaQuery.of(context).size.width * 0.7;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -51,94 +50,86 @@ class _SearchScreenState extends State<SearchScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
+                height: 60,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                    color: Colors.pinkAccent,
+                    color: const Color.fromARGB(255, 27, 62, 110),
+                    width: 7,
                   ),
                 ),
-                child: Container(
-                  height: 60,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      color: const Color.fromARGB(255, 15, 47, 91),
-                      width: 7,
+                child: Row(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.white,
+                      ),
+                      width: searchTextFieldWidth,
+                      child: TextField(
+                        controller: _controller,
+                        onChanged: (value) {
+                          setState(() {
+                            text = value;
+                            gamesVisible = false;
+                          });
+                        },
+                        decoration: const InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: 10,
+                          ),
+                          border: InputBorder.none,
+                          hintText: 'Search for a game...',
+                          hintStyle: TextStyle(
+                            color: const Color.fromARGB(255, 27, 62, 110),
+                          ),
+                        ),
+                        textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.text,
+                        onSubmitted: (value) {
+                          context.read<SearchBloc>().onPageRequestSink.add(
+                                SearchPageModel(
+                                  page: 1,
+                                  searchQuery: value,
+                                ),
+                              );
+                          _controller.clear();
+                          setState(() {
+                            gamesVisible = true;
+                          });
+                        },
+                      ),
                     ),
-                  ),
-                  child: Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Colors.white,
-                        ),
-                        width: searchBarWidth,
-                        child: TextField(
-                          controller: _controller,
-                          onChanged: (value) {
-                            setState(() {
-                              text = value;
-                              test = false;
-                            });
-                          },
-                          decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
-                              horizontal: 10,
-                            ),
-                            border: InputBorder.none,
-                            hintText: 'Search for a game...',
-                            hintStyle: TextStyle(
-                              color: Colors.pinkAccent,
-                            ),
-                          ),
-                          textInputAction: TextInputAction.done,
-                          keyboardType: TextInputType.text,
-                          onSubmitted: (value) {
-                            context.read<SearchBloc>().onPageRequestSink.add(
-                                  SearchPageModel(
-                                    page: 1,
-                                    searchQuery: value,
-                                  ),
-                                );
-                            _controller.clear();
-                            setState(() {
-                              test = true;
-                            });
-                          },
-                        ),
-                      ),
-                      Expanded(
-                        child: InkWell(
-                          onTap: () {
-                            context.read<SearchBloc>().onPageRequestSink.add(
-                                  SearchPageModel(
-                                    page: 1,
-                                    searchQuery: _controller.text,
-                                  ),
-                                );
-                            FocusScope.of(context).unfocus();
-                            _controller.clear();
-                            setState(() {
-                              test = true;
-                            });
-                          },
-                          child: Container(
-                            height: 60,
-                            color: const Color.fromARGB(255, 15, 47, 91),
-                            child: const Icon(
-                              Icons.search,
-                              color: Colors.pinkAccent,
-                              size: 28,
-                            ),
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          context.read<SearchBloc>().onPageRequestSink.add(
+                                SearchPageModel(
+                                  page: 1,
+                                  searchQuery: _controller.text,
+                                ),
+                              );
+                          FocusScope.of(context).unfocus();
+                          _controller.clear();
+                          setState(() {
+                            gamesVisible = true;
+                          });
+                        },
+                        child: Container(
+                          height: 60,
+                          color: const Color.fromARGB(255, 27, 62, 110),
+                          child: const Icon(
+                            Icons.search,
+                            color: Colors.pinkAccent,
+                            size: 28,
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              if (test)
+              if (gamesVisible)
                 SearchOutcome(searchQuery: text)
               else
                 const SizedBox.shrink()

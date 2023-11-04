@@ -19,8 +19,7 @@ class AvailablePlatforms extends StatelessWidget {
               child: Text(
                 'Available on: ',
                 style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
+                  color: Color.fromARGB(255, 197, 194, 194),
                   fontSize: 15,
                 ),
               ),
@@ -29,6 +28,7 @@ class AvailablePlatforms extends StatelessWidget {
               text: platforms.join(', '),
               style: const TextStyle(
                 color: Colors.white,
+                fontWeight: FontWeight.w600,
                 fontSize: 15,
               ),
             ),

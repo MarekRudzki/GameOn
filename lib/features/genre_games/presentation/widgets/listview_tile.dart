@@ -22,6 +22,7 @@ class ListViewTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final String heroId = '${gameId}_list';
     ImageProvider? loadedImage;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7),
       child: InkWell(
@@ -45,7 +46,7 @@ class ListViewTile extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: const Color.fromARGB(192, 105, 103, 103),
+            color: const Color.fromARGB(255, 27, 62, 110),
             boxShadow: [
               const BoxShadow(
                 offset: Offset(0.0, 1.0),

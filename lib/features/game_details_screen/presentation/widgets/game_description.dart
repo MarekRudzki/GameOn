@@ -11,57 +11,45 @@ class GameDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double dividerIndent = MediaQuery.of(context).size.width * 0.25;
     return Column(
       children: [
-        const Divider(
-          color: Color.fromARGB(255, 127, 124, 124),
-          endIndent: 25,
-          indent: 25,
+        Divider(
+          color: const Color.fromARGB(255, 127, 124, 124),
+          endIndent: dividerIndent,
+          indent: dividerIndent,
           thickness: 1,
         ),
-        const Padding(
-          padding: EdgeInsets.fromLTRB(0, 5, 0, 10),
-          child: Center(
-            child: Text(
-              'About:',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: ReadMoreText(
+            description,
+            colorClickableText: Colors.pink,
+            trimMode: TrimMode.Line,
+            trimLines: 6,
+            textAlign: TextAlign.justify,
+            style: const TextStyle(
+              color: Colors.white,
+            ),
+            trimCollapsedText: ' Read more',
+            trimExpandedText: ' Show less',
+            moreStyle: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Colors.pinkAccent,
+            ),
+            lessStyle: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Colors.pinkAccent,
             ),
           ),
         ),
-        ReadMoreText(
-          description,
-          colorClickableText: Colors.pink,
-          trimMode: TrimMode.Line,
-          trimLines: 6,
-          textAlign: TextAlign.justify,
-          style: const TextStyle(
-            color: Colors.white,
-          ),
-          trimCollapsedText: ' Read more',
-          trimExpandedText: ' Show less',
-          moreStyle: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-            color: Colors.pinkAccent,
-          ),
-          lessStyle: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-            color: Colors.pinkAccent,
-          ),
-        ),
-        const Padding(
-          padding: EdgeInsets.only(top: 8),
-          child: Divider(
-            color: Color.fromARGB(255, 127, 124, 124),
-            endIndent: 25,
-            indent: 25,
-            thickness: 1,
-          ),
+        Divider(
+          color: const Color.fromARGB(255, 127, 124, 124),
+          endIndent: dividerIndent,
+          indent: dividerIndent,
+          thickness: 1,
         ),
       ],
     );

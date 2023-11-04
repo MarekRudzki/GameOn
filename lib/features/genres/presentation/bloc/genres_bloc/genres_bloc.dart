@@ -13,10 +13,10 @@ class GenresBloc extends Bloc<GenresEvent, GenresState> {
   GenresBloc({required GenresRepository genresRepository})
       : _genresRepository = genresRepository,
         super(GenresInitial()) {
-    on<GenresRequested>(_onGameGenreRequested);
+    on<GenresRequested>(_onGenresRequested);
   }
 
-  Future<void> _onGameGenreRequested(
+  Future<void> _onGenresRequested(
     GenresRequested event,
     Emitter<GenresState> emit,
   ) async {

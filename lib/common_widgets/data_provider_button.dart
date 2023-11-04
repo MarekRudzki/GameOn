@@ -20,14 +20,14 @@ class DataProviderButton extends StatelessWidget {
           context: context,
           builder: (context) {
             return AlertDialog(
+              contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
+              backgroundColor: const Color.fromARGB(255, 15, 47, 91),
               title: const Text(
                 'Data provider',
                 style: TextStyle(
                   color: Colors.white,
                 ),
               ),
-              contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
-              backgroundColor: const Color.fromARGB(255, 15, 47, 91),
               actions: [
                 Center(
                   child: IconButton(

@@ -15,10 +15,12 @@ class GenreGameModel extends Equatable {
 
   factory GenreGameModel.fromJson(Map<String, dynamic> json, int popularity) {
     return GenreGameModel(
-      name: json['name'] as String,
+      name: json['name'] != null ? json['name'] as String : 'No data',
       popularity: popularity,
-      gameId: json['id'] as int,
-      url: json['background_image'] as String,
+      gameId: json['id'] != null ? json['id'] as int : -1,
+      url: json['background_image'] != null
+          ? json['background_image'] as String
+          : 'No data',
     );
   }
 

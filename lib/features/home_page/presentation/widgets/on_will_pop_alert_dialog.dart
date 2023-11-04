@@ -12,7 +12,7 @@ class OnWillPopAlertDialog extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-      backgroundColor: const Color.fromARGB(255, 40, 40, 42),
+      backgroundColor: const Color.fromARGB(255, 2, 31, 68),
       content: const Text(
         'Do you want to exit the app?',
         style: TextStyle(

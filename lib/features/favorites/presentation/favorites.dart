@@ -10,7 +10,7 @@ class Favorites extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           elevation: 5,
-          backgroundColor: const Color.fromARGB(255, 58, 57, 65),
+          backgroundColor: const Color.fromARGB(255, 15, 47, 91),
           title: const Text(
             'Favorites',
             style: TextStyle(
@@ -23,8 +23,8 @@ class Favorites extends StatelessWidget {
             const DataProviderButton(),
           ],
         ),
-        backgroundColor: const Color.fromARGB(255, 43, 42, 48),
-        body: Container(),
+        backgroundColor: const Color.fromARGB(255, 2, 31, 68),
+        body: const Placeholder(),
       ),
     );
   }

@@ -22,7 +22,9 @@ class GenreGamesRepository {
     final gamesMap = genreGames.asMap();
 
     for (final index in gamesMap.keys) {
-      final int gamePopularity = gamesMap[index]!['added'] as int;
+      final int gamePopularity = gamesMap[index]!['added'] != null
+          ? gamesMap[index]!['added'] as int
+          : 0;
 
       gamesList.add(GenreGameModel.fromJson(gamesMap[index]!, gamePopularity));
     }

@@ -10,7 +10,7 @@ class GenresRepository {
       : _genresRemoteDataSource = genresRemoteDataSource;
 
   Future<List<GenreModel>> getGenres() async {
-    final List<String> genresGamesPhotos = [
+    final List<String> genresPhotos = [
       'https://media.rawg.io/media/screenshots/2ed/2ed3b2791b3bbed6b98bf362694aeb73.jpg',
       'https://media.rawg.io/media/screenshots/62b/62b36b00ffc3052880176fa9d20f2741.jpg',
       'https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg',
@@ -40,7 +40,7 @@ class GenresRepository {
     for (final index in genresMap.keys) {
       genreModelList.add(GenreModel.fromJson(
         genresMap[index]!,
-        genresGamesPhotos[index],
+        genresPhotos[index],
       ));
     }
 

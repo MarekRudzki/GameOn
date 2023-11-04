@@ -25,63 +25,66 @@ class _GameScreenshotsState extends State<GameScreenshots> {
       carouselItems.add(i);
     }
 
-    return CarouselSlider(
-      options: CarouselOptions(
-        height: 170,
-        autoPlay: isAutoplay,
-        onPageChanged: (index, reason) {
-          imageIndex = index;
-        },
-      ),
-      items: carouselItems.map(
-        (i) {
-          return Builder(
-            builder: (BuildContext context) {
-              return InkWell(
-                onTap: () {
-                  setState(() {
-                    isAutoplay = false;
-                  });
-                  showDialog(
-                    context: context,
-                    builder: (context) => Dialog(
-                      insetPadding: const EdgeInsets.symmetric(horizontal: 5),
-                      backgroundColor: Colors.black.withOpacity(0.3),
-                      child: PhotoView(
-                        imageProvider: NetworkImage(
-                          widget.screenshots[imageIndex],
-                        ),
-                        minScale: PhotoViewComputedScale.contained,
-                        maxScale: PhotoViewComputedScale.covered * 2,
-                        controller: PhotoViewController(),
-                        tightMode: true,
-                        backgroundDecoration: const BoxDecoration(
-                          color: Colors.transparent,
+    return Padding(
+      padding: const EdgeInsets.only(top: 8),
+      child: CarouselSlider(
+        options: CarouselOptions(
+          height: 170,
+          autoPlay: isAutoplay,
+          onPageChanged: (index, reason) {
+            imageIndex = index;
+          },
+        ),
+        items: carouselItems.map(
+          (i) {
+            return Builder(
+              builder: (BuildContext context) {
+                return InkWell(
+                  onTap: () {
+                    setState(() {
+                      isAutoplay = false;
+                    });
+                    showDialog(
+                      context: context,
+                      builder: (context) => Dialog(
+                        insetPadding: const EdgeInsets.symmetric(horizontal: 5),
+                        backgroundColor: Colors.black.withOpacity(0.3),
+                        child: PhotoView(
+                          imageProvider: NetworkImage(
+                            widget.screenshots[imageIndex],
+                          ),
+                          minScale: PhotoViewComputedScale.contained,
+                          maxScale: PhotoViewComputedScale.covered * 2,
+                          controller: PhotoViewController(),
+                          tightMode: true,
+                          backgroundDecoration: const BoxDecoration(
+                            color: Colors.transparent,
+                          ),
                         ),
                       ),
-                    ),
-                  ).then((_) {
-                    setState(() {
-                      isAutoplay = true;
+                    ).then((_) {
+                      setState(() {
+                        isAutoplay = true;
+                      });
                     });
-                  });
-                },
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 5,
-                    vertical: 5,
+                  },
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 5,
+                      vertical: 5,
+                    ),
+                    child: Image.network(
+                      widget.screenshots[i],
+                      fit: BoxFit.fill,
+                    ),
                   ),
-                  child: Image.network(
-                    widget.screenshots[i],
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              );
-            },
-          );
-        },
-      ).toList(),
+                );
+              },
+            );
+          },
+        ).toList(),
+      ),
     );
   }
 }

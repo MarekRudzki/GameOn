@@ -31,14 +31,15 @@ class OverallGameInfo extends StatelessWidget {
                     const Text(
                       'Developer',
                       style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
+                        color: Color.fromARGB(255, 197, 194, 194),
                       ),
                     ),
+                    const SizedBox(height: 4),
                     Text(
                       developers,
                       style: const TextStyle(
                         color: Colors.white,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],
@@ -52,14 +53,15 @@ class OverallGameInfo extends StatelessWidget {
                     const Text(
                       'ESRB rating',
                       style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
+                        color: Color.fromARGB(255, 197, 194, 194),
                       ),
                     ),
+                    const SizedBox(height: 4),
                     Text(
                       esrbRating,
                       style: const TextStyle(
                         color: Colors.white,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],
@@ -77,14 +79,15 @@ class OverallGameInfo extends StatelessWidget {
                     const Text(
                       'Average playtime',
                       style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
+                        color: Color.fromARGB(255, 197, 194, 194),
                       ),
                     ),
+                    const SizedBox(height: 4),
                     Text(
                       playtime == 0 ? 'No data' : '${playtime} h',
                       style: const TextStyle(
                         color: Colors.white,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],
@@ -98,14 +101,15 @@ class OverallGameInfo extends StatelessWidget {
                     const Text(
                       'Metacritic',
                       style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
+                        color: Color.fromARGB(255, 197, 194, 194),
                       ),
                     ),
+                    const SizedBox(height: 4),
                     Text(
                       metacritic == 0 ? 'No data' : metacritic.toString(),
                       style: const TextStyle(
                         color: Colors.white,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],
@@ -119,14 +123,15 @@ class OverallGameInfo extends StatelessWidget {
                     const Text(
                       'Released',
                       style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
+                        color: Color.fromARGB(255, 197, 194, 194),
                       ),
                     ),
+                    const SizedBox(height: 4),
                     Text(
                       released,
                       style: const TextStyle(
                         color: Colors.white,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],

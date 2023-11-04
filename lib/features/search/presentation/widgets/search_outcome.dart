@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:gameon/features/genre_games/presentation/widgets/display_picker.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/gridview_tile.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/listview_tile.dart';
 import 'package:gameon/features/search/data/datasources/search_remote_data_source.dart';
@@ -71,66 +72,13 @@ class _SearchOutcomeState extends State<SearchOutcome> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Text(
-                'Display options:',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 17,
-                ),
-              ),
-              Container(
-                height: 40,
-                width: MediaQuery.of(context).size.width * 0.35,
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 15, 47, 91),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: IntrinsicHeight(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      InkWell(
-                        child: Icon(
-                          Icons.grid_view,
-                          size: 30,
-                          color: selectedIndex == 0
-                              ? Colors.pinkAccent
-                              : Colors.grey,
-                        ),
-                        onTap: () {
-                          setState(() {
-                            selectedIndex = 0;
-                          });
-                        },
-                      ),
-                      const VerticalDivider(
-                        color: Colors.white,
-                        thickness: 1.5,
-                        endIndent: 7,
-                        indent: 7,
-                      ),
-                      InkWell(
-                        child: Icon(
-                          Icons.view_agenda_outlined,
-                          size: 28,
-                          color: selectedIndex == 1
-                              ? Colors.pinkAccent
-                              : Colors.grey,
-                        ),
-                        onTap: () {
-                          setState(() {
-                            selectedIndex = 1;
-                          });
-                        },
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ],
+          DisplayPicker(
+            callback: (value) {
+              setState(() {
+                selectedIndex = value;
+              });
+            },
+            selectedIndex: selectedIndex,
           ),
           const SizedBox(height: 15),
           if (selectedIndex == 0)

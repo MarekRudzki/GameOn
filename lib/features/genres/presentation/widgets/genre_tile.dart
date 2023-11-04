@@ -65,7 +65,7 @@ class GenreTile extends StatelessWidget {
                   ),
                   Expanded(
                     child: Container(
-                      color: const Color.fromARGB(192, 105, 103, 103),
+                      color: const Color.fromARGB(255, 27, 62, 110),
                       child: Center(
                         child: Text(
                           genreName.replaceAll('Massively Multiplayer', 'MMO'),
