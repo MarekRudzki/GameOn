@@ -20,7 +20,6 @@ class SearchRepository {
       searchQuery: searchQuery,
       page: page,
     );
-
     final gamesMap = gamesList.asMap();
 
     for (final index in gamesMap.keys) {

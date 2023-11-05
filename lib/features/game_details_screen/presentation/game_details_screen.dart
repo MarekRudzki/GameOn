@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_glow/flutter_glow.dart';
+import 'package:gameon/common_widgets/data_provider_button.dart';
 import 'package:gameon/features/game_details_screen/presentation/bloc/game_details_bloc/game_details_bloc.dart';
 import 'package:gameon/features/game_details_screen/presentation/widgets/available_platforms.dart';
 import 'package:gameon/features/game_details_screen/presentation/widgets/custom_sliver_app_bar.dart';
@@ -11,7 +13,7 @@ import 'package:gameon/features/home_page/presentation/provider/internet_connect
 import 'package:gameon/features/home_page/presentation/widgets/no_network.dart';
 
 class GameDetailsScreen extends StatelessWidget {
-  final ImageProvider image;
+  final ImageProvider? image;
   final String name;
   final int id;
   final String heroId;
@@ -26,30 +28,78 @@ class GameDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double height = MediaQuery.sizeOf(context).height;
+    final hasPhoto = image != null;
     final bool hasInternet =
         context.watch<InternetConnectionProvider>().hasInternet;
 
     return SafeArea(
       child: hasInternet
           ? Scaffold(
+              appBar: !hasPhoto
+                  ? AppBar(
+                      backgroundColor: const Color.fromARGB(255, 15, 47, 91),
+                      flexibleSpace: LayoutBuilder(
+                        builder: (context, constraints) {
+                          final double appBarHeight =
+                              constraints.biggest.height;
+                          final bool isExpanded = appBarHeight > height * 0.1;
+                          return FlexibleSpaceBar(
+                            expandedTitleScale: 1.3,
+                            centerTitle: true,
+                            titlePadding: EdgeInsets.symmetric(
+                              horizontal: 45,
+                              vertical: isExpanded ? 10 : 0,
+                            ),
+                            title: Column(
+                              mainAxisAlignment: isExpanded
+                                  ? MainAxisAlignment.end
+                                  : MainAxisAlignment.center,
+                              children: [
+                                Container(),
+                                GlowText(
+                                  name,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 21,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                  glowColor: Colors.black,
+                                  blurRadius: 10,
+                                  softWrap: true,
+                                  maxLines: isExpanded ? 3 : 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                Container(),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                      actions: [
+                        const DataProviderButton(),
+                      ],
+                    )
+                  : null,
               body: Container(
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color.fromARGB(255, 2, 31, 68),
-                      Color.fromARGB(255, 27, 62, 110),
+                      Color.fromARGB(255, 2, 28, 61),
+                      Color.fromARGB(255, 31, 71, 126),
                     ],
                   ),
                 ),
                 child: CustomScrollView(
                   slivers: [
-                    CustomSliverAppBar(
-                      name: name,
-                      heroId: heroId,
-                      image: image,
-                    ),
+                    if (hasPhoto)
+                      CustomSliverAppBar(
+                        name: name,
+                        heroId: heroId,
+                        image: image!,
+                      ),
                     SliverList(
                       delegate: SliverChildListDelegate(
                         [
@@ -101,7 +151,8 @@ class GameDetailsScreen extends StatelessWidget {
                                 );
                               } else {
                                 return Container(
-                                  height: 200,
+                                  height:
+                                      MediaQuery.sizeOf(context).height * 0.2,
                                   child: const Center(
                                     child: CircularProgressIndicator(),
                                   ),

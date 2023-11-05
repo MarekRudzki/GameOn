@@ -11,7 +11,7 @@ class GameDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double dividerIndent = MediaQuery.of(context).size.width * 0.25;
+    final double dividerIndent = MediaQuery.sizeOf(context).width * 0.25;
     return Column(
       children: [
         Divider(

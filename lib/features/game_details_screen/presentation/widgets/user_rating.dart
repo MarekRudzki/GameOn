@@ -14,7 +14,7 @@ class UserRating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double barWidth = MediaQuery.of(context).size.width - 28;
+    final double barWidth = MediaQuery.sizeOf(context).width - 28;
     final double exceptionalWidth =
         barWidth * ((userRating.exceptional ?? 0) / reviewsCount);
     final double recommendedWidth =

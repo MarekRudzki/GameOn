@@ -5,7 +5,7 @@ import 'package:gameon/features/home_page/presentation/provider/internet_connect
 import 'package:gameon/features/home_page/presentation/widgets/no_network.dart';
 import 'package:provider/provider.dart';
 
-class GenreGamesScreen extends StatefulWidget {
+class GenreGamesScreen extends StatelessWidget {
   final int genreId;
   final String name;
 
@@ -16,15 +16,9 @@ class GenreGamesScreen extends StatefulWidget {
   });
 
   @override
-  State<GenreGamesScreen> createState() => _GenreGamesScreenState();
-}
-
-class _GenreGamesScreenState extends State<GenreGamesScreen> {
-  @override
   Widget build(BuildContext context) {
     final bool hasInternet =
         context.watch<InternetConnectionProvider>().hasInternet;
-
     return SafeArea(
       child: hasInternet
           ? Scaffold(
@@ -32,7 +26,7 @@ class _GenreGamesScreenState extends State<GenreGamesScreen> {
                 elevation: 5,
                 backgroundColor: const Color.fromARGB(255, 15, 47, 91),
                 title: Text(
-                  widget.name,
+                  name,
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 21,
@@ -45,7 +39,7 @@ class _GenreGamesScreenState extends State<GenreGamesScreen> {
               ),
               backgroundColor: const Color.fromARGB(255, 2, 31, 68),
               body: DisplayOptions(
-                genreId: widget.genreId,
+                genreId: genreId,
               ),
             )
           : const NoNetwork(),

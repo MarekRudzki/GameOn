@@ -1,8 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gameon/features/genre_games/data/models/genre_page_model.dart';
-import 'package:gameon/features/genre_games/presentation/bloc/genre_games_bloc/genre_games_bloc.dart';
 import 'package:gameon/features/genre_games/presentation/genre_games_screen.dart';
 
 class GenreTile extends StatelessWidget {
@@ -21,12 +18,6 @@ class GenreTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.read<GenreGamesBloc>().onPageRequestSink.add(
-              GenrePageModel(
-                page: 1,
-                id: genreId,
-              ),
-            );
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => GenreGamesScreen(
@@ -55,7 +46,7 @@ class GenreTile extends StatelessWidget {
               imageBuilder: (context, imageProvider) => Column(
                 children: [
                   Container(
-                    height: (MediaQuery.of(context).size.height) / 7,
+                    height: (MediaQuery.sizeOf(context).height) / 7,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: imageProvider,

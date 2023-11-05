@@ -11,7 +11,7 @@ class SearchRemoteDataSource {
     try {
       final String rawgKey = dotenv.get('RAWG_Key');
       final response = await Dio().get<Map<String, dynamic>>(
-          'https://api.rawg.io/api/games?search=$searchQuery&page=$page&ordering=-rating&key=$rawgKey');
+          'https://api.rawg.io/api/games?search=$searchQuery&page=$page&ordering=-rating&search_exact=true&key=$rawgKey');
       final List<dynamic> dynamicList =
           response.data!['results'] as List<dynamic>;
       return dynamicList.map((e) => e as Map<String, dynamic>).toList();

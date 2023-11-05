@@ -29,7 +29,7 @@ class _GameScreenshotsState extends State<GameScreenshots> {
       padding: const EdgeInsets.only(top: 8),
       child: CarouselSlider(
         options: CarouselOptions(
-          height: 170,
+          height: MediaQuery.sizeOf(context).height * 0.23,
           autoPlay: isAutoplay,
           onPageChanged: (index, reason) {
             imageIndex = index;
@@ -69,7 +69,7 @@ class _GameScreenshotsState extends State<GameScreenshots> {
                     });
                   },
                   child: Container(
-                    width: MediaQuery.of(context).size.width,
+                    width: MediaQuery.sizeOf(context).width,
                     margin: const EdgeInsets.symmetric(
                       horizontal: 5,
                       vertical: 5,

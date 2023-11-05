@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class InternetConnectionProvider extends ChangeNotifier {
-  bool _hasInternet = false;
+  bool _hasInternet = true;
 
   bool get hasInternet => _hasInternet;
 

@@ -30,7 +30,7 @@ class CustomSliverAppBar extends StatelessWidget {
         maxLines: 5,
       );
 
-      textPainter.layout(maxWidth: MediaQuery.of(context).size.width - 56 - 48);
+      textPainter.layout(maxWidth: MediaQuery.sizeOf(context).width - 56 - 48);
 
       final int numberOfLines = textPainter.computeLineMetrics().length;
       return numberOfLines;
@@ -47,7 +47,7 @@ class CustomSliverAppBar extends StatelessWidget {
       }
     }
 
-    final double height = MediaQuery.of(context).size.height;
+    final double height = MediaQuery.sizeOf(context).height;
     return SliverAppBar(
       backgroundColor: const Color.fromARGB(255, 15, 47, 91),
       expandedHeight: height * 0.35,

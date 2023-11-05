@@ -24,7 +24,7 @@ class DisplayPicker extends StatelessWidget {
         ),
         Container(
           height: 40,
-          width: MediaQuery.of(context).size.width * 0.35,
+          width: MediaQuery.sizeOf(context).width * 0.35,
           decoration: BoxDecoration(
             color: const Color.fromARGB(255, 27, 62, 110),
             borderRadius: BorderRadius.circular(15),

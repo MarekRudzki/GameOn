@@ -34,7 +34,9 @@ class ListViewTile extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => GameDetailsScreen(
-                image: loadedImage ?? CachedNetworkImageProvider(url),
+                image: loadedImage != null
+                    ? CachedNetworkImageProvider(url)
+                    : null,
                 name: name,
                 id: gameId,
                 heroId: heroId,
@@ -61,40 +63,58 @@ class ListViewTile extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8),
                   child: Container(
-                    height: MediaQuery.of(context).size.height * 0.12,
-                    width: MediaQuery.of(context).size.width * 0.4,
+                    height: MediaQuery.sizeOf(context).height * 0.12,
+                    width: MediaQuery.sizeOf(context).width * 0.4,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
-                      child: CachedNetworkImage(
-                        imageUrl: url,
-                        placeholder: (context, url) => Hero(
-                          tag: gameId,
-                          child: Image.asset(
-                            'assets/loading.gif',
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        errorWidget: (context, url, error) => const Icon(
-                          Icons.error,
-                          size: 100,
-                          color: Colors.red,
-                        ),
-                        imageBuilder: (context, imageProvider) {
-                          loadedImage = imageProvider;
-
-                          return Hero(
-                            tag: heroId,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: imageProvider,
+                      child: url != 'No data'
+                          ? CachedNetworkImage(
+                              imageUrl: url,
+                              placeholder: (context, url) => Hero(
+                                tag: gameId,
+                                child: Image.asset(
+                                  'assets/loading.gif',
                                   fit: BoxFit.fill,
                                 ),
                               ),
+                              imageBuilder: (context, imageProvider) {
+                                loadedImage = imageProvider;
+
+                                return Hero(
+                                  tag: heroId,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: imageProvider,
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            )
+                          : Container(
+                              height: MediaQuery.sizeOf(context).height * 0.12,
+                              child: const Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.error,
+                                    size: 40,
+                                    color: Colors.red,
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    'Photo not available',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
-                          );
-                        },
-                      ),
                     ),
                   ),
                 ),

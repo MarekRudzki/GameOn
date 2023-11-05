@@ -80,7 +80,7 @@ class _SearchOutcomeState extends State<SearchOutcome> {
             },
             selectedIndex: selectedIndex,
           ),
-          const SizedBox(height: 15),
+          const SizedBox(height: 10),
           if (selectedIndex == 0)
             Expanded(
               child: PagedGridView(
@@ -92,6 +92,30 @@ class _SearchOutcomeState extends State<SearchOutcome> {
                   childAspectRatio: 1 / 1.1,
                 ),
                 builderDelegate: PagedChildBuilderDelegate<SearchedGameModel>(
+                  noItemsFoundIndicatorBuilder: (context) {
+                    return Column(
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.1,
+                        ),
+                        const Text(
+                          'No items found',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        const Text(
+                          'The list is currently empty',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
+                        )
+                      ],
+                    );
+                  },
                   itemBuilder: (context, item, index) => GridViewTile(
                     name: item.name,
                     url: item.url,
@@ -106,6 +130,30 @@ class _SearchOutcomeState extends State<SearchOutcome> {
               child: PagedListView(
                 pagingController: _pagingController,
                 builderDelegate: PagedChildBuilderDelegate<SearchedGameModel>(
+                  noItemsFoundIndicatorBuilder: (context) {
+                    return Column(
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.1,
+                        ),
+                        const Text(
+                          'No items found',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        const Text(
+                          'The list is currently empty',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
+                        )
+                      ],
+                    );
+                  },
                   itemBuilder: (context, item, index) => ListViewTile(
                     name: item.name,
                     popularity: item.popularity,
