@@ -9,24 +9,33 @@ class GenresScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          elevation: 5,
-          backgroundColor: const Color.fromARGB(255, 15, 47, 91),
-          title: const Text(
-            'Genres',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 21,
+    return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 2, 31, 68),
+      body: NestedScrollView(
+        floatHeaderSlivers: true,
+        headerSliverBuilder: (
+          BuildContext context,
+          bool innerBoxIsScrolled,
+        ) {
+          return [
+            SliverAppBar(
+              elevation: 5,
+              backgroundColor: const Color.fromARGB(255, 15, 47, 91),
+              title: const Text(
+                'Genres',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 21,
+                ),
+              ),
+              centerTitle: true,
+              actions: [
+                const DataProviderButton(),
+              ],
+              forceElevated: innerBoxIsScrolled,
             ),
-          ),
-          centerTitle: true,
-          actions: [
-            const DataProviderButton(),
-          ],
-        ),
-        backgroundColor: const Color.fromARGB(255, 2, 31, 68),
+          ];
+        },
         body: BlocBuilder<GenresBloc, GenresState>(
           builder: (context, state) {
             if (state is GenresSuccess) {

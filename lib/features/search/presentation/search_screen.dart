@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gameon/common_widgets/data_provider_button.dart';
-import 'package:gameon/features/search/presentation/widgets/search_bar.dart';
+import 'package:gameon/features/genre_games/presentation/widgets/display_picker.dart';
+import 'package:gameon/features/search/presentation/widgets/custom_search_bar.dart';
 import 'package:gameon/features/search/presentation/widgets/search_outcome.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -14,6 +15,7 @@ class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _controller = TextEditingController();
   bool gamesVisible = false;
   String text = '';
+  int selectedIndex = 0;
 
   @override
   void dispose() {
@@ -23,30 +25,20 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          elevation: 5,
-          backgroundColor: const Color.fromARGB(255, 15, 47, 91),
-          title: const Text(
-            'Search',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 21,
-            ),
-          ),
-          centerTitle: true,
-          actions: [
-            const DataProviderButton(),
-          ],
-        ),
-        backgroundColor: const Color.fromARGB(255, 2, 31, 68),
-        body: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              CustomSearchBar(
+    return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 2, 31, 68),
+      body: NestedScrollView(
+        floatHeaderSlivers: true,
+        headerSliverBuilder: (
+          BuildContext context,
+          bool innerBoxIsScrolled,
+        ) {
+          return [
+            SliverAppBar(
+              elevation: 5,
+              backgroundColor: const Color.fromARGB(255, 15, 47, 91),
+              collapsedHeight: 70,
+              title: CustomSearchBar(
                 controller: _controller,
                 onTextFieldChanged: (textValue) {
                   setState(() {
@@ -67,14 +59,35 @@ class _SearchScreenState extends State<SearchScreen> {
                   });
                 },
               ),
-              const SizedBox(height: 10),
-              if (gamesVisible)
-                SearchOutcome(searchQuery: text)
-              else
-                const SizedBox.shrink()
-            ],
-          ),
-        ),
+              actions: [
+                const DataProviderButton(),
+              ],
+              forceElevated: innerBoxIsScrolled,
+              bottom: PreferredSize(
+                preferredSize: Size.fromHeight(gamesVisible ? 60 : 0),
+                child: gamesVisible
+                    ? Padding(
+                        padding: const EdgeInsets.only(bottom: 15),
+                        child: DisplayPicker(
+                          callback: (value) {
+                            setState(() {
+                              selectedIndex = value;
+                            });
+                          },
+                          selectedIndex: selectedIndex,
+                        ),
+                      )
+                    : const SizedBox.shrink(),
+              ),
+            ),
+          ];
+        },
+        body: gamesVisible
+            ? SearchOutcome(
+                searchQuery: text,
+                selectedIndex: selectedIndex,
+              )
+            : const SizedBox.shrink(),
       ),
     );
   }
