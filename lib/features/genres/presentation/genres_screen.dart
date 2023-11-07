@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gameon/common_widgets/data_provider_button.dart';
 import 'package:gameon/features/genres/presentation/bloc/genres_bloc/genres_bloc.dart';
 import 'package:gameon/features/genres/presentation/widgets/genre_tile.dart';
+import 'package:gameon/utils/custom_theme.dart';
+import 'package:nil/nil.dart';
 
 class GenresScreen extends StatelessWidget {
   const GenresScreen({super.key});
@@ -10,7 +12,7 @@ class GenresScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 2, 31, 68),
+      backgroundColor: CustomTheme.theme.colorScheme.background,
       body: NestedScrollView(
         floatHeaderSlivers: true,
         headerSliverBuilder: (
@@ -20,11 +22,11 @@ class GenresScreen extends StatelessWidget {
           return [
             SliverAppBar(
               elevation: 5,
-              backgroundColor: const Color.fromARGB(255, 15, 47, 91),
-              title: const Text(
+              backgroundColor: CustomTheme.theme.colorScheme.onBackground,
+              title: Text(
                 'Genres',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: CustomTheme.theme.colorScheme.primary,
                   fontSize: 21,
                 ),
               ),
@@ -62,7 +64,7 @@ class GenresScreen extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else {
-              return const SizedBox.shrink();
+              return nil;
             }
           },
         ),

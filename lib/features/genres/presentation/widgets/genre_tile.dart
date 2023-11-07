@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gameon/features/genre_games/presentation/genre_games_screen.dart';
+import 'package:gameon/utils/custom_theme.dart';
 
 class GenreTile extends StatelessWidget {
   const GenreTile({
@@ -60,9 +61,9 @@ class GenreTile extends StatelessWidget {
                       child: Center(
                         child: Text(
                           genreName.replaceAll('Massively Multiplayer', 'MMO'),
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 17,
-                            color: Colors.white,
+                            color: CustomTheme.theme.colorScheme.primary,
                             fontWeight: FontWeight.w600,
                           ),
                         ),

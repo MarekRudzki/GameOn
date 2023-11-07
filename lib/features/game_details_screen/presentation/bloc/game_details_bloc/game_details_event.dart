@@ -15,7 +15,5 @@ class GameDetailsRequested extends GameDetailsEvent {
   });
 
   @override
-  List<Object> get props => [
-        gameId,
-      ];
+  List<Object> get props => [gameId];
 }

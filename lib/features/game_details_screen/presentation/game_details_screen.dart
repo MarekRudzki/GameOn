@@ -11,6 +11,7 @@ import 'package:gameon/features/game_details_screen/presentation/widgets/overall
 import 'package:gameon/features/game_details_screen/presentation/widgets/user_rating.dart';
 import 'package:gameon/features/home_page/presentation/provider/internet_connection_provider.dart';
 import 'package:gameon/features/home_page/presentation/widgets/no_network.dart';
+import 'package:gameon/utils/custom_theme.dart';
 
 class GameDetailsScreen extends StatelessWidget {
   final ImageProvider? image;
@@ -32,46 +33,50 @@ class GameDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.sizeOf(context).height;
-    final hasPhoto = image != null;
-    final bool hasInternet =
+    final double _height = MediaQuery.sizeOf(context).height;
+    final bool _hasPhoto = image != null;
+    final bool _hasInternet =
         context.watch<InternetConnectionProvider>().hasInternet;
 
     return SafeArea(
-      child: hasInternet
+      child: _hasInternet
           ? Scaffold(
-              appBar: !hasPhoto
+              appBar: !_hasPhoto
                   ? AppBar(
-                      backgroundColor: const Color.fromARGB(255, 15, 47, 91),
+                      backgroundColor:
+                          CustomTheme.theme.colorScheme.onBackground,
                       flexibleSpace: LayoutBuilder(
                         builder: (context, constraints) {
-                          final double appBarHeight =
+                          final double _appBarHeight =
                               constraints.biggest.height;
-                          final bool isExpanded = appBarHeight > height * 0.1;
+                          final bool _isExpanded =
+                              _appBarHeight > _height * 0.1;
                           return FlexibleSpaceBar(
                             expandedTitleScale: 1.3,
                             centerTitle: true,
                             titlePadding: EdgeInsets.symmetric(
                               horizontal: 45,
-                              vertical: isExpanded ? 10 : 0,
+                              vertical: _isExpanded ? 10 : 0,
                             ),
                             title: Column(
-                              mainAxisAlignment: isExpanded
+                              mainAxisAlignment: _isExpanded
                                   ? MainAxisAlignment.end
                                   : MainAxisAlignment.center,
                               children: [
                                 Container(),
                                 GlowText(
                                   name,
-                                  style: const TextStyle(
-                                    color: Colors.white,
+                                  style: TextStyle(
+                                    color:
+                                        CustomTheme.theme.colorScheme.primary,
                                     fontSize: 21,
                                   ),
                                   textAlign: TextAlign.center,
-                                  glowColor: Colors.black,
+                                  glowColor:
+                                      CustomTheme.theme.colorScheme.tertiary,
                                   blurRadius: 10,
                                   softWrap: true,
-                                  maxLines: isExpanded ? 3 : 2,
+                                  maxLines: _isExpanded ? 3 : 2,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 Container(),
@@ -98,7 +103,7 @@ class GameDetailsScreen extends StatelessWidget {
                 ),
                 child: CustomScrollView(
                   slivers: [
-                    if (hasPhoto)
+                    if (_hasPhoto)
                       CustomSliverAppBar(
                         name: name,
                         heroId: heroId,

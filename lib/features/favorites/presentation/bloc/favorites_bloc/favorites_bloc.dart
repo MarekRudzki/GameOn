@@ -10,6 +10,7 @@ part 'favorites_state.dart';
 @injectable
 class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
   final FavoritesRepository _favoritesRepository;
+
   FavoritesBloc(this._favoritesRepository) : super(FavoritesInitial()) {
     on<FavoritesAddPressed>(_onFavoritesAddPressed);
     on<FavoritesRequested>(_onFavoritesRequested);

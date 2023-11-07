@@ -9,6 +9,7 @@ import 'package:gameon/features/genres/presentation/bloc/genres_bloc/genres_bloc
 import 'package:gameon/features/home_page/presentation/home_page.dart';
 import 'package:gameon/features/home_page/presentation/provider/internet_connection_provider.dart';
 import 'package:gameon/features/search/presentation/bloc/search_bloc/search_bloc.dart';
+import 'package:gameon/utils/custom_theme.dart';
 import 'package:gameon/utils/di.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
@@ -45,10 +46,11 @@ void main() async {
                 create: (context) => getIt<FavoritesBloc>(),
               ),
             ],
-            child: const MaterialApp(
+            child: MaterialApp(
+              theme: CustomTheme.theme,
               debugShowCheckedModeBanner: false,
               title: 'GameOn',
-              home: HomePage(),
+              home: const HomePage(),
             ),
           ),
         ),

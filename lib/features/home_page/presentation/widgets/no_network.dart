@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gameon/utils/custom_theme.dart';
 
 class NoNetwork extends StatelessWidget {
   const NoNetwork({super.key});
@@ -18,21 +19,21 @@ class NoNetwork extends StatelessWidget {
               cacheWidth: 100,
             ),
             const SizedBox(height: 40),
-            const Text(
+            Text(
               'No network connection',
               style: TextStyle(
                 fontSize: 20,
-                color: Colors.white,
+                color: CustomTheme.theme.colorScheme.primary,
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.all(8),
+            Padding(
+              padding: const EdgeInsets.all(8),
               child: Text(
                 'Please turn on Internet and application will refresh',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
-                  color: Colors.white,
+                  color: CustomTheme.theme.colorScheme.primary,
                 ),
               ),
             ),

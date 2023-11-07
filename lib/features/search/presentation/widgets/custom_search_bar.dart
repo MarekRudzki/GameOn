@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gameon/utils/custom_theme.dart';
 
 class CustomSearchBar extends StatelessWidget {
   final TextEditingController controller;
@@ -16,7 +17,7 @@ class CustomSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final searchTextFieldWidth = MediaQuery.sizeOf(context).width * 0.7;
+    final _searchTextFieldWidth = MediaQuery.sizeOf(context).width * 0.7;
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
       child: Container(
@@ -26,9 +27,9 @@ class CustomSearchBar extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: Colors.white,
+                color: CustomTheme.theme.colorScheme.primary,
               ),
-              width: searchTextFieldWidth,
+              width: _searchTextFieldWidth,
               child: TextField(
                 textAlignVertical: TextAlignVertical.center,
                 controller: controller,
@@ -54,9 +55,9 @@ class CustomSearchBar extends StatelessWidget {
                       FocusScope.of(context).unfocus();
                       onIconTap();
                     },
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.search,
-                      color: Colors.pinkAccent,
+                      color: CustomTheme.theme.colorScheme.secondary,
                       size: 28,
                     ),
                   ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gameon/features/game_details_screen/presentation/bloc/game_details_bloc/game_details_bloc.dart';
 import 'package:gameon/features/game_details_screen/presentation/game_details_screen.dart';
+import 'package:gameon/utils/custom_theme.dart';
 
 class ListViewTile extends StatelessWidget {
   final String name;
@@ -97,20 +98,21 @@ class ListViewTile extends StatelessWidget {
                             )
                           : Container(
                               height: MediaQuery.sizeOf(context).height * 0.12,
-                              child: const Column(
+                              child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.error,
                                     size: 40,
                                     color: Colors.red,
                                   ),
-                                  SizedBox(height: 5),
+                                  const SizedBox(height: 5),
                                   Text(
                                     'Photo not available',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color:
+                                          CustomTheme.theme.colorScheme.primary,
                                       fontSize: 16,
                                     ),
                                   )
@@ -132,8 +134,8 @@ class ListViewTile extends StatelessWidget {
                         child: Text(
                           name,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: Colors.white,
+                          style: TextStyle(
+                            color: CustomTheme.theme.colorScheme.primary,
                             fontWeight: FontWeight.w600,
                             fontSize: 18,
                           ),
@@ -147,8 +149,8 @@ class ListViewTile extends StatelessWidget {
                         children: [
                           Text(
                             '$popularity',
-                            style: const TextStyle(
-                              color: Colors.white,
+                            style: TextStyle(
+                              color: CustomTheme.theme.colorScheme.primary,
                             ),
                           ),
                           const SizedBox(width: 7),

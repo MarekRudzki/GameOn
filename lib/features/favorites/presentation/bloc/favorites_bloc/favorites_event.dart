@@ -39,9 +39,7 @@ class FavoritesRemovePressed extends FavoritesEvent {
   });
 
   @override
-  List<Object> get props => [
-        id,
-      ];
+  List<Object> get props => [id];
 }
 
 class FavoriteCheckPressed extends FavoritesEvent {
@@ -52,7 +50,5 @@ class FavoriteCheckPressed extends FavoritesEvent {
   });
 
   @override
-  List<Object> get props => [
-        id,
-      ];
+  List<Object> get props => [id];
 }

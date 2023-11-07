@@ -64,7 +64,7 @@ class _SearchOutcomeState extends State<SearchOutcome> {
 
   @override
   Widget build(BuildContext context) {
-    final String errorText =
+    final String _errorText =
         'The game you are looking for is not in the database or its name has been misspelled. Try again!';
     return widget.selectedIndex == 0
         ? PagedGridView(
@@ -77,7 +77,7 @@ class _SearchOutcomeState extends State<SearchOutcome> {
             ),
             builderDelegate: PagedChildBuilderDelegate<SearchedGameModel>(
               noItemsFoundIndicatorBuilder: (context) => PagedViewNoItemFound(
-                text: errorText,
+                text: _errorText,
               ),
               itemBuilder: (context, item, index) => GridViewTile(
                 name: item.name,
@@ -91,7 +91,7 @@ class _SearchOutcomeState extends State<SearchOutcome> {
             pagingController: _pagingController,
             builderDelegate: PagedChildBuilderDelegate<SearchedGameModel>(
               noItemsFoundIndicatorBuilder: (context) => PagedViewNoItemFound(
-                text: errorText,
+                text: _errorText,
               ),
               itemBuilder: (context, item, index) => ListViewTile(
                 name: item.name,

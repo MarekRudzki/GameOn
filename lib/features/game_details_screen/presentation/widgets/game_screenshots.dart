@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:gameon/utils/custom_theme.dart';
 import 'package:photo_view/photo_view.dart';
 
 class GameScreenshots extends StatefulWidget {
@@ -15,14 +16,14 @@ class GameScreenshots extends StatefulWidget {
 }
 
 class _GameScreenshotsState extends State<GameScreenshots> {
-  bool isAutoplay = true;
-  int imageIndex = 0;
+  bool _isAutoplay = true;
+  int _imageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    final List<int> carouselItems = [];
+    final List<int> _carouselItems = [];
     for (int i = 0; i < widget.screenshots.length; i++) {
-      carouselItems.add(i);
+      _carouselItems.add(i);
     }
 
     return Padding(
@@ -30,28 +31,29 @@ class _GameScreenshotsState extends State<GameScreenshots> {
       child: CarouselSlider(
         options: CarouselOptions(
           height: MediaQuery.sizeOf(context).height * 0.23,
-          autoPlay: isAutoplay,
+          autoPlay: _isAutoplay,
           onPageChanged: (index, reason) {
-            imageIndex = index;
+            _imageIndex = index;
           },
         ),
-        items: carouselItems.map(
+        items: _carouselItems.map(
           (i) {
             return Builder(
               builder: (BuildContext context) {
                 return InkWell(
                   onTap: () {
                     setState(() {
-                      isAutoplay = false;
+                      _isAutoplay = false;
                     });
                     showDialog(
                       context: context,
                       builder: (context) => Dialog(
                         insetPadding: const EdgeInsets.symmetric(horizontal: 5),
-                        backgroundColor: Colors.black.withOpacity(0.3),
+                        backgroundColor: CustomTheme.theme.colorScheme.tertiary
+                            .withOpacity(0.3),
                         child: PhotoView(
                           imageProvider: NetworkImage(
-                            widget.screenshots[imageIndex],
+                            widget.screenshots[_imageIndex],
                           ),
                           minScale: PhotoViewComputedScale.contained,
                           maxScale: PhotoViewComputedScale.covered * 2,
@@ -64,7 +66,7 @@ class _GameScreenshotsState extends State<GameScreenshots> {
                       ),
                     ).then((_) {
                       setState(() {
-                        isAutoplay = true;
+                        _isAutoplay = true;
                       });
                     });
                   },

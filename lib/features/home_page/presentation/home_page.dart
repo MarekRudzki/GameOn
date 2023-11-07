@@ -7,6 +7,7 @@ import 'package:gameon/features/home_page/presentation/widgets/no_network.dart';
 import 'package:gameon/features/genres/presentation/genres_screen.dart';
 import 'package:gameon/features/home_page/presentation/widgets/on_will_pop_alert_dialog.dart';
 import 'package:gameon/features/search/presentation/search_screen.dart';
+import 'package:gameon/utils/custom_theme.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -18,9 +19,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int index = 0;
+  int _index = 0;
 
-  final List<Widget> pages = [
+  final List<Widget> _pages = [
     const GenresScreen(),
     const SearchScreen(),
     const FavoritesScreen(),
@@ -28,10 +29,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final bool hasInternet =
+    final bool _hasInternet =
         context.watch<InternetConnectionProvider>().hasInternet;
 
-    if (hasInternet) {
+    if (_hasInternet) {
       context.read<GenresBloc>().add(GenresRequested());
     }
 
@@ -44,15 +45,15 @@ class _HomePageState extends State<HomePage> {
         return exitResult ?? false;
       },
       child: SafeArea(
-        child: hasInternet
+        child: _hasInternet
             ? Scaffold(
-                body: pages[index],
+                body: _pages[_index],
                 bottomNavigationBar: GNav(
-                  selectedIndex: index,
+                  selectedIndex: _index,
                   gap: 10,
-                  backgroundColor: const Color.fromARGB(255, 15, 47, 91),
-                  color: Colors.white,
-                  activeColor: Colors.pinkAccent,
+                  backgroundColor: CustomTheme.theme.colorScheme.onBackground,
+                  color: CustomTheme.theme.colorScheme.primary,
+                  activeColor: CustomTheme.theme.colorScheme.secondary,
                   padding: const EdgeInsets.all(16),
                   tabs: [
                     GButton(
@@ -60,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                       text: 'Games',
                       onPressed: () {
                         setState(() {
-                          index = 0;
+                          _index = 0;
                         });
                       },
                     ),
@@ -69,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                       text: 'Search',
                       onPressed: () {
                         setState(() {
-                          index = 1;
+                          _index = 1;
                         });
                       },
                     ),
@@ -78,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                       text: 'Favorites',
                       onPressed: () {
                         setState(() {
-                          index = 2;
+                          _index = 2;
                         });
                       },
                     ),

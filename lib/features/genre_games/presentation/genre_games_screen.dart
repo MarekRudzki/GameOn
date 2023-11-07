@@ -11,6 +11,7 @@ import 'package:gameon/features/genre_games/presentation/widgets/gridview_tile.d
 import 'package:gameon/features/genre_games/presentation/widgets/listview_tile.dart';
 import 'package:gameon/features/home_page/presentation/provider/internet_connection_provider.dart';
 import 'package:gameon/features/home_page/presentation/widgets/no_network.dart';
+import 'package:gameon/utils/custom_theme.dart';
 import 'package:gameon/utils/di.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +31,7 @@ class GenreGamesScreen extends StatefulWidget {
 }
 
 class _GenreGamesScreenState extends State<GenreGamesScreen> {
-  int selectedIndex = 0;
+  int _selectedIndex = 0;
 
   final GenreGamesBloc _bloc = getIt<GenreGamesBloc>();
 
@@ -71,13 +72,13 @@ class _GenreGamesScreenState extends State<GenreGamesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final bool hasInternet =
+    final bool _hasInternet =
         context.watch<InternetConnectionProvider>().hasInternet;
 
     return SafeArea(
-      child: hasInternet
+      child: _hasInternet
           ? Scaffold(
-              backgroundColor: const Color.fromARGB(255, 2, 31, 68),
+              backgroundColor: CustomTheme.theme.colorScheme.background,
               body: NestedScrollView(
                 floatHeaderSlivers: true,
                 headerSliverBuilder: (
@@ -87,15 +88,25 @@ class _GenreGamesScreenState extends State<GenreGamesScreen> {
                   return [
                     SliverAppBar(
                       elevation: 5,
-                      backgroundColor: const Color.fromARGB(255, 15, 47, 91),
+                      backgroundColor:
+                          CustomTheme.theme.colorScheme.onBackground,
                       title: Text(
                         widget.name,
-                        style: const TextStyle(
-                          color: Colors.white,
+                        style: TextStyle(
+                          color: CustomTheme.theme.colorScheme.primary,
                           fontSize: 21,
                         ),
                       ),
                       centerTitle: true,
+                      leading: IconButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: CustomTheme.theme.colorScheme.primary,
+                        ),
+                      ),
                       actions: [
                         const DataProviderButton(),
                       ],
@@ -108,10 +119,10 @@ class _GenreGamesScreenState extends State<GenreGamesScreen> {
                             child: DisplayPicker(
                               callback: (value) {
                                 setState(() {
-                                  selectedIndex = value;
+                                  _selectedIndex = value;
                                 });
                               },
-                              selectedIndex: selectedIndex,
+                              selectedIndex: _selectedIndex,
                             ),
                           ),
                         ),
@@ -119,7 +130,7 @@ class _GenreGamesScreenState extends State<GenreGamesScreen> {
                     ),
                   ];
                 },
-                body: selectedIndex == 0
+                body: _selectedIndex == 0
                     ? PagedGridView(
                         showNewPageProgressIndicatorAsGridChild: false,
                         pagingController: _pagingController,

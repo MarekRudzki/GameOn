@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gameon/utils/custom_theme.dart';
 
 class PagedViewNoItemFound extends StatelessWidget {
   final String text;
@@ -15,11 +16,11 @@ class PagedViewNoItemFound extends StatelessWidget {
         SizedBox(
           height: MediaQuery.sizeOf(context).height * 0.1,
         ),
-        const Text(
+        Text(
           'No games found',
           style: TextStyle(
             fontSize: 18,
-            color: Colors.white,
+            color: CustomTheme.theme.colorScheme.primary,
           ),
         ),
         Padding(
@@ -27,9 +28,9 @@ class PagedViewNoItemFound extends StatelessWidget {
           child: Text(
             text,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
-              color: Colors.white,
+              color: CustomTheme.theme.colorScheme.primary,
             ),
           ),
         )

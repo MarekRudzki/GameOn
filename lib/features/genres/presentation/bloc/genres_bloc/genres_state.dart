@@ -12,7 +12,9 @@ class GenresLoading extends GenresState {}
 class GenresSuccess extends GenresState {
   final List<GenreModel> gameGenreModels;
 
-  GenresSuccess({required this.gameGenreModels});
+  GenresSuccess({
+    required this.gameGenreModels,
+  });
 
   @override
   List<Object> get props => [gameGenreModels];

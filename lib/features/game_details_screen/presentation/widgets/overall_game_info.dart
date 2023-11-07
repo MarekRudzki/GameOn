@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gameon/utils/custom_theme.dart';
 
 class OverallGameInfo extends StatelessWidget {
   final String developers;
@@ -28,17 +29,17 @@ class OverallGameInfo extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    const Text(
+                    Text(
                       'Developer',
                       style: TextStyle(
-                        color: Color.fromARGB(255, 197, 194, 194),
+                        color: CustomTheme.theme.colorScheme.scrim,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       developers,
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: CustomTheme.theme.colorScheme.primary,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -59,8 +60,8 @@ class OverallGameInfo extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       esrbRating,
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: CustomTheme.theme.colorScheme.primary,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -85,8 +86,8 @@ class OverallGameInfo extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       playtime == 0 ? 'No data' : '${playtime} h',
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: CustomTheme.theme.colorScheme.primary,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -107,8 +108,8 @@ class OverallGameInfo extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       metacritic == 0 ? 'No data' : metacritic.toString(),
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: CustomTheme.theme.colorScheme.primary,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -129,8 +130,8 @@ class OverallGameInfo extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       released,
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: CustomTheme.theme.colorScheme.primary,
                         fontWeight: FontWeight.w600,
                       ),
                     ),

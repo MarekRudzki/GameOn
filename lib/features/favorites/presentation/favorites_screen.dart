@@ -5,6 +5,8 @@ import 'package:gameon/features/favorites/presentation/bloc/favorites_bloc/favor
 import 'package:gameon/features/genre_games/presentation/widgets/display_picker.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/gridview_tile.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/listview_tile.dart';
+import 'package:gameon/utils/custom_theme.dart';
+import 'package:nil/nil.dart';
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
@@ -14,13 +16,14 @@ class FavoritesScreen extends StatefulWidget {
 }
 
 class _FavoritesScreenState extends State<FavoritesScreen> {
-  int selectedIndex = 0;
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     context.read<FavoritesBloc>().add(FavoritesRequested());
+
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 2, 31, 68),
+      backgroundColor: CustomTheme.theme.colorScheme.background,
       body: NestedScrollView(
         headerSliverBuilder: (
           BuildContext context,
@@ -29,12 +32,12 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           return [
             SliverAppBar(
               elevation: 5,
-              backgroundColor: const Color.fromARGB(255, 15, 47, 91),
+              backgroundColor: CustomTheme.theme.colorScheme.onBackground,
               collapsedHeight: 70,
-              title: const Text(
+              title: Text(
                 'Favorites',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: CustomTheme.theme.colorScheme.primary,
                   fontSize: 21,
                 ),
               ),
@@ -50,10 +53,10 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                   child: DisplayPicker(
                     callback: (value) {
                       setState(() {
-                        selectedIndex = value;
+                        _selectedIndex = value;
                       });
                     },
-                    selectedIndex: selectedIndex,
+                    selectedIndex: _selectedIndex,
                   ),
                 ),
               ),
@@ -69,28 +72,28 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     SizedBox(
                       height: MediaQuery.sizeOf(context).height * 0.1,
                     ),
-                    const Text(
+                    Text(
                       'No favorite games found',
                       style: TextStyle(
                         fontSize: 18,
-                        color: Colors.white,
+                        color: CustomTheme.theme.colorScheme.primary,
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.all(15),
+                    Padding(
+                      padding: const EdgeInsets.all(15),
                       child: Text(
                         'Try add some!',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 16,
-                          color: Colors.white,
+                          color: CustomTheme.theme.colorScheme.primary,
                         ),
                       ),
                     )
                   ],
                 );
               } else {
-                return selectedIndex == 0
+                return _selectedIndex == 0
                     ? GridView.builder(
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
@@ -117,7 +120,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                       );
               }
             } else {
-              return const SizedBox.shrink();
+              return nil;
             }
           },
         ),

@@ -17,9 +17,7 @@ class GameDetailsSuccess extends GameDetailsState {
   });
 
   @override
-  List<Object> get props => [
-        gameDetails,
-      ];
+  List<Object> get props => [gameDetails];
 }
 
 class GameDetailsLoading extends GameDetailsState {}

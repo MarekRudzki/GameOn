@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gameon/utils/custom_theme.dart';
 
 class GridViewErrorTile extends StatelessWidget {
   final String name;
@@ -27,10 +28,10 @@ class GridViewErrorTile extends StatelessWidget {
               width: 5,
             ),
           ),
-          child: const Column(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Icon(
+              const Icon(
                 Icons.error,
                 size: 35,
                 color: Colors.red,
@@ -38,7 +39,7 @@ class GridViewErrorTile extends StatelessWidget {
               Text(
                 'Photo not available',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: CustomTheme.theme.colorScheme.primary,
                   fontSize: 15,
                 ),
               )
@@ -63,9 +64,9 @@ class GridViewErrorTile extends StatelessWidget {
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 16.5,
-                        color: Colors.white,
+                        color: CustomTheme.theme.colorScheme.primary,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -76,8 +77,8 @@ class GridViewErrorTile extends StatelessWidget {
                   children: [
                     Text(
                       '$popularity',
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: CustomTheme.theme.colorScheme.primary,
                       ),
                     ),
                     const SizedBox(width: 7),

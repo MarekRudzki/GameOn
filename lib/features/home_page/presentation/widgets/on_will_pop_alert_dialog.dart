@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gameon/utils/custom_theme.dart';
 
 class OnWillPopAlertDialog extends StatelessWidget {
   const OnWillPopAlertDialog({super.key});
@@ -6,35 +7,35 @@ class OnWillPopAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text(
+      title: Text(
         'Please confirm',
         style: TextStyle(
-          color: Colors.white,
+          color: CustomTheme.theme.colorScheme.primary,
         ),
       ),
-      backgroundColor: const Color.fromARGB(255, 2, 31, 68),
-      content: const Text(
+      backgroundColor: CustomTheme.theme.colorScheme.background,
+      content: Text(
         'Do you want to exit the app?',
         style: TextStyle(
-          color: Colors.white,
+          color: CustomTheme.theme.colorScheme.primary,
         ),
       ),
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(false),
-          child: const Text(
+          child: Text(
             'No',
             style: TextStyle(
-              color: Colors.white,
+              color: CustomTheme.theme.colorScheme.primary,
             ),
           ),
         ),
         TextButton(
           onPressed: () => Navigator.of(context).pop(true),
-          child: const Text(
+          child: Text(
             'Yes',
             style: TextStyle(
-              color: Colors.white,
+              color: CustomTheme.theme.colorScheme.primary,
             ),
           ),
         ),

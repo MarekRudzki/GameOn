@@ -24,6 +24,8 @@ class GameDetailsBloc extends Bloc<GameDetailsEvent, GameDetailsState> {
     emit(GameDetailsLoading());
     final gameDetails =
         await _gameDetailsRepository.getGameDetails(gameId: event.gameId);
-    emit(GameDetailsSuccess(gameDetails: gameDetails));
+    emit(
+      GameDetailsSuccess(gameDetails: gameDetails),
+    );
   }
 }

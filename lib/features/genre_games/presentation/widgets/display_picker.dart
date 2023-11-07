@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gameon/utils/custom_theme.dart';
 
 class DisplayPicker extends StatelessWidget {
   final Function(int) callback;
@@ -15,10 +16,10 @@ class DisplayPicker extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        const Text(
+        Text(
           'Display options:',
           style: TextStyle(
-            color: Colors.white,
+            color: CustomTheme.theme.colorScheme.primary,
             fontSize: 17,
           ),
         ),
@@ -37,14 +38,16 @@ class DisplayPicker extends StatelessWidget {
                   child: Icon(
                     Icons.grid_view,
                     size: 30,
-                    color: selectedIndex == 0 ? Colors.pinkAccent : Colors.grey,
+                    color: selectedIndex == 0
+                        ? CustomTheme.theme.colorScheme.secondary
+                        : Colors.grey,
                   ),
                   onTap: () {
                     callback(0);
                   },
                 ),
-                const VerticalDivider(
-                  color: Colors.white,
+                VerticalDivider(
+                  color: CustomTheme.theme.colorScheme.primary,
                   thickness: 1.5,
                   endIndent: 7,
                   indent: 7,
@@ -53,7 +56,9 @@ class DisplayPicker extends StatelessWidget {
                   child: Icon(
                     Icons.view_agenda_outlined,
                     size: 28,
-                    color: selectedIndex == 1 ? Colors.pinkAccent : Colors.grey,
+                    color: selectedIndex == 1
+                        ? CustomTheme.theme.colorScheme.secondary
+                        : Colors.grey,
                   ),
                   onTap: () {
                     callback(1);

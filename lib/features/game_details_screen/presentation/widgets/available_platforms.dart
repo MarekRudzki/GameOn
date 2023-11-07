@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gameon/utils/custom_theme.dart';
 
 class AvailablePlatforms extends StatelessWidget {
   final List<String> platforms;
@@ -15,19 +16,19 @@ class AvailablePlatforms extends StatelessWidget {
       child: RichText(
         text: TextSpan(
           children: [
-            const WidgetSpan(
+            WidgetSpan(
               child: Text(
                 'Available on: ',
                 style: TextStyle(
-                  color: Color.fromARGB(255, 197, 194, 194),
+                  color: CustomTheme.theme.colorScheme.scrim,
                   fontSize: 15,
                 ),
               ),
             ),
             TextSpan(
               text: platforms.join(', '),
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: CustomTheme.theme.colorScheme.primary,
                 fontWeight: FontWeight.w600,
                 fontSize: 15,
               ),

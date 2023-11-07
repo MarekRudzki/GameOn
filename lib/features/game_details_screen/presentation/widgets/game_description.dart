@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gameon/utils/custom_theme.dart';
 import 'package:readmore/readmore.dart';
 
 class GameDescription extends StatelessWidget {
@@ -11,13 +12,13 @@ class GameDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double dividerIndent = MediaQuery.sizeOf(context).width * 0.25;
+    final double _dividerIndent = MediaQuery.sizeOf(context).width * 0.25;
     return Column(
       children: [
         Divider(
-          color: const Color.fromARGB(255, 127, 124, 124),
-          endIndent: dividerIndent,
-          indent: dividerIndent,
+          color: CustomTheme.theme.colorScheme.onPrimary,
+          endIndent: _dividerIndent,
+          indent: _dividerIndent,
           thickness: 1,
         ),
         Padding(
@@ -28,27 +29,27 @@ class GameDescription extends StatelessWidget {
             trimMode: TrimMode.Line,
             trimLines: 6,
             textAlign: TextAlign.justify,
-            style: const TextStyle(
-              color: Colors.white,
+            style: TextStyle(
+              color: CustomTheme.theme.colorScheme.primary,
             ),
             trimCollapsedText: ' Read more',
             trimExpandedText: ' Show less',
-            moreStyle: const TextStyle(
+            moreStyle: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
-              color: Colors.pinkAccent,
+              color: CustomTheme.theme.colorScheme.secondary,
             ),
-            lessStyle: const TextStyle(
+            lessStyle: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
-              color: Colors.pinkAccent,
+              color: CustomTheme.theme.colorScheme.secondary,
             ),
           ),
         ),
         Divider(
-          color: const Color.fromARGB(255, 127, 124, 124),
-          endIndent: dividerIndent,
-          indent: dividerIndent,
+          color: CustomTheme.theme.colorScheme.onPrimary,
+          endIndent: _dividerIndent,
+          indent: _dividerIndent,
           thickness: 1,
         ),
       ],

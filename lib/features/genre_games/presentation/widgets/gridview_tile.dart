@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gameon/features/game_details_screen/presentation/bloc/game_details_bloc/game_details_bloc.dart';
 import 'package:gameon/features/game_details_screen/presentation/game_details_screen.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/gridview_error_tile.dart';
+import 'package:gameon/utils/custom_theme.dart';
 
 class GridViewTile extends StatelessWidget {
   final String name;
@@ -100,9 +101,10 @@ class GridViewTile extends StatelessWidget {
                                       textAlign: TextAlign.center,
                                       overflow: TextOverflow.ellipsis,
                                       maxLines: 2,
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontSize: 16.5,
-                                        color: Colors.white,
+                                        color: CustomTheme
+                                            .theme.colorScheme.primary,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -113,8 +115,9 @@ class GridViewTile extends StatelessWidget {
                                   children: [
                                     Text(
                                       '$popularity',
-                                      style: const TextStyle(
-                                        color: Colors.white,
+                                      style: TextStyle(
+                                        color: CustomTheme
+                                            .theme.colorScheme.primary,
                                       ),
                                     ),
                                     const SizedBox(width: 7),

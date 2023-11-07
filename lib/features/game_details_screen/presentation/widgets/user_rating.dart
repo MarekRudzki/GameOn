@@ -1,6 +1,7 @@
 import 'package:el_tooltip/el_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:gameon/features/game_details_screen/data/models/user_rating_model.dart';
+import 'package:gameon/utils/custom_theme.dart';
 
 class UserRating extends StatelessWidget {
   final UserRatingModel userRating;
@@ -14,22 +15,23 @@ class UserRating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double barWidth = MediaQuery.sizeOf(context).width - 28;
-    final double exceptionalWidth =
-        barWidth * ((userRating.exceptional ?? 0) / reviewsCount);
+    final double _barWidth = MediaQuery.sizeOf(context).width - 28;
+    final double _exceptionalWidth =
+        _barWidth * ((userRating.exceptional ?? 0) / reviewsCount);
     final double recommendedWidth =
-        barWidth * ((userRating.recommended ?? 0) / reviewsCount);
-    final double mehWidth = barWidth * ((userRating.meh ?? 0) / reviewsCount);
-    final double skipWidth = barWidth * ((userRating.skip ?? 0) / reviewsCount);
+        _barWidth * ((userRating.recommended ?? 0) / reviewsCount);
+    final double mehWidth = _barWidth * ((userRating.meh ?? 0) / reviewsCount);
+    final double skipWidth =
+        _barWidth * ((userRating.skip ?? 0) / reviewsCount);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Column(
         children: [
-          const Text(
+          Text(
             'Players rating',
             style: TextStyle(
-              color: Color.fromARGB(255, 197, 194, 194),
+              color: CustomTheme.theme.colorScheme.scrim,
               fontSize: 15,
               fontWeight: FontWeight.bold,
             ),
@@ -51,7 +53,7 @@ class UserRating extends StatelessWidget {
                           opacity: 0.5,
                         ),
                         child: Container(
-                          width: exceptionalWidth,
+                          width: _exceptionalWidth,
                           height: 40,
                           color: const Color.fromARGB(255, 104, 177, 49),
                           child: const Center(
@@ -67,7 +69,7 @@ class UserRating extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      left: exceptionalWidth,
+                      left: _exceptionalWidth,
                       child: ElTooltip(
                         content: const Text('Recommended'),
                         showChildAboveOverlay: false,
@@ -91,7 +93,7 @@ class UserRating extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      left: exceptionalWidth + recommendedWidth,
+                      left: _exceptionalWidth + recommendedWidth,
                       child: ElTooltip(
                         content: const Text('Meh'),
                         showChildAboveOverlay: false,
@@ -115,7 +117,7 @@ class UserRating extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      left: exceptionalWidth + recommendedWidth + mehWidth,
+                      left: _exceptionalWidth + recommendedWidth + mehWidth,
                       child: ElTooltip(
                         content: const Text('Skip'),
                         showChildAboveOverlay: false,

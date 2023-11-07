@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:gameon/features/favorites/presentation/bloc/favorites_bloc/favorites_bloc.dart';
+import 'package:gameon/utils/custom_theme.dart';
 import 'package:like_button/like_button.dart';
+import 'package:nil/nil.dart';
 
 class Favorite extends StatelessWidget {
   final int id;
@@ -25,7 +27,7 @@ class Favorite extends StatelessWidget {
         );
 
     // ignore: avoid_positional_boolean_parameters
-    Future<bool> onLikeButtonTapped(bool isLiked) async {
+    Future<bool> _onLikeButtonTapped(bool isLiked) async {
       if (isLiked) {
         context.read<FavoritesBloc>().add(
               FavoritesRemovePressed(id: id),
@@ -65,16 +67,18 @@ class Favorite extends StatelessWidget {
               likeBuilder: (bool isLiked) {
                 return GlowIcon(
                   Icons.favorite,
-                  color: isLiked ? Colors.red : Colors.white,
+                  color: isLiked
+                      ? Colors.red
+                      : CustomTheme.theme.colorScheme.primary,
                   size: 30,
-                  glowColor: Colors.black,
+                  glowColor: CustomTheme.theme.colorScheme.tertiary,
                   blurRadius: 5,
                 );
               },
-              onTap: onLikeButtonTapped,
+              onTap: _onLikeButtonTapped,
             );
           } else {
-            return const SizedBox.shrink();
+            return nil;
           }
         },
       ),
