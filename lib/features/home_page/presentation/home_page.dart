@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gameon/features/favorites/presentation/favorites.dart';
+import 'package:gameon/features/favorites/presentation/favorites_screen.dart';
 import 'package:gameon/features/genres/presentation/bloc/genres_bloc/genres_bloc.dart';
 import 'package:gameon/features/home_page/presentation/provider/internet_connection_provider.dart';
 import 'package:gameon/features/home_page/presentation/widgets/icons.dart';
@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> pages = [
     const GenresScreen(),
     const SearchScreen(),
-    const Favorites(),
+    const FavoritesScreen(),
   ];
 
   @override

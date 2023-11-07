@@ -40,6 +40,8 @@ class ListViewTile extends StatelessWidget {
                 name: name,
                 id: gameId,
                 heroId: heroId,
+                url: url,
+                popularity: popularity,
               ),
             ),
           );

@@ -76,6 +76,12 @@ class _GameScreenshotsState extends State<GameScreenshots> {
                     ),
                     child: Image.network(
                       widget.screenshots[i],
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
                       fit: BoxFit.fill,
                     ),
                   ),

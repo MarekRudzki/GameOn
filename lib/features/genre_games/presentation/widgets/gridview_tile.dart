@@ -38,6 +38,8 @@ class GridViewTile extends StatelessWidget {
               name: name,
               id: gameId,
               heroId: heroId,
+              url: url,
+              popularity: popularity,
             ),
           ),
         );

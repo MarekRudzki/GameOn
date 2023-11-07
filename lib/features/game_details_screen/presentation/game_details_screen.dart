@@ -17,6 +17,8 @@ class GameDetailsScreen extends StatelessWidget {
   final String name;
   final int id;
   final String heroId;
+  final String url;
+  final int popularity;
 
   const GameDetailsScreen({
     super.key,
@@ -24,6 +26,8 @@ class GameDetailsScreen extends StatelessWidget {
     required this.name,
     required this.id,
     required this.heroId,
+    required this.url,
+    required this.popularity,
   });
 
   @override
@@ -99,6 +103,8 @@ class GameDetailsScreen extends StatelessWidget {
                         name: name,
                         heroId: heroId,
                         image: image!,
+                        url: url,
+                        popularity: popularity,
                       ),
                     SliverList(
                       delegate: SliverChildListDelegate(

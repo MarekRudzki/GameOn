@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:gameon/common_widgets/data_provider_button.dart';
+import 'package:gameon/features/favorites/presentation/bloc/favorites_bloc/favorites_bloc.dart';
+import 'package:gameon/features/game_details_screen/presentation/widgets/favorite.dart';
 
 class CustomSliverAppBar extends StatelessWidget {
+  final String name;
+  final String heroId;
+  final ImageProvider<Object> image;
+  final String url;
+  final int popularity;
+
   const CustomSliverAppBar({
     super.key,
     required this.name,
     required this.heroId,
     required this.image,
+    required this.url,
+    required this.popularity,
   });
-
-  final String name;
-  final String heroId;
-  final ImageProvider<Object> image;
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +64,7 @@ class CustomSliverAppBar extends StatelessWidget {
         builder: (context, constraints) {
           final double appBarHeight = constraints.biggest.height;
           final bool isExpanded = appBarHeight > height * 0.1;
+          final bool showFavorite = appBarHeight > height * 0.30;
           return FlexibleSpaceBar(
             expandedTitleScale: 1.3,
             centerTitle: true,
@@ -94,13 +102,24 @@ class CustomSliverAppBar extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
+                child: showFavorite
+                    ? Favorite(
+                        id: int.parse(heroId.substring(0, heroId.indexOf('_'))),
+                        name: name,
+                        url: url,
+                        popularity: popularity,
+                      )
+                    : const SizedBox.shrink(),
               ),
             ),
           );
         },
       ),
       leading: IconButton(
-        onPressed: () => Navigator.of(context).pop(),
+        onPressed: () {
+          context.read<FavoritesBloc>().add(FavoritesRequested());
+          Navigator.of(context).pop();
+        },
         icon: const GlowIcon(
           Icons.arrow_back,
           color: Colors.white,
