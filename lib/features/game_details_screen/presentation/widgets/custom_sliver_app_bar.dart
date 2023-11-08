@@ -1,11 +1,16 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_glow/flutter_glow.dart';
+import 'package:nil/nil.dart';
+
+// Project imports:
 import 'package:gameon/common_widgets/data_provider_button.dart';
 import 'package:gameon/features/favorites/presentation/bloc/favorites_bloc/favorites_bloc.dart';
 import 'package:gameon/features/game_details_screen/presentation/widgets/favorite.dart';
 import 'package:gameon/utils/custom_theme.dart';
-import 'package:nil/nil.dart';
 
 class CustomSliverAppBar extends StatelessWidget {
   final String name;

@@ -1,9 +1,12 @@
+// Package imports:
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+// Project imports:
 import 'package:gameon/features/genres/data/models/genre_model.dart';
 import 'package:gameon/features/genres/domain/repositories/genres_repository.dart';
 import 'package:gameon/features/genres/presentation/bloc/genres_bloc/genres_bloc.dart';
-import 'package:mocktail/mocktail.dart';
 
 class MockGenresRepository extends Mock implements GenresRepository {}
 

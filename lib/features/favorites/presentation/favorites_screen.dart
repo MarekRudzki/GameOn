@@ -1,12 +1,17 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nil/nil.dart';
+
+// Project imports:
 import 'package:gameon/common_widgets/data_provider_button.dart';
 import 'package:gameon/features/favorites/presentation/bloc/favorites_bloc/favorites_bloc.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/display_picker.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/gridview_tile.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/listview_tile.dart';
 import 'package:gameon/utils/custom_theme.dart';
-import 'package:nil/nil.dart';
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
@@ -102,13 +107,17 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                           childAspectRatio: 1 / 1.1,
                         ),
                         itemCount: state.favoriteGames.length,
-                        itemBuilder: (context, index) => GridViewTile(
-                          name: state.favoriteGames[index].name,
-                          url: state.favoriteGames[index].url,
-                          gameId: state.favoriteGames[index].gameId,
-                          popularity: state.favoriteGames[index].popularity,
-                        ),
-                      )
+                        itemBuilder: (context, index) {
+                          context.read<FavoritesBloc>().add(
+                              FavoritePopularityCheckRequested(
+                                  id: state.favoriteGames[index].gameId));
+                          return GridViewTile(
+                            name: state.favoriteGames[index].name,
+                            url: state.favoriteGames[index].url,
+                            gameId: state.favoriteGames[index].gameId,
+                            popularity: state.favoriteGames[index].popularity,
+                          );
+                        })
                     : ListView.builder(
                         itemCount: state.favoriteGames.length,
                         itemBuilder: (context, index) => ListViewTile(

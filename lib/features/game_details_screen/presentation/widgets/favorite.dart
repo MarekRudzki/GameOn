@@ -1,10 +1,15 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_glow/flutter_glow.dart';
-import 'package:gameon/features/favorites/presentation/bloc/favorites_bloc/favorites_bloc.dart';
-import 'package:gameon/utils/custom_theme.dart';
 import 'package:like_button/like_button.dart';
 import 'package:nil/nil.dart';
+
+// Project imports:
+import 'package:gameon/features/favorites/presentation/bloc/favorites_bloc/favorites_bloc.dart';
+import 'package:gameon/utils/custom_theme.dart';
 
 class Favorite extends StatelessWidget {
   final int id;
@@ -54,8 +59,8 @@ class Favorite extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.only(
-        top: MediaQuery.sizeOf(context).height * 0.075,
-        right: 5,
+        top: MediaQuery.sizeOf(context).height * 0.08,
+        right: 7,
       ),
       child: BlocBuilder<FavoritesBloc, FavoritesState>(
         builder: (context, state) {

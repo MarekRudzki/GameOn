@@ -1,8 +1,11 @@
+// Package imports:
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
+
+// Project imports:
 import 'package:gameon/features/favorites/data/models/favorite_game_model.dart';
 import 'package:gameon/features/favorites/domain/repositories/favorites_repository.dart';
-import 'package:injectable/injectable.dart';
 
 part 'favorites_event.dart';
 part 'favorites_state.dart';
@@ -11,11 +14,14 @@ part 'favorites_state.dart';
 class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
   final FavoritesRepository _favoritesRepository;
 
-  FavoritesBloc(this._favoritesRepository) : super(FavoritesInitial()) {
+  FavoritesBloc({required FavoritesRepository favoritesRepository})
+      : _favoritesRepository = favoritesRepository,
+        super(FavoritesInitial()) {
     on<FavoritesAddPressed>(_onFavoritesAddPressed);
     on<FavoritesRequested>(_onFavoritesRequested);
     on<FavoritesRemovePressed>(_onFavoritesRemovePressed);
     on<FavoriteCheckPressed>(_onFavoriteChecked);
+    on<FavoritePopularityCheckRequested>(_onFavoritePopularityCheckRequested);
   }
 
   Future<void> _onFavoritesAddPressed(
@@ -61,5 +67,12 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
         isFavorite: isFavorite,
       ),
     );
+  }
+
+  Future<void> _onFavoritePopularityCheckRequested(
+    FavoritePopularityCheckRequested event,
+    Emitter<FavoritesState> emit,
+  ) async {
+    await _favoritesRepository.checkForPopularityChange(id: event.id);
   }
 }

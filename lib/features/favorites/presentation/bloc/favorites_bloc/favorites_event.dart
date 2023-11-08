@@ -52,3 +52,14 @@ class FavoriteCheckPressed extends FavoritesEvent {
   @override
   List<Object> get props => [id];
 }
+
+class FavoritePopularityCheckRequested extends FavoritesEvent {
+  final int id;
+
+  FavoritePopularityCheckRequested({
+    required this.id,
+  });
+
+  @override
+  List<Object> get props => [id];
+}

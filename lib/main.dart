@@ -1,7 +1,14 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:gameon/features/favorites/presentation/bloc/favorites_bloc/favorites_bloc.dart';
 import 'package:gameon/features/game_details_screen/presentation/bloc/game_details_bloc/game_details_bloc.dart';
 import 'package:gameon/features/genre_games/presentation/bloc/genre_games_bloc/genre_games_bloc.dart';
@@ -11,8 +18,6 @@ import 'package:gameon/features/home_page/presentation/provider/internet_connect
 import 'package:gameon/features/search/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:gameon/utils/custom_theme.dart';
 import 'package:gameon/utils/di.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:provider/provider.dart';
 
 void main() async {
   configureDependencies();
@@ -48,6 +53,7 @@ void main() async {
             ],
             child: MaterialApp(
               theme: CustomTheme.theme,
+              color: const Color.fromARGB(255, 15, 47, 91),
               debugShowCheckedModeBanner: false,
               title: 'GameOn',
               home: const HomePage(),

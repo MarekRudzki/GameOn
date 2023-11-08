@@ -1,7 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:gameon/utils/custom_theme.dart';
 import 'package:photo_view/photo_view.dart';
+
+// Project imports:
+import 'package:gameon/utils/custom_theme.dart';
 
 class GameScreenshots extends StatefulWidget {
   final List<String> screenshots;

@@ -8,8 +8,14 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+
+// Package imports:
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
+
+// Project imports:
+import '../features/genres/domain/repositories/genres_repository.dart' as _i11;
+import '../features/search/domain/repositories/search_repository.dart' as _i13;
 
 import '../features/favorites/data/datasources/favorites_local_data_source.dart'
     as _i3;
@@ -33,12 +39,10 @@ import '../features/genre_games/presentation/bloc/genre_games_bloc/genre_games_b
     as _i16;
 import '../features/genres/data/datasources/genres_remote_data_source.dart'
     as _i10;
-import '../features/genres/domain/repositories/genres_repository.dart' as _i11;
 import '../features/genres/presentation/bloc/genres_bloc/genres_bloc.dart'
     as _i17;
 import '../features/search/data/datasources/search_remote_data_source.dart'
     as _i12;
-import '../features/search/domain/repositories/search_repository.dart' as _i13;
 import '../features/search/presentation/bloc/search_bloc/search_bloc.dart'
     as _i18;
 
@@ -77,8 +81,8 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i12.SearchRemoteDataSource());
     gh.lazySingleton<_i13.SearchRepository>(() => _i13.SearchRepository(
         searchRemoteDataSource: gh<_i12.SearchRemoteDataSource>()));
-    gh.factory<_i14.FavoritesBloc>(
-        () => _i14.FavoritesBloc(gh<_i5.FavoritesRepository>()));
+    gh.factory<_i14.FavoritesBloc>(() =>
+        _i14.FavoritesBloc(favoritesRepository: gh<_i5.FavoritesRepository>()));
     gh.factory<_i15.GameDetailsBloc>(() => _i15.GameDetailsBloc(
         gameDetailsRepository: gh<_i7.GameDetailsRepository>()));
     gh.factory<_i16.GenreGamesBloc>(() => _i16.GenreGamesBloc(

@@ -1,5 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:cached_network_image/cached_network_image.dart';
+
+// Project imports:
 import 'package:gameon/features/genre_games/presentation/genre_games_screen.dart';
 import 'package:gameon/utils/custom_theme.dart';
 
@@ -46,16 +51,19 @@ class GenreTile extends StatelessWidget {
               ),
               imageBuilder: (context, imageProvider) => Column(
                 children: [
-                  Container(
-                    height: (MediaQuery.sizeOf(context).height) / 7,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.cover,
+                  Expanded(
+                    flex: 5,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
                   Expanded(
+                    flex: 2,
                     child: Container(
                       color: const Color.fromARGB(255, 27, 62, 110),
                       child: Center(

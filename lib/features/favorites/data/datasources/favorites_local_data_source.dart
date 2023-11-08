@@ -1,3 +1,4 @@
+// Package imports:
 import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
 
@@ -43,6 +44,32 @@ class FavoritesLocalDataSource {
     );
 
     return gamesData;
+  }
+
+  Map<String, dynamic> getSingleGameData({
+    required int id,
+  }) {
+    final Map<String, dynamic> gameData = {};
+    final dynamicVal = _favoritesBox.get(id);
+    (dynamicVal as Map<dynamic, dynamic>).forEach((key, value) {
+      gameData[key.toString()] = value;
+    });
+
+    return gameData;
+  }
+
+  void updatePopularity({
+    required int newPopularity,
+    required int id,
+  }) {
+    final Map<String, dynamic> gameData = {};
+    final dynamicVal = _favoritesBox.get(id);
+    (dynamicVal as Map<dynamic, dynamic>).forEach((key, value) {
+      gameData[key.toString()] = value;
+    });
+
+    gameData.update('popularity', (value) => newPopularity);
+    _favoritesBox.put(id, gameData);
   }
 
   bool isGameFavorite({

@@ -1,5 +1,10 @@
-import 'package:el_tooltip/el_tooltip.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:el_tooltip/el_tooltip.dart';
+
+// Project imports:
 import 'package:gameon/features/game_details_screen/data/models/user_rating_model.dart';
 import 'package:gameon/utils/custom_theme.dart';
 

@@ -1,6 +1,13 @@
+// Dart imports:
 import 'dart:async';
 
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+
+// Project imports:
 import 'package:gameon/common_widgets/paged_view_no_item_found.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/gridview_tile.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/listview_tile.dart';
@@ -8,7 +15,6 @@ import 'package:gameon/features/search/data/models/search_page_model.dart';
 import 'package:gameon/features/search/data/models/searched_game_model.dart';
 import 'package:gameon/features/search/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:gameon/utils/di.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class SearchOutcome extends StatefulWidget {
   final String searchQuery;

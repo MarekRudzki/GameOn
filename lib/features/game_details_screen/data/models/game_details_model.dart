@@ -1,6 +1,9 @@
 // ignore_for_file: avoid_dynamic_calls
 
+// Package imports:
 import 'package:equatable/equatable.dart';
+
+// Project imports:
 import 'package:gameon/features/game_details_screen/data/models/user_rating_model.dart';
 
 class GameDetailsModel extends Equatable {

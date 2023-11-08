@@ -1,10 +1,15 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nil/nil.dart';
+
+// Project imports:
 import 'package:gameon/common_widgets/data_provider_button.dart';
 import 'package:gameon/features/genres/presentation/bloc/genres_bloc/genres_bloc.dart';
 import 'package:gameon/features/genres/presentation/widgets/genre_tile.dart';
 import 'package:gameon/utils/custom_theme.dart';
-import 'package:nil/nil.dart';
 
 class GenresScreen extends StatelessWidget {
   const GenresScreen({super.key});

@@ -1,7 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_glow/flutter_glow.dart';
-import 'package:gameon/utils/custom_theme.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+// Project imports:
+import 'package:gameon/utils/custom_theme.dart';
 
 class DataProviderButton extends StatelessWidget {
   const DataProviderButton({super.key});
@@ -51,11 +56,19 @@ class DataProviderButton extends StatelessWidget {
                       color: CustomTheme.theme.colorScheme.primary,
                     ),
                   ),
-                  TextButton(
+                  const SizedBox(height: 5),
+                  OutlinedButton(
                     child: const Text(
                       'Visit RAWG site',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 15,
+                      ),
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(158, 68, 137, 255),
+                      side: const BorderSide(
+                        width: 2,
+                        color: Colors.white,
                       ),
                     ),
                     onPressed: () async {

@@ -1,7 +1,10 @@
+// Package imports:
+import 'package:injectable/injectable.dart';
+
+// Project imports:
 import 'package:gameon/features/favorites/data/datasources/favorites_local_data_source.dart';
 import 'package:gameon/features/favorites/data/datasources/favorites_remote_data_source.dart';
 import 'package:gameon/features/favorites/data/models/favorite_game_model.dart';
-import 'package:injectable/injectable.dart';
 
 @lazySingleton
 class FavoritesRepository {
@@ -55,5 +58,23 @@ class FavoritesRepository {
     await _favoritesLocalDataSource.removeGameFromFavorites(
       id: id,
     );
+  }
+
+  Future<void> checkForPopularityChange({
+    required int id,
+  }) async {
+    final savedData = _favoritesLocalDataSource.getSingleGameData(id: id);
+    final int savedPopularity = savedData['popularity'] as int;
+
+    final actualData =
+        await _favoritesRemoteDataSource.getFavoriteGameData(gameId: id);
+    final int actualPopularity = actualData['added'] as int;
+
+    if (savedPopularity != actualPopularity) {
+      _favoritesLocalDataSource.updatePopularity(
+        newPopularity: actualPopularity,
+        id: id,
+      );
+    }
   }
 }

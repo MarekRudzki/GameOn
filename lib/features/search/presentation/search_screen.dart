@@ -1,10 +1,15 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:nil/nil.dart';
+
+// Project imports:
 import 'package:gameon/common_widgets/data_provider_button.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/display_picker.dart';
 import 'package:gameon/features/search/presentation/widgets/custom_search_bar.dart';
 import 'package:gameon/features/search/presentation/widgets/search_outcome.dart';
 import 'package:gameon/utils/custom_theme.dart';
-import 'package:nil/nil.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});

@@ -1,6 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
 import 'package:gameon/features/game_details_screen/presentation/bloc/game_details_bloc/game_details_bloc.dart';
 import 'package:gameon/features/game_details_screen/presentation/game_details_screen.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/gridview_error_tile.dart';
@@ -26,25 +31,6 @@ class GridViewTile extends StatelessWidget {
     ImageProvider? loadedImage;
 
     return InkWell(
-      onTap: () {
-        context.read<GameDetailsBloc>().add(
-              GameDetailsRequested(gameId: gameId),
-            );
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => GameDetailsScreen(
-              image:
-                  loadedImage != null ? CachedNetworkImageProvider(url) : null,
-              name: name,
-              id: gameId,
-              heroId: heroId,
-              url: url,
-              popularity: popularity,
-            ),
-          ),
-        );
-      },
       child: Padding(
         padding: const EdgeInsets.all(8),
         child: ClipRRect(
@@ -65,14 +51,15 @@ class GridViewTile extends StatelessWidget {
                     loadedImage = imageProvider;
                     return Column(
                       children: [
-                        Hero(
-                          tag: heroId,
-                          child: Container(
-                            height: (MediaQuery.sizeOf(context).height) / 7,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.cover,
+                        Expanded(
+                          child: Hero(
+                            tag: heroId,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: imageProvider,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),
@@ -141,6 +128,25 @@ class GridViewTile extends StatelessWidget {
                 ),
         ),
       ),
+      onTap: () {
+        context.read<GameDetailsBloc>().add(
+              GameDetailsRequested(gameId: gameId),
+            );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => GameDetailsScreen(
+              image:
+                  loadedImage != null ? CachedNetworkImageProvider(url) : null,
+              name: name,
+              id: gameId,
+              heroId: heroId,
+              url: url,
+              popularity: popularity,
+            ),
+          ),
+        );
+      },
     );
   }
 }

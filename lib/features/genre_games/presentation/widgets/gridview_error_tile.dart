@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:gameon/utils/custom_theme.dart';
 
 class GridViewErrorTile extends StatelessWidget {
@@ -15,35 +18,36 @@ class GridViewErrorTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          height: (MediaQuery.sizeOf(context).height) / 7,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
-            ),
-            border: Border.all(
-              color: const Color.fromARGB(255, 27, 62, 110),
-              width: 5,
-            ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Icon(
-                Icons.error,
-                size: 35,
-                color: Colors.red,
+        Expanded(
+          child: Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
               ),
-              Text(
-                'Photo not available',
-                style: TextStyle(
-                  color: CustomTheme.theme.colorScheme.primary,
-                  fontSize: 15,
+              border: Border.all(
+                color: const Color.fromARGB(255, 27, 62, 110),
+                width: 5,
+              ),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Icon(
+                  Icons.error,
+                  size: 35,
+                  color: Colors.red,
                 ),
-              )
-            ],
+                Text(
+                  'Photo not available',
+                  style: TextStyle(
+                    color: CustomTheme.theme.colorScheme.primary,
+                    fontSize: 15,
+                  ),
+                )
+              ],
+            ),
           ),
         ),
         Expanded(

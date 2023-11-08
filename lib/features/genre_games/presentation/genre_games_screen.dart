@@ -1,6 +1,14 @@
+// Dart imports:
 import 'dart:async';
 
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:gameon/common_widgets/data_provider_button.dart';
 import 'package:gameon/common_widgets/paged_view_no_item_found.dart';
 import 'package:gameon/features/genre_games/data/models/genre_game_model.dart';
@@ -13,8 +21,6 @@ import 'package:gameon/features/home_page/presentation/provider/internet_connect
 import 'package:gameon/features/home_page/presentation/widgets/no_network.dart';
 import 'package:gameon/utils/custom_theme.dart';
 import 'package:gameon/utils/di.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:provider/provider.dart';
 
 class GenreGamesScreen extends StatefulWidget {
   final int genreId;

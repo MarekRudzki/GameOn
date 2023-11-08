@@ -1,12 +1,16 @@
+// Dart imports:
 import 'dart:async';
 
+// Package imports:
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
+import 'package:rxdart/rxdart.dart';
+
+// Project imports:
 import 'package:gameon/features/search/data/models/search_page_model.dart';
 import 'package:gameon/features/search/data/models/searched_game_model.dart';
 import 'package:gameon/features/search/domain/repositories/search_repository.dart';
-import 'package:injectable/injectable.dart';
-import 'package:rxdart/rxdart.dart';
 
 part 'search_event.dart';
 part 'search_state.dart';

@@ -1,15 +1,20 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:gameon/features/favorites/presentation/favorites_screen.dart';
 import 'package:gameon/features/genres/presentation/bloc/genres_bloc/genres_bloc.dart';
+import 'package:gameon/features/genres/presentation/genres_screen.dart';
 import 'package:gameon/features/home_page/presentation/provider/internet_connection_provider.dart';
 import 'package:gameon/features/home_page/presentation/widgets/icons.dart';
 import 'package:gameon/features/home_page/presentation/widgets/no_network.dart';
-import 'package:gameon/features/genres/presentation/genres_screen.dart';
 import 'package:gameon/features/home_page/presentation/widgets/on_will_pop_alert_dialog.dart';
 import 'package:gameon/features/search/presentation/search_screen.dart';
 import 'package:gameon/utils/custom_theme.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -49,6 +54,7 @@ class _HomePageState extends State<HomePage> {
             ? Scaffold(
                 body: _pages[_index],
                 bottomNavigationBar: GNav(
+                  haptic: false,
                   selectedIndex: _index,
                   gap: 10,
                   backgroundColor: CustomTheme.theme.colorScheme.onBackground,

@@ -1,8 +1,11 @@
+// Package imports:
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
+
+// Project imports:
 import 'package:gameon/features/genres/data/models/genre_model.dart';
 import 'package:gameon/features/genres/domain/repositories/genres_repository.dart';
-import 'package:injectable/injectable.dart';
 
 part 'genres_event.dart';
 part 'genres_state.dart';

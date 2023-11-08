@@ -1,10 +1,13 @@
+// Package imports:
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+// Project imports:
 import 'package:gameon/features/game_details_screen/data/models/game_details_model.dart';
 import 'package:gameon/features/game_details_screen/data/models/user_rating_model.dart';
 import 'package:gameon/features/game_details_screen/domain/repositories/game_details_repository.dart';
 import 'package:gameon/features/game_details_screen/presentation/bloc/game_details_bloc/game_details_bloc.dart';
-import 'package:mocktail/mocktail.dart';
 
 class MockGameDetailsRepository extends Mock implements GameDetailsRepository {}
 

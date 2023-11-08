@@ -1,6 +1,11 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:gameon/utils/custom_theme.dart';
+
+// Package imports:
 import 'package:readmore/readmore.dart';
+
+// Project imports:
+import 'package:gameon/utils/custom_theme.dart';
 
 class GameDescription extends StatelessWidget {
   final String description;

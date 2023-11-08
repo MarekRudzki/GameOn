@@ -1,9 +1,12 @@
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+// Project imports:
 import 'package:gameon/features/search/data/models/search_page_model.dart';
 import 'package:gameon/features/search/data/models/searched_game_model.dart';
 import 'package:gameon/features/search/domain/repositories/search_repository.dart';
 import 'package:gameon/features/search/presentation/bloc/search_bloc/search_bloc.dart';
-import 'package:mocktail/mocktail.dart';
 
 class MockSearchRepository extends Mock implements SearchRepository {}
 
