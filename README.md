@@ -29,10 +29,9 @@ The main screen of the application is the game genre selection screen. After cho
 - Provider
 - RAWG API
 
+https://user-images.githubusercontent.com/102899533/281717950-cc23d9ad-cb4e-455c-b260-b9a83cf5a6da.mp4
 
-https://user-images.githubusercontent.com/102899533/281704473-6cbe3e94-995e-42bd-a81a-1c57953a2ab1.mp4
-
-https://user-images.githubusercontent.com/102899533/281704494-6c930bd1-b573-4db9-8016-ee29913aca26.mp4
+https://user-images.githubusercontent.com/102899533/281717964-0f39a491-3903-4100-88e0-74749b7b2040.mp4
 
 ## Technologies
 Project was created with:
