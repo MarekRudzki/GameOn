@@ -46,8 +46,16 @@ dev_dependencies:
   injectable_generator: ^2.4.1
   build_runner: ^2.4.6
   import_sorter: ^4.6.0
+  flutter_native_splash: ^2.3.5
+  flutter_launcher_icons: ^0.13.1
 
+flutter_native_splash:
+  image: assets/splash.png
+  color: "#021f44"
 
+flutter_launcher_icons:
+  image_path: assets/logo.png
+  android: true
 
 flutter:
   uses-material-design: true

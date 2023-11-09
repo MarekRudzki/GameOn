@@ -53,7 +53,7 @@ void main() async {
             ],
             child: MaterialApp(
               theme: CustomTheme.theme,
-              color: const Color.fromARGB(255, 15, 47, 91),
+              color: const Color.fromARGB(255, 2, 31, 68),
               debugShowCheckedModeBanner: false,
               title: 'GameOn',
               home: const HomePage(),
