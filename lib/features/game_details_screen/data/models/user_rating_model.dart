@@ -7,7 +7,7 @@ class UserRatingModel extends Equatable {
   final int? meh;
   final int? skip;
 
-  UserRatingModel({
+  const UserRatingModel({
     required this.exceptional,
     required this.recommended,
     required this.meh,

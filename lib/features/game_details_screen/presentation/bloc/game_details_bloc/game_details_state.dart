@@ -12,7 +12,7 @@ class GameDetailsInitial extends GameDetailsState {}
 class GameDetailsSuccess extends GameDetailsState {
   final GameDetailsModel gameDetails;
 
-  GameDetailsSuccess({
+  const GameDetailsSuccess({
     required this.gameDetails,
   });
 

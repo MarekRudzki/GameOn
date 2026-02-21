@@ -33,53 +33,51 @@ class GenreTile extends StatelessWidget {
           ),
         );
       },
-      child: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: CachedNetworkImage(
-              imageUrl: genreUrl,
-              placeholder: (context, url) => Image.asset(
-                'assets/loading.gif',
-                fit: BoxFit.cover,
-              ),
-              errorWidget: (context, url, error) => const Icon(
-                Icons.error,
-                size: 80,
-                color: Colors.red,
-              ),
-              imageBuilder: (context, imageProvider) => Column(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: imageProvider,
-                          fit: BoxFit.cover,
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: CachedNetworkImage(
+            imageUrl: genreUrl,
+            placeholder: (context, url) => Image.asset(
+              'assets/loading.gif',
+              fit: BoxFit.cover,
+            ),
+            errorWidget: (context, url, error) => const Icon(
+              Icons.error,
+              size: 80,
+              color: Colors.red,
+            ),
+            imageBuilder: (context, imageProvider) => Column(
+              children: [
+                Expanded(
+                  flex: 5,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    color: const Color.fromARGB(255, 27, 62, 110),
+                    child: Center(
+                      child: Text(
+                        genreName.replaceAll('Massively Multiplayer', 'MMO'),
+                        style: TextStyle(
+                          fontSize: 17,
+                          color: CustomTheme.theme.colorScheme.primary,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
                   ),
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      color: const Color.fromARGB(255, 27, 62, 110),
-                      child: Center(
-                        child: Text(
-                          genreName.replaceAll('Massively Multiplayer', 'MMO'),
-                          style: TextStyle(
-                            fontSize: 17,
-                            color: CustomTheme.theme.colorScheme.primary,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

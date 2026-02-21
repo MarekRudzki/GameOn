@@ -10,7 +10,7 @@ class GameDetailsEvent extends Equatable {
 class GameDetailsRequested extends GameDetailsEvent {
   final int gameId;
 
-  GameDetailsRequested({
+  const GameDetailsRequested({
     required this.gameId,
   });
 

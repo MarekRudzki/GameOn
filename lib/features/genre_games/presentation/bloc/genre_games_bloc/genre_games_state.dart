@@ -5,7 +5,7 @@ class GenreGamesState extends Equatable {
   final dynamic error;
   final int? page;
 
-  GenreGamesState({
+  const GenreGamesState({
     this.genreGames,
     this.error,
     this.page = 1,

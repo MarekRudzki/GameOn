@@ -7,7 +7,7 @@ class GenreModel extends Equatable {
   final int id;
   final int gamesCount;
 
-  GenreModel({
+  const GenreModel({
     required this.name,
     required this.url,
     required this.id,

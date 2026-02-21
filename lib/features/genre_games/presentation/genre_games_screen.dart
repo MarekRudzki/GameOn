@@ -43,8 +43,7 @@ class _GenreGamesScreenState extends State<GenreGamesScreen> {
 
   late StreamSubscription<GenreGamesState> _blocListingStateSubscription;
 
-  final PagingController<int, GenreGameModel> _pagingController =
-      PagingController(firstPageKey: 1);
+  final PagingController<int, GenreGameModel> _pagingController = PagingController(firstPageKey: 1);
 
   @override
   void initState() {
@@ -57,8 +56,7 @@ class _GenreGamesScreenState extends State<GenreGamesScreen> {
       );
     });
 
-    _blocListingStateSubscription =
-        _bloc.onNewListingState.listen((listingState) {
+    _blocListingStateSubscription = _bloc.onNewListingState.listen((listingState) {
       _pagingController.value = PagingState(
         nextPageKey: listingState.page,
         error: listingState.error,
@@ -78,13 +76,12 @@ class _GenreGamesScreenState extends State<GenreGamesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final bool _hasInternet =
-        context.watch<InternetConnectionProvider>().hasInternet;
+    final bool hasInternet = context.watch<InternetConnectionProvider>().hasInternet;
 
     return SafeArea(
-      child: _hasInternet
+      child: hasInternet
           ? Scaffold(
-              backgroundColor: CustomTheme.theme.colorScheme.background,
+              backgroundColor: CustomTheme.theme.colorScheme.surface,
               body: NestedScrollView(
                 floatHeaderSlivers: true,
                 headerSliverBuilder: (
@@ -94,8 +91,7 @@ class _GenreGamesScreenState extends State<GenreGamesScreen> {
                   return [
                     SliverAppBar(
                       elevation: 5,
-                      backgroundColor:
-                          CustomTheme.theme.colorScheme.onBackground,
+                      backgroundColor: CustomTheme.theme.colorScheme.onSurface,
                       title: Text(
                         widget.name,
                         style: TextStyle(
@@ -140,17 +136,14 @@ class _GenreGamesScreenState extends State<GenreGamesScreen> {
                     ? PagedGridView(
                         showNewPageProgressIndicatorAsGridChild: false,
                         pagingController: _pagingController,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           mainAxisSpacing: 5,
                           childAspectRatio: 1 / 1.1,
                         ),
-                        builderDelegate:
-                            PagedChildBuilderDelegate<GenreGameModel>(
+                        builderDelegate: PagedChildBuilderDelegate<GenreGameModel>(
                           noItemsFoundIndicatorBuilder: (context) =>
-                              const PagedViewNoItemFound(
-                                  text: 'Try restarting the page'),
+                              const PagedViewNoItemFound(text: 'Try restarting the page'),
                           itemBuilder: (context, item, index) => GridViewTile(
                             name: item.name,
                             url: item.url,
@@ -161,11 +154,9 @@ class _GenreGamesScreenState extends State<GenreGamesScreen> {
                       )
                     : PagedListView(
                         pagingController: _pagingController,
-                        builderDelegate:
-                            PagedChildBuilderDelegate<GenreGameModel>(
+                        builderDelegate: PagedChildBuilderDelegate<GenreGameModel>(
                           noItemsFoundIndicatorBuilder: (context) =>
-                              const PagedViewNoItemFound(
-                                  text: 'Try restarting the page'),
+                              const PagedViewNoItemFound(text: 'Try restarting the page'),
                           itemBuilder: (context, item, index) => ListViewTile(
                             name: item.name,
                             popularity: item.popularity,

@@ -32,7 +32,7 @@ class Favorite extends StatelessWidget {
         );
 
     // ignore: avoid_positional_boolean_parameters
-    Future<bool> _onLikeButtonTapped(bool isLiked) async {
+    Future<bool> onLikeButtonTapped(bool isLiked) async {
       if (isLiked) {
         context.read<FavoritesBloc>().add(
               FavoritesRemovePressed(id: id),
@@ -72,15 +72,13 @@ class Favorite extends StatelessWidget {
               likeBuilder: (bool isLiked) {
                 return GlowIcon(
                   Icons.favorite,
-                  color: isLiked
-                      ? Colors.red
-                      : CustomTheme.theme.colorScheme.primary,
+                  color: isLiked ? Colors.red : CustomTheme.theme.colorScheme.primary,
                   size: 30,
                   glowColor: CustomTheme.theme.colorScheme.tertiary,
                   blurRadius: 5,
                 );
               },
-              onTap: _onLikeButtonTapped,
+              onTap: onLikeButtonTapped,
             );
           } else {
             return nil;

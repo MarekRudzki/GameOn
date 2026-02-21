@@ -17,7 +17,7 @@ class GenresScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomTheme.theme.colorScheme.background,
+      backgroundColor: CustomTheme.theme.colorScheme.surface,
       body: NestedScrollView(
         floatHeaderSlivers: true,
         headerSliverBuilder: (
@@ -27,7 +27,7 @@ class GenresScreen extends StatelessWidget {
           return [
             SliverAppBar(
               elevation: 5,
-              backgroundColor: CustomTheme.theme.colorScheme.onBackground,
+              backgroundColor: CustomTheme.theme.colorScheme.onSurface,
               title: Text(
                 'Genres',
                 style: TextStyle(

@@ -26,9 +26,9 @@ class _GameScreenshotsState extends State<GameScreenshots> {
 
   @override
   Widget build(BuildContext context) {
-    final List<int> _carouselItems = [];
+    final List<int> carouselItems = [];
     for (int i = 0; i < widget.screenshots.length; i++) {
-      _carouselItems.add(i);
+      carouselItems.add(i);
     }
 
     return Padding(
@@ -41,7 +41,7 @@ class _GameScreenshotsState extends State<GameScreenshots> {
             _imageIndex = index;
           },
         ),
-        items: _carouselItems.map(
+        items: carouselItems.map(
           (i) {
             return Builder(
               builder: (BuildContext context) {
@@ -54,8 +54,7 @@ class _GameScreenshotsState extends State<GameScreenshots> {
                       context: context,
                       builder: (context) => Dialog(
                         insetPadding: const EdgeInsets.symmetric(horizontal: 5),
-                        backgroundColor: CustomTheme.theme.colorScheme.tertiary
-                            .withOpacity(0.3),
+                        backgroundColor: CustomTheme.theme.colorScheme.tertiary.withAlpha(77),
                         child: PhotoView(
                           imageProvider: NetworkImage(
                             widget.screenshots[_imageIndex],

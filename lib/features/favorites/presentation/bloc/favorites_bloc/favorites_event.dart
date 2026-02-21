@@ -15,7 +15,7 @@ class FavoritesAddPressed extends FavoritesEvent {
   final String url;
   final int popularity;
 
-  FavoritesAddPressed({
+  const FavoritesAddPressed({
     required this.id,
     required this.name,
     required this.url,
@@ -34,7 +34,7 @@ class FavoritesAddPressed extends FavoritesEvent {
 class FavoritesRemovePressed extends FavoritesEvent {
   final int id;
 
-  FavoritesRemovePressed({
+  const FavoritesRemovePressed({
     required this.id,
   });
 
@@ -45,7 +45,7 @@ class FavoritesRemovePressed extends FavoritesEvent {
 class FavoriteCheckPressed extends FavoritesEvent {
   final int id;
 
-  FavoriteCheckPressed({
+  const FavoriteCheckPressed({
     required this.id,
   });
 
@@ -56,7 +56,7 @@ class FavoriteCheckPressed extends FavoritesEvent {
 class FavoritePopularityCheckRequested extends FavoritesEvent {
   final int id;
 
-  FavoritePopularityCheckRequested({
+  const FavoritePopularityCheckRequested({
     required this.id,
   });
 

@@ -27,7 +27,7 @@ class DataProviderButton extends StatelessWidget {
           builder: (context) {
             return AlertDialog(
               contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
-              backgroundColor: CustomTheme.theme.colorScheme.onBackground,
+              backgroundColor: CustomTheme.theme.colorScheme.onSurface,
               title: Text(
                 'Data provider',
                 style: TextStyle(
@@ -58,12 +58,6 @@ class DataProviderButton extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   OutlinedButton(
-                    child: const Text(
-                      'Visit RAWG site',
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
                     style: OutlinedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(158, 68, 137, 255),
                       side: const BorderSide(
@@ -99,8 +93,7 @@ class DataProviderButton extends StatelessWidget {
                                     child: Text(
                                       'The browser cannot be opened.',
                                       style: TextStyle(
-                                        color: CustomTheme
-                                            .theme.colorScheme.primary,
+                                        color: CustomTheme.theme.colorScheme.primary,
                                         fontSize: 15,
                                       ),
                                     ),
@@ -112,6 +105,12 @@ class DataProviderButton extends StatelessWidget {
                         );
                       }
                     },
+                    child: const Text(
+                      'Visit RAWG site',
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
+                    ),
                   ),
                 ],
               ),

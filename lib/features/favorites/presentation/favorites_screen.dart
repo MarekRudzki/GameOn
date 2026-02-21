@@ -28,7 +28,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
     context.read<FavoritesBloc>().add(FavoritesRequested());
 
     return Scaffold(
-      backgroundColor: CustomTheme.theme.colorScheme.background,
+      backgroundColor: CustomTheme.theme.colorScheme.surface,
       body: NestedScrollView(
         headerSliverBuilder: (
           BuildContext context,
@@ -37,7 +37,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           return [
             SliverAppBar(
               elevation: 5,
-              backgroundColor: CustomTheme.theme.colorScheme.onBackground,
+              backgroundColor: CustomTheme.theme.colorScheme.onSurface,
               collapsedHeight: 70,
               title: Text(
                 'Favorites',
@@ -100,17 +100,15 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               } else {
                 return _selectedIndex == 0
                     ? GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           mainAxisSpacing: 5,
                           childAspectRatio: 1 / 1.1,
                         ),
                         itemCount: state.favoriteGames.length,
                         itemBuilder: (context, index) {
-                          context.read<FavoritesBloc>().add(
-                              FavoritePopularityCheckRequested(
-                                  id: state.favoriteGames[index].gameId));
+                          context.read<FavoritesBloc>().add(FavoritePopularityCheckRequested(
+                              id: state.favoriteGames[index].gameId));
                           return GridViewTile(
                             name: state.favoriteGames[index].name,
                             url: state.favoriteGames[index].url,

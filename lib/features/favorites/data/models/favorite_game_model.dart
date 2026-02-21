@@ -7,7 +7,7 @@ class FavoriteGameModel extends Equatable {
   final int gameId;
   final String url;
 
-  FavoriteGameModel({
+  const FavoriteGameModel({
     required this.name,
     required this.popularity,
     required this.gameId,

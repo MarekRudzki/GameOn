@@ -88,7 +88,7 @@ class OverallGameInfo extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      playtime == 0 ? 'No data' : '${playtime} h',
+                      playtime == 0 ? 'No data' : '$playtime h',
                       style: TextStyle(
                         color: CustomTheme.theme.colorScheme.primary,
                         fontWeight: FontWeight.w600,

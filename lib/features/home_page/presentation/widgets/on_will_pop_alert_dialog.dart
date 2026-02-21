@@ -16,7 +16,7 @@ class OnWillPopAlertDialog extends StatelessWidget {
           color: CustomTheme.theme.colorScheme.primary,
         ),
       ),
-      backgroundColor: CustomTheme.theme.colorScheme.background,
+      backgroundColor: CustomTheme.theme.colorScheme.surface,
       content: Text(
         'Do you want to exit the app?',
         style: TextStyle(

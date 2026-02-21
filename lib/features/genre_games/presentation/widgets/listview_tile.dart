@@ -40,9 +40,7 @@ class ListViewTile extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => GameDetailsScreen(
-                image: loadedImage != null
-                    ? CachedNetworkImageProvider(url)
-                    : null,
+                image: loadedImage != null ? CachedNetworkImageProvider(url) : null,
                 name: name,
                 id: gameId,
                 heroId: heroId,
@@ -70,7 +68,7 @@ class ListViewTile extends StatelessWidget {
                 flex: 2,
                 child: Padding(
                   padding: const EdgeInsets.all(8),
-                  child: Container(
+                  child: SizedBox(
                     height: MediaQuery.sizeOf(context).height * 0.12,
                     width: MediaQuery.sizeOf(context).width * 0.4,
                     child: ClipRRect(
@@ -101,7 +99,7 @@ class ListViewTile extends StatelessWidget {
                                 );
                               },
                             )
-                          : Container(
+                          : SizedBox(
                               height: MediaQuery.sizeOf(context).height * 0.12,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -116,8 +114,7 @@ class ListViewTile extends StatelessWidget {
                                     'Photo not available',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      color:
-                                          CustomTheme.theme.colorScheme.primary,
+                                      color: CustomTheme.theme.colorScheme.primary,
                                       fontSize: 16,
                                     ),
                                   )
@@ -131,8 +128,7 @@ class ListViewTile extends StatelessWidget {
               Flexible(
                 flex: 3,
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
                   child: Column(
                     children: [
                       Center(

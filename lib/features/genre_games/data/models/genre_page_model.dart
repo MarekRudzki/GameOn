@@ -5,7 +5,7 @@ class GenrePageModel extends Equatable {
   final int page;
   final int id;
 
-  GenrePageModel({
+  const GenrePageModel({
     required this.page,
     required this.id,
   });

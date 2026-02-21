@@ -30,7 +30,7 @@ class CustomSliverAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int _calculateNumberOfLines(String text) {
+    int calculateNumberOfLines(String text) {
       final TextSpan textSpan = TextSpan(
         text: text,
         style: const TextStyle(
@@ -50,8 +50,8 @@ class CustomSliverAppBar extends StatelessWidget {
       return numberOfLines;
     }
 
-    double _getCollapsedHeight(String text) {
-      final textLines = _calculateNumberOfLines(text);
+    double getCollapsedHeight(String text) {
+      final textLines = calculateNumberOfLines(text);
       if (textLines == 1) {
         return AppBar().preferredSize.height;
       } else if (textLines == 2) {
@@ -61,28 +61,26 @@ class CustomSliverAppBar extends StatelessWidget {
       }
     }
 
-    final double _height = MediaQuery.sizeOf(context).height;
+    final double height = MediaQuery.sizeOf(context).height;
     return SliverAppBar(
-      backgroundColor: CustomTheme.theme.colorScheme.onBackground,
-      expandedHeight: _height * 0.35,
-      collapsedHeight: _getCollapsedHeight(name),
+      backgroundColor: CustomTheme.theme.colorScheme.onSurface,
+      expandedHeight: height * 0.35,
+      collapsedHeight: getCollapsedHeight(name),
       pinned: true,
       flexibleSpace: LayoutBuilder(
         builder: (context, constraints) {
-          final double _appBarHeight = constraints.biggest.height;
-          final bool _isExpanded = _appBarHeight > _height * 0.1;
-          final bool _showFavorite = _appBarHeight > _height * 0.30;
+          final double appBarHeight = constraints.biggest.height;
+          final bool isExpanded = appBarHeight > height * 0.1;
+          final bool showFavorite = appBarHeight > height * 0.30;
           return FlexibleSpaceBar(
             expandedTitleScale: 1.3,
             centerTitle: true,
             titlePadding: EdgeInsets.symmetric(
               horizontal: 45,
-              vertical: _isExpanded ? 10 : 0,
+              vertical: isExpanded ? 10 : 0,
             ),
             title: Column(
-              mainAxisAlignment: _isExpanded
-                  ? MainAxisAlignment.end
-                  : MainAxisAlignment.center,
+              mainAxisAlignment: isExpanded ? MainAxisAlignment.end : MainAxisAlignment.center,
               children: [
                 Container(),
                 GlowText(
@@ -95,7 +93,7 @@ class CustomSliverAppBar extends StatelessWidget {
                   glowColor: CustomTheme.theme.colorScheme.tertiary,
                   blurRadius: 10,
                   softWrap: true,
-                  maxLines: _isExpanded ? 3 : 2,
+                  maxLines: isExpanded ? 3 : 2,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Container(),
@@ -110,7 +108,7 @@ class CustomSliverAppBar extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                child: _showFavorite
+                child: showFavorite
                     ? Favorite(
                         id: int.parse(heroId.substring(0, heroId.indexOf('_'))),
                         name: name,

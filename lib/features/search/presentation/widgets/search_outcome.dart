@@ -49,8 +49,7 @@ class _SearchOutcomeState extends State<SearchOutcome> {
       );
     });
 
-    _blocListingStateSubscription =
-        _bloc.onNewListingState.listen((listingState) {
+    _blocListingStateSubscription = _bloc.onNewListingState.listen((listingState) {
       _pagingController.value = PagingState(
         nextPageKey: listingState.page,
         error: listingState.error,
@@ -70,7 +69,7 @@ class _SearchOutcomeState extends State<SearchOutcome> {
 
   @override
   Widget build(BuildContext context) {
-    final String _errorText =
+    final String errorText =
         'The game you are looking for is not in the database or its name has been misspelled. Try again!';
     return widget.selectedIndex == 0
         ? PagedGridView(
@@ -83,7 +82,7 @@ class _SearchOutcomeState extends State<SearchOutcome> {
             ),
             builderDelegate: PagedChildBuilderDelegate<SearchedGameModel>(
               noItemsFoundIndicatorBuilder: (context) => PagedViewNoItemFound(
-                text: _errorText,
+                text: errorText,
               ),
               itemBuilder: (context, item, index) => GridViewTile(
                 name: item.name,
@@ -97,7 +96,7 @@ class _SearchOutcomeState extends State<SearchOutcome> {
             pagingController: _pagingController,
             builderDelegate: PagedChildBuilderDelegate<SearchedGameModel>(
               noItemsFoundIndicatorBuilder: (context) => PagedViewNoItemFound(
-                text: _errorText,
+                text: errorText,
               ),
               itemBuilder: (context, item, index) => ListViewTile(
                 name: item.name,

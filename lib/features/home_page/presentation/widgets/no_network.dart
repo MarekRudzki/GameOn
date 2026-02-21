@@ -13,7 +13,7 @@ class NoNetwork extends StatelessWidget {
       body: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(20),
-        color: Colors.grey.withOpacity(0.92),
+        color: Colors.grey.withAlpha(235),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

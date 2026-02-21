@@ -34,30 +34,35 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final bool _hasInternet =
-        context.watch<InternetConnectionProvider>().hasInternet;
+    final bool hasInternet = context.watch<InternetConnectionProvider>().hasInternet;
 
-    if (_hasInternet) {
+    if (hasInternet) {
       context.read<GenresBloc>().add(GenresRequested());
     }
 
-    return WillPopScope(
-      onWillPop: () async {
-        final bool? exitResult = await showDialog(
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, _) async {
+        if (didPop) return;
+
+        final bool? exitResult = await showDialog<bool>(
           context: context,
           builder: (context) => const OnWillPopAlertDialog(),
         );
-        return exitResult ?? false;
+
+        if (exitResult == true && context.mounted) {
+          Navigator.of(context).pop();
+        }
       },
       child: SafeArea(
-        child: _hasInternet
+        child: hasInternet
             ? Scaffold(
                 body: _pages[_index],
                 bottomNavigationBar: GNav(
                   haptic: false,
                   selectedIndex: _index,
                   gap: 10,
-                  backgroundColor: CustomTheme.theme.colorScheme.onBackground,
+                  backgroundColor: CustomTheme.theme.colorScheme.onSurface,
                   color: CustomTheme.theme.colorScheme.primary,
                   activeColor: CustomTheme.theme.colorScheme.secondary,
                   padding: const EdgeInsets.all(16),

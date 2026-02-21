@@ -5,7 +5,7 @@ class SearchState extends Equatable {
   final dynamic error;
   final int? page;
 
-  SearchState({
+  const SearchState({
     this.searchedGames,
     this.error,
     this.page = 1,

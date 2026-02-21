@@ -17,13 +17,13 @@ class GameDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double _dividerIndent = MediaQuery.sizeOf(context).width * 0.25;
+    final double dividerIndent = MediaQuery.sizeOf(context).width * 0.25;
     return Column(
       children: [
         Divider(
           color: CustomTheme.theme.colorScheme.onPrimary,
-          endIndent: _dividerIndent,
-          indent: _dividerIndent,
+          endIndent: dividerIndent,
+          indent: dividerIndent,
           thickness: 1,
         ),
         Padding(
@@ -53,8 +53,8 @@ class GameDescription extends StatelessWidget {
         ),
         Divider(
           color: CustomTheme.theme.colorScheme.onPrimary,
-          endIndent: _dividerIndent,
-          indent: _dividerIndent,
+          endIndent: dividerIndent,
+          indent: dividerIndent,
           thickness: 1,
         ),
       ],

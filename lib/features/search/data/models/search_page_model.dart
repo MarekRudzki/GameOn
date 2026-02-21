@@ -5,7 +5,7 @@ class SearchPageModel extends Equatable {
   final String searchQuery;
   final int page;
 
-  SearchPageModel({
+  const SearchPageModel({
     required this.searchQuery,
     required this.page,
   });

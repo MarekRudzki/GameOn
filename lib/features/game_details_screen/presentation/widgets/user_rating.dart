@@ -20,14 +20,11 @@ class UserRating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double _barWidth = MediaQuery.sizeOf(context).width - 28;
-    final double _exceptionalWidth =
-        _barWidth * ((userRating.exceptional ?? 0) / reviewsCount);
-    final double recommendedWidth =
-        _barWidth * ((userRating.recommended ?? 0) / reviewsCount);
-    final double mehWidth = _barWidth * ((userRating.meh ?? 0) / reviewsCount);
-    final double skipWidth =
-        _barWidth * ((userRating.skip ?? 0) / reviewsCount);
+    final double barWidth = MediaQuery.sizeOf(context).width - 28;
+    final double exceptionalWidth = barWidth * ((userRating.exceptional ?? 0) / reviewsCount);
+    final double recommendedWidth = barWidth * ((userRating.recommended ?? 0) / reviewsCount);
+    final double mehWidth = barWidth * ((userRating.meh ?? 0) / reviewsCount);
+    final double skipWidth = barWidth * ((userRating.skip ?? 0) / reviewsCount);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
@@ -45,7 +42,7 @@ class UserRating extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 5),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Container(
+              child: SizedBox(
                 height: 40,
                 child: Stack(
                   children: [
@@ -58,7 +55,7 @@ class UserRating extends StatelessWidget {
                           opacity: 0.5,
                         ),
                         child: Container(
-                          width: _exceptionalWidth,
+                          width: exceptionalWidth,
                           height: 40,
                           color: const Color.fromARGB(255, 104, 177, 49),
                           child: const Center(
@@ -74,7 +71,7 @@ class UserRating extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      left: _exceptionalWidth,
+                      left: exceptionalWidth,
                       child: ElTooltip(
                         content: const Text('Recommended'),
                         showChildAboveOverlay: false,
@@ -98,7 +95,7 @@ class UserRating extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      left: _exceptionalWidth + recommendedWidth,
+                      left: exceptionalWidth + recommendedWidth,
                       child: ElTooltip(
                         content: const Text('Meh'),
                         showChildAboveOverlay: false,
@@ -122,7 +119,7 @@ class UserRating extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      left: _exceptionalWidth + recommendedWidth + mehWidth,
+                      left: exceptionalWidth + recommendedWidth + mehWidth,
                       child: ElTooltip(
                         content: const Text('Skip'),
                         showChildAboveOverlay: false,

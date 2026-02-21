@@ -12,7 +12,7 @@ class FavoritesInitial extends FavoritesState {}
 class FavoritesLoaded extends FavoritesState {
   final List<FavoriteGameModel> favoriteGames;
 
-  FavoritesLoaded({
+  const FavoritesLoaded({
     required this.favoriteGames,
   });
 
@@ -23,7 +23,7 @@ class FavoritesLoaded extends FavoritesState {
 class FavoriteChecked extends FavoritesState {
   final bool isFavorite;
 
-  FavoriteChecked({
+  const FavoriteChecked({
     required this.isFavorite,
   });
 

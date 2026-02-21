@@ -20,10 +20,10 @@ class CustomSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _searchTextFieldWidth = MediaQuery.sizeOf(context).width * 0.7;
+    final searchTextFieldWidth = MediaQuery.sizeOf(context).width * 0.7;
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
-      child: Container(
+      child: SizedBox(
         height: 60,
         child: Row(
           children: [
@@ -32,7 +32,7 @@ class CustomSearchBar extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
                 color: CustomTheme.theme.colorScheme.primary,
               ),
-              width: _searchTextFieldWidth,
+              width: searchTextFieldWidth,
               child: TextField(
                 textAlignVertical: TextAlignVertical.center,
                 controller: controller,

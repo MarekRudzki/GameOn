@@ -39,56 +39,54 @@ class GameDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double _height = MediaQuery.sizeOf(context).height;
-    final bool _hasPhoto = image != null;
-    final bool _hasInternet =
-        context.watch<InternetConnectionProvider>().hasInternet;
+    final double height = MediaQuery.sizeOf(context).height;
+    final bool hasPhoto = image != null;
+    final bool hasInternet = context.watch<InternetConnectionProvider>().hasInternet;
 
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+
         context.read<FavoritesBloc>().add(FavoritesRequested());
-        Navigator.of(context).pop();
-        return true;
+
+        if (context.mounted) {
+          Navigator.of(context).pop();
+        }
       },
       child: SafeArea(
-        child: _hasInternet
+        child: hasInternet
             ? Scaffold(
-                appBar: !_hasPhoto
+                appBar: !hasPhoto
                     ? AppBar(
-                        backgroundColor:
-                            CustomTheme.theme.colorScheme.onBackground,
+                        backgroundColor: CustomTheme.theme.colorScheme.onSurface,
                         flexibleSpace: LayoutBuilder(
                           builder: (context, constraints) {
-                            final double _appBarHeight =
-                                constraints.biggest.height;
-                            final bool _isExpanded =
-                                _appBarHeight > _height * 0.1;
+                            final double appBarHeight = constraints.biggest.height;
+                            final bool isExpanded = appBarHeight > height * 0.1;
                             return FlexibleSpaceBar(
                               expandedTitleScale: 1.3,
                               centerTitle: true,
                               titlePadding: EdgeInsets.symmetric(
                                 horizontal: 45,
-                                vertical: _isExpanded ? 10 : 0,
+                                vertical: isExpanded ? 10 : 0,
                               ),
                               title: Column(
-                                mainAxisAlignment: _isExpanded
-                                    ? MainAxisAlignment.end
-                                    : MainAxisAlignment.center,
+                                mainAxisAlignment:
+                                    isExpanded ? MainAxisAlignment.end : MainAxisAlignment.center,
                                 children: [
                                   Container(),
                                   GlowText(
                                     name,
                                     style: TextStyle(
-                                      color:
-                                          CustomTheme.theme.colorScheme.primary,
+                                      color: CustomTheme.theme.colorScheme.primary,
                                       fontSize: 21,
                                     ),
                                     textAlign: TextAlign.center,
-                                    glowColor:
-                                        CustomTheme.theme.colorScheme.tertiary,
+                                    glowColor: CustomTheme.theme.colorScheme.tertiary,
                                     blurRadius: 10,
                                     softWrap: true,
-                                    maxLines: _isExpanded ? 3 : 2,
+                                    maxLines: isExpanded ? 3 : 2,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   Container(),
@@ -115,7 +113,7 @@ class GameDetailsScreen extends StatelessWidget {
                   ),
                   child: CustomScrollView(
                     slivers: [
-                      if (_hasPhoto)
+                      if (hasPhoto)
                         CustomSliverAppBar(
                           name: name,
                           heroId: heroId,
@@ -132,51 +130,40 @@ class GameDetailsScreen extends StatelessWidget {
                                   return Padding(
                                     padding: const EdgeInsets.all(14),
                                     child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         OverallGameInfo(
-                                          developers:
-                                              state.gameDetails.developers,
-                                          metacritic:
-                                              state.gameDetails.metacritic,
+                                          developers: state.gameDetails.developers,
+                                          metacritic: state.gameDetails.metacritic,
                                           playtime: state.gameDetails.playtime,
                                           released: state.gameDetails.released,
-                                          esrbRating:
-                                              state.gameDetails.esrbRating,
+                                          esrbRating: state.gameDetails.esrbRating,
                                         ),
                                         if (state.gameDetails.reviewsCount == 0)
                                           const SizedBox.shrink()
                                         else
                                           UserRating(
-                                            reviewsCount:
-                                                state.gameDetails.reviewsCount,
-                                            userRating:
-                                                state.gameDetails.userRating,
+                                            reviewsCount: state.gameDetails.reviewsCount,
+                                            userRating: state.gameDetails.userRating,
                                           ),
                                         AvailablePlatforms(
-                                          platforms:
-                                              state.gameDetails.platforms,
+                                          platforms: state.gameDetails.platforms,
                                         ),
                                         GameDescription(
-                                          description:
-                                              state.gameDetails.description,
+                                          description: state.gameDetails.description,
                                         ),
-                                        if (state.gameDetails.screenshots ==
-                                            ['No Data'])
+                                        if (state.gameDetails.screenshots == ['No Data'])
                                           const SizedBox.shrink()
                                         else
                                           GameScreenshots(
-                                            screenshots:
-                                                state.gameDetails.screenshots,
+                                            screenshots: state.gameDetails.screenshots,
                                           ),
                                       ],
                                     ),
                                   );
                                 } else {
-                                  return Container(
-                                    height:
-                                        MediaQuery.sizeOf(context).height * 0.2,
+                                  return SizedBox(
+                                    height: MediaQuery.sizeOf(context).height * 0.2,
                                     child: const Center(
                                       child: CircularProgressIndicator(),
                                     ),
