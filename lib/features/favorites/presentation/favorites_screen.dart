@@ -11,7 +11,7 @@ import 'package:gameon/features/favorites/presentation/bloc/favorites_bloc/favor
 import 'package:gameon/features/genre_games/presentation/widgets/display_picker.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/gridview_tile.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/listview_tile.dart';
-import 'package:gameon/utils/custom_theme.dart';
+import 'package:gameon/config/theme/custom_theme.dart';
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
@@ -30,10 +30,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
     return Scaffold(
       backgroundColor: CustomTheme.theme.colorScheme.surface,
       body: NestedScrollView(
-        headerSliverBuilder: (
-          BuildContext context,
-          bool innerBoxIsScrolled,
-        ) {
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return [
             SliverAppBar(
               elevation: 5,
@@ -41,15 +38,10 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               collapsedHeight: 70,
               title: Text(
                 'Favorites',
-                style: TextStyle(
-                  color: CustomTheme.theme.colorScheme.primary,
-                  fontSize: 21,
-                ),
+                style: TextStyle(color: CustomTheme.theme.colorScheme.primary, fontSize: 21),
               ),
               centerTitle: true,
-              actions: [
-                const DataProviderButton(),
-              ],
+              actions: [const DataProviderButton()],
               forceElevated: innerBoxIsScrolled,
               bottom: PreferredSize(
                 preferredSize: const Size.fromHeight(50),
@@ -74,15 +66,10 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               if (state.favoriteGames.isEmpty) {
                 return Column(
                   children: [
-                    SizedBox(
-                      height: MediaQuery.sizeOf(context).height * 0.1,
-                    ),
+                    SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
                     Text(
                       'No favorite games found',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: CustomTheme.theme.colorScheme.primary,
-                      ),
+                      style: TextStyle(fontSize: 18, color: CustomTheme.theme.colorScheme.primary),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(15),
@@ -94,7 +81,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                           color: CustomTheme.theme.colorScheme.primary,
                         ),
                       ),
-                    )
+                    ),
                   ],
                 );
               } else {
@@ -107,15 +94,17 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                         ),
                         itemCount: state.favoriteGames.length,
                         itemBuilder: (context, index) {
-                          context.read<FavoritesBloc>().add(FavoritePopularityCheckRequested(
-                              id: state.favoriteGames[index].gameId));
+                          context.read<FavoritesBloc>().add(
+                            FavoritePopularityCheckRequested(id: state.favoriteGames[index].gameId),
+                          );
                           return GridViewTile(
                             name: state.favoriteGames[index].name,
                             url: state.favoriteGames[index].url,
                             gameId: state.favoriteGames[index].gameId,
                             popularity: state.favoriteGames[index].popularity,
                           );
-                        })
+                        },
+                      )
                     : ListView.builder(
                         itemCount: state.favoriteGames.length,
                         itemBuilder: (context, index) => ListViewTile(

@@ -6,17 +6,13 @@ import 'package:el_tooltip/el_tooltip.dart';
 
 // Project imports:
 import 'package:gameon/features/game_details_screen/data/models/user_rating_model.dart';
-import 'package:gameon/utils/custom_theme.dart';
+import 'package:gameon/config/theme/custom_theme.dart';
 
 class UserRating extends StatelessWidget {
   final UserRatingModel userRating;
   final int reviewsCount;
 
-  const UserRating({
-    super.key,
-    required this.userRating,
-    required this.reviewsCount,
-  });
+  const UserRating({super.key, required this.userRating, required this.reviewsCount});
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +47,7 @@ class UserRating extends StatelessWidget {
                       child: ElTooltip(
                         showChildAboveOverlay: false,
                         content: const Text('Exceptional'),
-                        modalConfiguration: const ModalConfiguration(
-                          opacity: 0.5,
-                        ),
+                        modalConfiguration: const ModalConfiguration(opacity: 0.5),
                         child: Container(
                           width: exceptionalWidth,
                           height: 40,
@@ -62,9 +56,7 @@ class UserRating extends StatelessWidget {
                             child: Text(
                               '🤩',
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 22,
-                              ),
+                              style: TextStyle(fontSize: 22),
                             ),
                           ),
                         ),
@@ -75,9 +67,7 @@ class UserRating extends StatelessWidget {
                       child: ElTooltip(
                         content: const Text('Recommended'),
                         showChildAboveOverlay: false,
-                        modalConfiguration: const ModalConfiguration(
-                          opacity: 0.5,
-                        ),
+                        modalConfiguration: const ModalConfiguration(opacity: 0.5),
                         child: Container(
                           width: recommendedWidth,
                           height: 40,
@@ -86,9 +76,7 @@ class UserRating extends StatelessWidget {
                             child: Text(
                               '😁',
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 22,
-                              ),
+                              style: TextStyle(fontSize: 22),
                             ),
                           ),
                         ),
@@ -99,9 +87,7 @@ class UserRating extends StatelessWidget {
                       child: ElTooltip(
                         content: const Text('Meh'),
                         showChildAboveOverlay: false,
-                        modalConfiguration: const ModalConfiguration(
-                          opacity: 0.5,
-                        ),
+                        modalConfiguration: const ModalConfiguration(opacity: 0.5),
                         child: Container(
                           width: mehWidth,
                           height: 40,
@@ -110,9 +96,7 @@ class UserRating extends StatelessWidget {
                             child: Text(
                               '😐',
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 22,
-                              ),
+                              style: TextStyle(fontSize: 22),
                             ),
                           ),
                         ),
@@ -123,9 +107,7 @@ class UserRating extends StatelessWidget {
                       child: ElTooltip(
                         content: const Text('Skip'),
                         showChildAboveOverlay: false,
-                        modalConfiguration: const ModalConfiguration(
-                          opacity: 0.5,
-                        ),
+                        modalConfiguration: const ModalConfiguration(opacity: 0.5),
                         child: Container(
                           width: skipWidth,
                           height: 40,
@@ -134,9 +116,7 @@ class UserRating extends StatelessWidget {
                             child: Text(
                               '😕',
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 22,
-                              ),
+                              style: TextStyle(fontSize: 22),
                             ),
                           ),
                         ),

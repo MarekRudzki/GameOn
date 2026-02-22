@@ -6,7 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 // Project imports:
 import 'package:gameon/features/genre_games/presentation/genre_games_screen.dart';
-import 'package:gameon/utils/custom_theme.dart';
+import 'package:gameon/config/theme/custom_theme.dart';
 
 class GenreTile extends StatelessWidget {
   const GenreTile({
@@ -26,10 +26,7 @@ class GenreTile extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => GenreGamesScreen(
-              genreId: genreId,
-              name: genreName,
-            ),
+            builder: (context) => GenreGamesScreen(genreId: genreId, name: genreName),
           ),
         );
       },
@@ -39,25 +36,16 @@ class GenreTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           child: CachedNetworkImage(
             imageUrl: genreUrl,
-            placeholder: (context, url) => Image.asset(
-              'assets/loading.gif',
-              fit: BoxFit.cover,
-            ),
-            errorWidget: (context, url, error) => const Icon(
-              Icons.error,
-              size: 80,
-              color: Colors.red,
-            ),
+            placeholder: (context, url) => Image.asset('assets/loading.gif', fit: BoxFit.cover),
+            errorWidget: (context, url, error) =>
+                const Icon(Icons.error, size: 80, color: Colors.red),
             imageBuilder: (context, imageProvider) => Column(
               children: [
                 Expanded(
                   flex: 5,
                   child: Container(
                     decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.cover,
-                      ),
+                      image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
                     ),
                   ),
                 ),

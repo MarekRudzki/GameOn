@@ -12,5 +12,6 @@ class CustomTheme {
       tertiary: Colors.black,
       scrim: Color.fromARGB(255, 183, 180, 180),
     ),
+    useMaterial3: true,
   );
 }

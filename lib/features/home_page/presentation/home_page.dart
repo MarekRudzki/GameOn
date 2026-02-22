@@ -11,10 +11,9 @@ import 'package:gameon/features/genres/presentation/bloc/genres_bloc/genres_bloc
 import 'package:gameon/features/genres/presentation/genres_screen.dart';
 import 'package:gameon/features/home_page/presentation/provider/internet_connection_provider.dart';
 import 'package:gameon/features/home_page/presentation/widgets/icons.dart';
-import 'package:gameon/features/home_page/presentation/widgets/no_network.dart';
 import 'package:gameon/features/home_page/presentation/widgets/on_will_pop_alert_dialog.dart';
 import 'package:gameon/features/search/presentation/search_screen.dart';
-import 'package:gameon/utils/custom_theme.dart';
+import 'package:gameon/config/theme/custom_theme.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,20 +25,22 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _index = 0;
 
-  final List<Widget> _pages = [
-    const GenresScreen(),
-    const SearchScreen(),
-    const FavoritesScreen(),
-  ];
+  final List<Widget> _pages = [const GenresScreen(), const SearchScreen(), const FavoritesScreen()];
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final bool hasInternet = context.watch<InternetConnectionProvider>().hasInternet;
+
+      if (hasInternet) {
+        context.read<GenresBloc>().add(GenresRequested());
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final bool hasInternet = context.watch<InternetConnectionProvider>().hasInternet;
-
-    if (hasInternet) {
-      context.read<GenresBloc>().add(GenresRequested());
-    }
-
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, _) async {
@@ -55,49 +56,47 @@ class _HomePageState extends State<HomePage> {
         }
       },
       child: SafeArea(
-        child: hasInternet
-            ? Scaffold(
-                body: _pages[_index],
-                bottomNavigationBar: GNav(
-                  haptic: false,
-                  selectedIndex: _index,
-                  gap: 10,
-                  backgroundColor: CustomTheme.theme.colorScheme.onSurface,
-                  color: CustomTheme.theme.colorScheme.primary,
-                  activeColor: CustomTheme.theme.colorScheme.secondary,
-                  padding: const EdgeInsets.all(16),
-                  tabs: [
-                    GButton(
-                      icon: MyIcons.gamepad,
-                      text: 'Games',
-                      onPressed: () {
-                        setState(() {
-                          _index = 0;
-                        });
-                      },
-                    ),
-                    GButton(
-                      icon: Icons.search,
-                      text: 'Search',
-                      onPressed: () {
-                        setState(() {
-                          _index = 1;
-                        });
-                      },
-                    ),
-                    GButton(
-                      icon: Icons.favorite,
-                      text: 'Favorites',
-                      onPressed: () {
-                        setState(() {
-                          _index = 2;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-              )
-            : const NoNetwork(),
+        child: Scaffold(
+          body: _pages[_index],
+          bottomNavigationBar: GNav(
+            haptic: false,
+            selectedIndex: _index,
+            gap: 10,
+            backgroundColor: CustomTheme.theme.colorScheme.onSurface,
+            color: CustomTheme.theme.colorScheme.primary,
+            activeColor: CustomTheme.theme.colorScheme.secondary,
+            padding: const EdgeInsets.all(16),
+            tabs: [
+              GButton(
+                icon: MyIcons.gamepad,
+                text: 'Games',
+                onPressed: () {
+                  setState(() {
+                    _index = 0;
+                  });
+                },
+              ),
+              GButton(
+                icon: Icons.search,
+                text: 'Search',
+                onPressed: () {
+                  setState(() {
+                    _index = 1;
+                  });
+                },
+              ),
+              GButton(
+                icon: Icons.favorite,
+                text: 'Favorites',
+                onPressed: () {
+                  setState(() {
+                    _index = 2;
+                  });
+                },
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

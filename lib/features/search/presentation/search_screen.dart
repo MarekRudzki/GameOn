@@ -9,7 +9,7 @@ import 'package:gameon/common_widgets/data_provider_button.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/display_picker.dart';
 import 'package:gameon/features/search/presentation/widgets/custom_search_bar.dart';
 import 'package:gameon/features/search/presentation/widgets/search_outcome.dart';
-import 'package:gameon/utils/custom_theme.dart';
+import 'package:gameon/config/theme/custom_theme.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -36,10 +36,7 @@ class _SearchScreenState extends State<SearchScreen> {
       backgroundColor: CustomTheme.theme.colorScheme.surface,
       body: NestedScrollView(
         floatHeaderSlivers: true,
-        headerSliverBuilder: (
-          BuildContext context,
-          bool innerBoxIsScrolled,
-        ) {
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return [
             SliverAppBar(
               elevation: 5,
@@ -66,9 +63,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   });
                 },
               ),
-              actions: [
-                const DataProviderButton(),
-              ],
+              actions: [const DataProviderButton()],
               forceElevated: innerBoxIsScrolled,
               bottom: PreferredSize(
                 preferredSize: Size.fromHeight(_gamesVisible ? 60 : 0),
@@ -90,10 +85,7 @@ class _SearchScreenState extends State<SearchScreen> {
           ];
         },
         body: _gamesVisible
-            ? SearchOutcome(
-                searchQuery: _text,
-                selectedIndex: _selectedIndex,
-              )
+            ? SearchOutcome(searchQuery: _text, selectedIndex: _selectedIndex)
             : nil,
       ),
     );

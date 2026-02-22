@@ -10,7 +10,7 @@ import 'package:nil/nil.dart';
 import 'package:gameon/common_widgets/data_provider_button.dart';
 import 'package:gameon/features/favorites/presentation/bloc/favorites_bloc/favorites_bloc.dart';
 import 'package:gameon/features/game_details_screen/presentation/widgets/favorite.dart';
-import 'package:gameon/utils/custom_theme.dart';
+import 'package:gameon/config/theme/custom_theme.dart';
 
 class CustomSliverAppBar extends StatelessWidget {
   final String name;
@@ -31,12 +31,7 @@ class CustomSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int calculateNumberOfLines(String text) {
-      final TextSpan textSpan = TextSpan(
-        text: text,
-        style: const TextStyle(
-          fontSize: 21,
-        ),
-      );
+      final TextSpan textSpan = TextSpan(text: text, style: const TextStyle(fontSize: 21));
 
       final TextPainter textPainter = TextPainter(
         text: textSpan,
@@ -75,20 +70,14 @@ class CustomSliverAppBar extends StatelessWidget {
           return FlexibleSpaceBar(
             expandedTitleScale: 1.3,
             centerTitle: true,
-            titlePadding: EdgeInsets.symmetric(
-              horizontal: 45,
-              vertical: isExpanded ? 10 : 0,
-            ),
+            titlePadding: EdgeInsets.symmetric(horizontal: 45, vertical: isExpanded ? 10 : 0),
             title: Column(
               mainAxisAlignment: isExpanded ? MainAxisAlignment.end : MainAxisAlignment.center,
               children: [
                 Container(),
                 GlowText(
                   name,
-                  style: TextStyle(
-                    color: CustomTheme.theme.colorScheme.primary,
-                    fontSize: 21,
-                  ),
+                  style: TextStyle(color: CustomTheme.theme.colorScheme.primary, fontSize: 21),
                   textAlign: TextAlign.center,
                   glowColor: CustomTheme.theme.colorScheme.tertiary,
                   blurRadius: 10,
@@ -103,10 +92,7 @@ class CustomSliverAppBar extends StatelessWidget {
               tag: heroId,
               child: Container(
                 decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: image,
-                    fit: BoxFit.cover,
-                  ),
+                  image: DecorationImage(image: image, fit: BoxFit.cover),
                 ),
                 child: showFavorite
                     ? Favorite(
@@ -133,9 +119,7 @@ class CustomSliverAppBar extends StatelessWidget {
           blurRadius: 5,
         ),
       ),
-      actions: [
-        const DataProviderButton(),
-      ],
+      actions: [const DataProviderButton()],
     );
   }
 }

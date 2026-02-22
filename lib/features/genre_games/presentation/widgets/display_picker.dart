@@ -2,17 +2,13 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:gameon/utils/custom_theme.dart';
+import 'package:gameon/config/theme/custom_theme.dart';
 
 class DisplayPicker extends StatelessWidget {
   final Function(int) callback;
   final int selectedIndex;
 
-  const DisplayPicker({
-    super.key,
-    required this.callback,
-    required this.selectedIndex,
-  });
+  const DisplayPicker({super.key, required this.callback, required this.selectedIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +17,7 @@ class DisplayPicker extends StatelessWidget {
       children: [
         Text(
           'Display options:',
-          style: TextStyle(
-            color: CustomTheme.theme.colorScheme.primary,
-            fontSize: 17,
-          ),
+          style: TextStyle(color: CustomTheme.theme.colorScheme.primary, fontSize: 17),
         ),
         Container(
           height: 40,
@@ -66,7 +59,7 @@ class DisplayPicker extends StatelessWidget {
                   onTap: () {
                     callback(1);
                   },
-                )
+                ),
               ],
             ),
           ),

@@ -3,13 +3,9 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
 // Project imports:
-import 'package:gameon/utils/di.config.dart';
+import 'package:gameon/config/di/di.config.dart';
 
 final getIt = GetIt.instance;
 
-@InjectableInit(
-  initializerName: 'init',
-  preferRelativeImports: true,
-  asExtension: true,
-)
+@InjectableInit(initializerName: 'init', preferRelativeImports: true, asExtension: true)
 void configureDependencies() => getIt.init();

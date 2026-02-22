@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:gameon/utils/custom_theme.dart';
+import 'package:gameon/config/theme/custom_theme.dart';
 
 class OverallGameInfo extends StatelessWidget {
   final String developers;
@@ -32,12 +32,7 @@ class OverallGameInfo extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    Text(
-                      'Developer',
-                      style: TextStyle(
-                        color: CustomTheme.theme.colorScheme.scrim,
-                      ),
-                    ),
+                    Text('Developer', style: TextStyle(color: CustomTheme.theme.colorScheme.scrim)),
                     const SizedBox(height: 4),
                     Text(
                       developers,
@@ -48,17 +43,12 @@ class OverallGameInfo extends StatelessWidget {
                     ),
                   ],
                 ),
-                const VerticalDivider(
-                  color: Color.fromARGB(255, 127, 124, 124),
-                  thickness: 1,
-                ),
+                const VerticalDivider(color: Color.fromARGB(255, 127, 124, 124), thickness: 1),
                 Column(
                   children: [
                     const Text(
                       'ESRB rating',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 197, 194, 194),
-                      ),
+                      style: TextStyle(color: Color.fromARGB(255, 197, 194, 194)),
                     ),
                     const SizedBox(height: 4),
                     Text(
@@ -82,9 +72,7 @@ class OverallGameInfo extends StatelessWidget {
                   children: [
                     const Text(
                       'Average playtime',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 197, 194, 194),
-                      ),
+                      style: TextStyle(color: Color.fromARGB(255, 197, 194, 194)),
                     ),
                     const SizedBox(height: 4),
                     Text(
@@ -96,17 +84,12 @@ class OverallGameInfo extends StatelessWidget {
                     ),
                   ],
                 ),
-                const VerticalDivider(
-                  color: Color.fromARGB(255, 127, 124, 124),
-                  thickness: 1,
-                ),
+                const VerticalDivider(color: Color.fromARGB(255, 127, 124, 124), thickness: 1),
                 Column(
                   children: [
                     const Text(
                       'Metacritic',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 197, 194, 194),
-                      ),
+                      style: TextStyle(color: Color.fromARGB(255, 197, 194, 194)),
                     ),
                     const SizedBox(height: 4),
                     Text(
@@ -118,17 +101,12 @@ class OverallGameInfo extends StatelessWidget {
                     ),
                   ],
                 ),
-                const VerticalDivider(
-                  color: Color.fromARGB(255, 127, 124, 124),
-                  thickness: 1,
-                ),
+                const VerticalDivider(color: Color.fromARGB(255, 127, 124, 124), thickness: 1),
                 Column(
                   children: [
                     const Text(
                       'Released',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 197, 194, 194),
-                      ),
+                      style: TextStyle(color: Color.fromARGB(255, 197, 194, 194)),
                     ),
                     const SizedBox(height: 4),
                     Text(

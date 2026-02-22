@@ -2,15 +2,12 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:gameon/utils/custom_theme.dart';
+import 'package:gameon/config/theme/custom_theme.dart';
 
 class AvailablePlatforms extends StatelessWidget {
   final List<String> platforms;
 
-  const AvailablePlatforms({
-    super.key,
-    required this.platforms,
-  });
+  const AvailablePlatforms({super.key, required this.platforms});
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +19,7 @@ class AvailablePlatforms extends StatelessWidget {
             WidgetSpan(
               child: Text(
                 'Available on: ',
-                style: TextStyle(
-                  color: CustomTheme.theme.colorScheme.scrim,
-                  fontSize: 15,
-                ),
+                style: TextStyle(color: CustomTheme.theme.colorScheme.scrim, fontSize: 15),
               ),
             ),
             TextSpan(

@@ -5,15 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 
 // Project imports:
-import 'package:gameon/utils/custom_theme.dart';
+import 'package:gameon/config/theme/custom_theme.dart';
 
 class GameDescription extends StatelessWidget {
   final String description;
 
-  const GameDescription({
-    super.key,
-    required this.description,
-  });
+  const GameDescription({super.key, required this.description});
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +31,7 @@ class GameDescription extends StatelessWidget {
             trimMode: TrimMode.Line,
             trimLines: 6,
             textAlign: TextAlign.justify,
-            style: TextStyle(
-              color: CustomTheme.theme.colorScheme.primary,
-            ),
+            style: TextStyle(color: CustomTheme.theme.colorScheme.primary),
             trimCollapsedText: ' Read more',
             trimExpandedText: ' Show less',
             moreStyle: TextStyle(

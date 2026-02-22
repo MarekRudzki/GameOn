@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:gameon/utils/custom_theme.dart';
+import 'package:gameon/config/theme/custom_theme.dart';
 
 class CustomSearchBar extends StatelessWidget {
   final TextEditingController controller;
@@ -45,14 +45,10 @@ class CustomSearchBar extends StatelessWidget {
                   onTextFieldSubmitted();
                 },
                 decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                  ),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                   border: InputBorder.none,
                   hintText: 'Search...',
-                  hintStyle: const TextStyle(
-                    color: Color.fromARGB(255, 53, 63, 78),
-                  ),
+                  hintStyle: const TextStyle(color: Color.fromARGB(255, 53, 63, 78)),
                   suffixIcon: IconButton(
                     onPressed: () {
                       FocusScope.of(context).unfocus();

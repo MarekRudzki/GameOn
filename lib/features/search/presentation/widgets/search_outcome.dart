@@ -14,17 +14,13 @@ import 'package:gameon/features/genre_games/presentation/widgets/listview_tile.d
 import 'package:gameon/features/search/data/models/search_page_model.dart';
 import 'package:gameon/features/search/data/models/searched_game_model.dart';
 import 'package:gameon/features/search/presentation/bloc/search_bloc/search_bloc.dart';
-import 'package:gameon/utils/di.dart';
+import 'package:gameon/config/di/di.dart';
 
 class SearchOutcome extends StatefulWidget {
   final String searchQuery;
   final int selectedIndex;
 
-  const SearchOutcome({
-    super.key,
-    required this.searchQuery,
-    required this.selectedIndex,
-  });
+  const SearchOutcome({super.key, required this.searchQuery, required this.selectedIndex});
 
   @override
   State<SearchOutcome> createState() => _SearchOutcomeState();
@@ -35,18 +31,14 @@ class _SearchOutcomeState extends State<SearchOutcome> {
 
   late StreamSubscription<SearchState> _blocListingStateSubscription;
 
-  final PagingController<int, SearchedGameModel> _pagingController =
-      PagingController(firstPageKey: 1);
+  final PagingController<int, SearchedGameModel> _pagingController = PagingController(
+    firstPageKey: 1,
+  );
 
   @override
   void initState() {
     _pagingController.addPageRequestListener((pageKey) {
-      _bloc.onPageRequestSink.add(
-        SearchPageModel(
-          page: pageKey,
-          searchQuery: widget.searchQuery,
-        ),
-      );
+      _bloc.onPageRequestSink.add(SearchPageModel(page: pageKey, searchQuery: widget.searchQuery));
     });
 
     _blocListingStateSubscription = _bloc.onNewListingState.listen((listingState) {
@@ -81,9 +73,7 @@ class _SearchOutcomeState extends State<SearchOutcome> {
               childAspectRatio: 1 / 1.1,
             ),
             builderDelegate: PagedChildBuilderDelegate<SearchedGameModel>(
-              noItemsFoundIndicatorBuilder: (context) => PagedViewNoItemFound(
-                text: errorText,
-              ),
+              noItemsFoundIndicatorBuilder: (context) => PagedViewNoItemFound(text: errorText),
               itemBuilder: (context, item, index) => GridViewTile(
                 name: item.name,
                 url: item.url,
@@ -95,9 +85,7 @@ class _SearchOutcomeState extends State<SearchOutcome> {
         : PagedListView(
             pagingController: _pagingController,
             builderDelegate: PagedChildBuilderDelegate<SearchedGameModel>(
-              noItemsFoundIndicatorBuilder: (context) => PagedViewNoItemFound(
-                text: errorText,
-              ),
+              noItemsFoundIndicatorBuilder: (context) => PagedViewNoItemFound(text: errorText),
               itemBuilder: (context, item, index) => ListViewTile(
                 name: item.name,
                 popularity: item.popularity,

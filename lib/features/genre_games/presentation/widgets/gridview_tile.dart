@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gameon/features/game_details_screen/presentation/bloc/game_details_bloc/game_details_bloc.dart';
 import 'package:gameon/features/game_details_screen/presentation/game_details_screen.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/gridview_error_tile.dart';
-import 'package:gameon/utils/custom_theme.dart';
+import 'package:gameon/config/theme/custom_theme.dart';
 
 class GridViewTile extends StatelessWidget {
   final String name;
@@ -38,15 +38,10 @@ class GridViewTile extends StatelessWidget {
           child: url != 'No data'
               ? CachedNetworkImage(
                   imageUrl: url,
-                  placeholder: (context, url) => Image.asset(
-                    'assets/loading.gif',
-                    fit: BoxFit.cover,
-                  ),
-                  errorWidget: (context, url, error) => const Icon(
-                    Icons.error,
-                    size: 80,
-                    color: Colors.red,
-                  ),
+                  placeholder: (context, url) =>
+                      Image.asset('assets/loading.gif', fit: BoxFit.cover),
+                  errorWidget: (context, url, error) =>
+                      const Icon(Icons.error, size: 80, color: Colors.red),
                   imageBuilder: (context, imageProvider) {
                     loadedImage = imageProvider;
                     return Column(
@@ -56,10 +51,7 @@ class GridViewTile extends StatelessWidget {
                             tag: heroId,
                             child: Container(
                               decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: imageProvider,
-                                  fit: BoxFit.cover,
-                                ),
+                                image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
                               ),
                             ),
                           ),
@@ -68,21 +60,14 @@ class GridViewTile extends StatelessWidget {
                           child: Container(
                             decoration: const BoxDecoration(
                               color: Color.fromARGB(255, 27, 62, 110),
-                              boxShadow: [
-                                BoxShadow(
-                                  offset: Offset(0.0, 1.0),
-                                  blurRadius: 4,
-                                )
-                              ],
+                              boxShadow: [BoxShadow(offset: Offset(0.0, 1.0), blurRadius: 4)],
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 3,
-                                    ),
+                                    padding: const EdgeInsets.symmetric(horizontal: 3),
                                     child: Text(
                                       name,
                                       textAlign: TextAlign.center,
@@ -90,8 +75,7 @@ class GridViewTile extends StatelessWidget {
                                       maxLines: 2,
                                       style: TextStyle(
                                         fontSize: 16.5,
-                                        color: CustomTheme
-                                            .theme.colorScheme.primary,
+                                        color: CustomTheme.theme.colorScheme.primary,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -103,17 +87,13 @@ class GridViewTile extends StatelessWidget {
                                     Text(
                                       '$popularity',
                                       style: TextStyle(
-                                        color: CustomTheme
-                                            .theme.colorScheme.primary,
+                                        color: CustomTheme.theme.colorScheme.primary,
                                       ),
                                     ),
                                     const SizedBox(width: 7),
-                                    Image.asset(
-                                      'assets/rating_stars.png',
-                                      height: 35,
-                                    ),
+                                    Image.asset('assets/rating_stars.png', height: 35),
                                   ],
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -122,22 +102,16 @@ class GridViewTile extends StatelessWidget {
                     );
                   },
                 )
-              : GridViewErrorTile(
-                  name: name,
-                  popularity: popularity,
-                ),
+              : GridViewErrorTile(name: name, popularity: popularity),
         ),
       ),
       onTap: () {
-        context.read<GameDetailsBloc>().add(
-              GameDetailsRequested(gameId: gameId),
-            );
+        context.read<GameDetailsBloc>().add(GameDetailsRequested(gameId: gameId));
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => GameDetailsScreen(
-              image:
-                  loadedImage != null ? CachedNetworkImageProvider(url) : null,
+              image: loadedImage != null ? CachedNetworkImageProvider(url) : null,
               name: name,
               id: gameId,
               heroId: heroId,

@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // Project imports:
 import 'package:gameon/features/game_details_screen/presentation/bloc/game_details_bloc/game_details_bloc.dart';
 import 'package:gameon/features/game_details_screen/presentation/game_details_screen.dart';
-import 'package:gameon/utils/custom_theme.dart';
+import 'package:gameon/config/theme/custom_theme.dart';
 
 class ListViewTile extends StatelessWidget {
   final String name;
@@ -33,9 +33,7 @@ class ListViewTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 7),
       child: InkWell(
         onTap: () {
-          context.read<GameDetailsBloc>().add(
-                GameDetailsRequested(gameId: gameId),
-              );
+          context.read<GameDetailsBloc>().add(GameDetailsRequested(gameId: gameId));
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -55,12 +53,7 @@ class ListViewTile extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: const Color.fromARGB(255, 27, 62, 110),
-            boxShadow: [
-              const BoxShadow(
-                offset: Offset(0.0, 1.0),
-                blurRadius: 4,
-              ),
-            ],
+            boxShadow: [const BoxShadow(offset: Offset(0.0, 1.0), blurRadius: 4)],
           ),
           child: Row(
             children: [
@@ -78,10 +71,7 @@ class ListViewTile extends StatelessWidget {
                               imageUrl: url,
                               placeholder: (context, url) => Hero(
                                 tag: gameId,
-                                child: Image.asset(
-                                  'assets/loading.gif',
-                                  fit: BoxFit.fill,
-                                ),
+                                child: Image.asset('assets/loading.gif', fit: BoxFit.fill),
                               ),
                               imageBuilder: (context, imageProvider) {
                                 loadedImage = imageProvider;
@@ -104,11 +94,7 @@ class ListViewTile extends StatelessWidget {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Icon(
-                                    Icons.error,
-                                    size: 40,
-                                    color: Colors.red,
-                                  ),
+                                  const Icon(Icons.error, size: 40, color: Colors.red),
                                   const SizedBox(height: 5),
                                   Text(
                                     'Photo not available',
@@ -117,7 +103,7 @@ class ListViewTile extends StatelessWidget {
                                       color: CustomTheme.theme.colorScheme.primary,
                                       fontSize: 16,
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -150,17 +136,12 @@ class ListViewTile extends StatelessWidget {
                         children: [
                           Text(
                             '$popularity',
-                            style: TextStyle(
-                              color: CustomTheme.theme.colorScheme.primary,
-                            ),
+                            style: TextStyle(color: CustomTheme.theme.colorScheme.primary),
                           ),
                           const SizedBox(width: 7),
-                          Image.asset(
-                            'assets/rating_stars.png',
-                            height: 35,
-                          ),
+                          Image.asset('assets/rating_stars.png', height: 35),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),

@@ -9,7 +9,7 @@ import 'package:nil/nil.dart';
 
 // Project imports:
 import 'package:gameon/features/favorites/presentation/bloc/favorites_bloc/favorites_bloc.dart';
-import 'package:gameon/utils/custom_theme.dart';
+import 'package:gameon/config/theme/custom_theme.dart';
 
 class Favorite extends StatelessWidget {
   final int id;
@@ -27,41 +27,25 @@ class Favorite extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<FavoritesBloc>().add(
-          FavoriteCheckPressed(id: id),
-        );
+    context.read<FavoritesBloc>().add(FavoriteCheckPressed(id: id));
 
     // ignore: avoid_positional_boolean_parameters
     Future<bool> onLikeButtonTapped(bool isLiked) async {
       if (isLiked) {
-        context.read<FavoritesBloc>().add(
-              FavoritesRemovePressed(id: id),
-            );
-        context.read<FavoritesBloc>().add(
-              FavoriteCheckPressed(id: id),
-            );
+        context.read<FavoritesBloc>().add(FavoritesRemovePressed(id: id));
+        context.read<FavoritesBloc>().add(FavoriteCheckPressed(id: id));
       } else {
         context.read<FavoritesBloc>().add(
-              FavoritesAddPressed(
-                id: id,
-                name: name,
-                url: url,
-                popularity: popularity,
-              ),
-            );
-        context.read<FavoritesBloc>().add(
-              FavoriteCheckPressed(id: id),
-            );
+          FavoritesAddPressed(id: id, name: name, url: url, popularity: popularity),
+        );
+        context.read<FavoritesBloc>().add(FavoriteCheckPressed(id: id));
       }
 
       return !isLiked;
     }
 
     return Padding(
-      padding: EdgeInsets.only(
-        top: MediaQuery.sizeOf(context).height * 0.08,
-        right: 7,
-      ),
+      padding: EdgeInsets.only(top: MediaQuery.sizeOf(context).height * 0.08, right: 7),
       child: BlocBuilder<FavoritesBloc, FavoritesState>(
         builder: (context, state) {
           if (state is FavoriteChecked) {

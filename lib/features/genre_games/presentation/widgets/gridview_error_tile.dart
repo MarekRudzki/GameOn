@@ -2,17 +2,13 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:gameon/utils/custom_theme.dart';
+import 'package:gameon/config/theme/custom_theme.dart';
 
 class GridViewErrorTile extends StatelessWidget {
   final String name;
   final int popularity;
 
-  const GridViewErrorTile({
-    super.key,
-    required this.name,
-    required this.popularity,
-  });
+  const GridViewErrorTile({super.key, required this.name, required this.popularity});
 
   @override
   Widget build(BuildContext context) {
@@ -26,43 +22,29 @@ class GridViewErrorTile extends StatelessWidget {
                 topLeft: Radius.circular(10),
                 topRight: Radius.circular(10),
               ),
-              border: Border.all(
-                color: const Color.fromARGB(255, 27, 62, 110),
-                width: 5,
-              ),
+              border: Border.all(color: const Color.fromARGB(255, 27, 62, 110), width: 5),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Icon(
-                  Icons.error,
-                  size: 35,
-                  color: Colors.red,
-                ),
+                const Icon(Icons.error, size: 35, color: Colors.red),
                 Text(
                   'Photo not available',
-                  style: TextStyle(
-                    color: CustomTheme.theme.colorScheme.primary,
-                    fontSize: 15,
-                  ),
-                )
+                  style: TextStyle(color: CustomTheme.theme.colorScheme.primary, fontSize: 15),
+                ),
               ],
             ),
           ),
         ),
         Expanded(
           child: Container(
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 27, 62, 110),
-            ),
+            decoration: const BoxDecoration(color: Color.fromARGB(255, 27, 62, 110)),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Center(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 3,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 3),
                     child: Text(
                       name,
                       textAlign: TextAlign.center,
@@ -81,17 +63,12 @@ class GridViewErrorTile extends StatelessWidget {
                   children: [
                     Text(
                       '$popularity',
-                      style: TextStyle(
-                        color: CustomTheme.theme.colorScheme.primary,
-                      ),
+                      style: TextStyle(color: CustomTheme.theme.colorScheme.primary),
                     ),
                     const SizedBox(width: 7),
-                    Image.asset(
-                      'assets/rating_stars.png',
-                      height: 35,
-                    ),
+                    Image.asset('assets/rating_stars.png', height: 35),
                   ],
-                )
+                ),
               ],
             ),
           ),

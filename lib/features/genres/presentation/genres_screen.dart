@@ -9,7 +9,7 @@ import 'package:nil/nil.dart';
 import 'package:gameon/common_widgets/data_provider_button.dart';
 import 'package:gameon/features/genres/presentation/bloc/genres_bloc/genres_bloc.dart';
 import 'package:gameon/features/genres/presentation/widgets/genre_tile.dart';
-import 'package:gameon/utils/custom_theme.dart';
+import 'package:gameon/config/theme/custom_theme.dart';
 
 class GenresScreen extends StatelessWidget {
   const GenresScreen({super.key});
@@ -20,25 +20,17 @@ class GenresScreen extends StatelessWidget {
       backgroundColor: CustomTheme.theme.colorScheme.surface,
       body: NestedScrollView(
         floatHeaderSlivers: true,
-        headerSliverBuilder: (
-          BuildContext context,
-          bool innerBoxIsScrolled,
-        ) {
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return [
             SliverAppBar(
               elevation: 5,
               backgroundColor: CustomTheme.theme.colorScheme.onSurface,
               title: Text(
                 'Genres',
-                style: TextStyle(
-                  color: CustomTheme.theme.colorScheme.primary,
-                  fontSize: 21,
-                ),
+                style: TextStyle(color: CustomTheme.theme.colorScheme.primary, fontSize: 21),
               ),
               centerTitle: true,
-              actions: [
-                const DataProviderButton(),
-              ],
+              actions: [const DataProviderButton()],
               forceElevated: innerBoxIsScrolled,
             ),
           ];
@@ -65,9 +57,7 @@ class GenresScreen extends StatelessWidget {
                 ),
               );
             } else if (state is GenresLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return const Center(child: CircularProgressIndicator());
             } else {
               return nil;
             }

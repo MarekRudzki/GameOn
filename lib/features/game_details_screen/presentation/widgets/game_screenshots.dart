@@ -6,15 +6,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:photo_view/photo_view.dart';
 
 // Project imports:
-import 'package:gameon/utils/custom_theme.dart';
+import 'package:gameon/config/theme/custom_theme.dart';
 
 class GameScreenshots extends StatefulWidget {
   final List<String> screenshots;
 
-  const GameScreenshots({
-    super.key,
-    required this.screenshots,
-  });
+  const GameScreenshots({super.key, required this.screenshots});
 
   @override
   State<GameScreenshots> createState() => _GameScreenshotsState();
@@ -41,61 +38,50 @@ class _GameScreenshotsState extends State<GameScreenshots> {
             _imageIndex = index;
           },
         ),
-        items: carouselItems.map(
-          (i) {
-            return Builder(
-              builder: (BuildContext context) {
-                return InkWell(
-                  onTap: () {
-                    setState(() {
-                      _isAutoplay = false;
-                    });
-                    showDialog(
-                      context: context,
-                      builder: (context) => Dialog(
-                        insetPadding: const EdgeInsets.symmetric(horizontal: 5),
-                        backgroundColor: CustomTheme.theme.colorScheme.tertiary.withAlpha(77),
-                        child: PhotoView(
-                          imageProvider: NetworkImage(
-                            widget.screenshots[_imageIndex],
-                          ),
-                          minScale: PhotoViewComputedScale.contained,
-                          maxScale: PhotoViewComputedScale.covered * 2,
-                          controller: PhotoViewController(),
-                          tightMode: true,
-                          backgroundDecoration: const BoxDecoration(
-                            color: Colors.transparent,
-                          ),
-                        ),
+        items: carouselItems.map((i) {
+          return Builder(
+            builder: (BuildContext context) {
+              return InkWell(
+                onTap: () {
+                  setState(() {
+                    _isAutoplay = false;
+                  });
+                  showDialog(
+                    context: context,
+                    builder: (context) => Dialog(
+                      insetPadding: const EdgeInsets.symmetric(horizontal: 5),
+                      backgroundColor: CustomTheme.theme.colorScheme.tertiary.withAlpha(77),
+                      child: PhotoView(
+                        imageProvider: NetworkImage(widget.screenshots[_imageIndex]),
+                        minScale: PhotoViewComputedScale.contained,
+                        maxScale: PhotoViewComputedScale.covered * 2,
+                        controller: PhotoViewController(),
+                        tightMode: true,
+                        backgroundDecoration: const BoxDecoration(color: Colors.transparent),
                       ),
-                    ).then((_) {
-                      setState(() {
-                        _isAutoplay = true;
-                      });
+                    ),
+                  ).then((_) {
+                    setState(() {
+                      _isAutoplay = true;
                     });
-                  },
-                  child: Container(
-                    width: MediaQuery.sizeOf(context).width,
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 5,
-                      vertical: 5,
-                    ),
-                    child: Image.network(
-                      widget.screenshots[i],
-                      loadingBuilder: (context, child, loadingProgress) {
-                        if (loadingProgress == null) return child;
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      },
-                      fit: BoxFit.fill,
-                    ),
+                  });
+                },
+                child: Container(
+                  width: MediaQuery.sizeOf(context).width,
+                  margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                  child: Image.network(
+                    widget.screenshots[i],
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return const Center(child: CircularProgressIndicator());
+                    },
+                    fit: BoxFit.fill,
                   ),
-                );
-              },
-            );
-          },
-        ).toList(),
+                ),
+              );
+            },
+          );
+        }).toList(),
       ),
     );
   }
