@@ -5,17 +5,18 @@ import 'package:injectable/injectable.dart';
 
 // Project imports:
 import 'package:gameon/features/genres/data/models/genre_model.dart';
-import 'package:gameon/features/genres/domain/repositories/genres_repository.dart';
+import 'package:gameon/features/genres/data/repositories/genres_repository.dart';
 
 part 'genres_event.dart';
 part 'genres_state.dart';
 
 @injectable
 class GenresBloc extends Bloc<GenresEvent, GenresState> {
-  final GenresRepository _genresRepository;
-  GenresBloc({required GenresRepository genresRepository})
-      : _genresRepository = genresRepository,
-        super(GenresInitial()) {
+  final GenresRepository _repository;
+
+  GenresBloc({required GenresRepository repository})
+      : _repository = repository,
+        super(const GenresInitial()) {
     on<GenresRequested>(_onGenresRequested);
   }
 
@@ -23,8 +24,12 @@ class GenresBloc extends Bloc<GenresEvent, GenresState> {
     GenresRequested event,
     Emitter<GenresState> emit,
   ) async {
-    emit(GenresLoading());
-    final gameGenres = await _genresRepository.getGenres();
-    emit(GenresSuccess(gameGenreModels: gameGenres));
+    try {
+      emit(const GenresLoading());
+      final gameGenres = await _repository.getGenres();
+      emit(GenresSuccess(gameGenreModels: gameGenres));
+    } catch (e) {
+      emit(GenresError(message: 'Failed to load genres: $e'));
+    }
   }
 }

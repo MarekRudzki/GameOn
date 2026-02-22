@@ -1,8 +1,8 @@
 part of 'genre_games_bloc.dart';
 
-class GenreGamesState extends Equatable {
+final class GenreGamesState extends Equatable {
   final List<GenreGameModel>? genreGames;
-  final dynamic error;
+  final Object? error;
   final int? page;
 
   const GenreGamesState({
@@ -12,9 +12,5 @@ class GenreGamesState extends Equatable {
   });
 
   @override
-  List<Object?> get props => [
-        genreGames,
-        error,
-        page,
-      ];
+  List<Object?> get props => [genreGames, error, page];
 }

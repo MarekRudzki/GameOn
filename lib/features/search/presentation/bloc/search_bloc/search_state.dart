@@ -1,8 +1,8 @@
 part of 'search_bloc.dart';
 
-class SearchState extends Equatable {
+final class SearchState extends Equatable {
   final List<SearchedGameModel>? searchedGames;
-  final dynamic error;
+  final Object? error;
   final int? page;
 
   const SearchState({
@@ -12,9 +12,5 @@ class SearchState extends Equatable {
   });
 
   @override
-  List<Object?> get props => [
-        searchedGames,
-        error,
-        page,
-      ];
+  List<Object?> get props => [searchedGames, error, page];
 }

@@ -10,18 +10,18 @@ import 'package:rxdart/rxdart.dart';
 // Project imports:
 import 'package:gameon/features/search/data/models/search_page_model.dart';
 import 'package:gameon/features/search/data/models/searched_game_model.dart';
-import 'package:gameon/features/search/domain/repositories/search_repository.dart';
+import 'package:gameon/features/search/data/repositories/search_repository.dart';
 
 part 'search_event.dart';
 part 'search_state.dart';
 
 @injectable
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
-  final SearchRepository _searchRepository;
-  SearchBloc({
-    required SearchRepository searchRepository,
-  })  : _searchRepository = searchRepository,
-        super(SearchState()) {
+  final SearchRepository _repository;
+
+  SearchBloc({required SearchRepository repository})
+      : _repository = repository,
+        super(const SearchState()) {
     _onPageRequest.stream
         .flatMap(_fetchSearchedGames)
         .listen(_onNewListingStateController.add)
@@ -47,7 +47,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     final lastListingState = _onNewListingStateController.value;
 
     try {
-      final newItems = await _searchRepository.getSearchGames(
+      final newItems = await _repository.getSearchGames(
         searchQuery: searchPage.searchQuery,
         page: searchPage.page,
       );

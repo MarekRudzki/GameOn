@@ -5,7 +5,7 @@ import 'package:mocktail/mocktail.dart';
 
 // Project imports:
 import 'package:gameon/features/genres/data/models/genre_model.dart';
-import 'package:gameon/features/genres/domain/repositories/genres_repository.dart';
+import 'package:gameon/features/genres/data/repositories/genres_repository.dart';
 import 'package:gameon/features/genres/presentation/bloc/genres_bloc/genres_bloc.dart';
 
 class MockGenresRepository extends Mock implements GenresRepository {}
@@ -16,9 +16,7 @@ void main() {
 
   setUp(() {
     genresRepository = MockGenresRepository();
-    sut = GenresBloc(
-      genresRepository: genresRepository,
-    );
+    sut = GenresBloc(repository: genresRepository);
   });
 
   final testModel = GenreModel(
@@ -29,21 +27,34 @@ void main() {
   );
 
   blocTest<GenresBloc, GenresState>(
-    'emits [GenresLoading] and [GameGenreSuccess] when GameGenreRequested is added.',
+    'emits [GenresLoading, GenresSuccess] when GenresRequested is added.',
     build: () {
       when(() => genresRepository.getGenres()).thenAnswer(
         (_) async => [testModel],
       );
       return sut;
     },
-    act: (bloc) => bloc.add(GenresRequested()),
+    act: (bloc) => bloc.add(const GenresRequested()),
     expect: () => [
-      GenresLoading(),
-      GenresSuccess(
-        gameGenreModels: [
-          testModel,
-        ],
-      )
+      const GenresLoading(),
+      GenresSuccess(gameGenreModels: [testModel]),
     ],
   );
+
+  group('Error handling tests', () {
+    blocTest<GenresBloc, GenresState>(
+      'emits [GenresLoading, GenresError] when getGenres throws exception',
+      build: () {
+        when(() => genresRepository.getGenres()).thenThrow(
+          Exception('Failed to load genres'),
+        );
+        return sut;
+      },
+      act: (bloc) => bloc.add(const GenresRequested()),
+      expect: () => [
+        const GenresLoading(),
+        isA<GenresError>(),
+      ],
+    );
+  });
 }

@@ -5,7 +5,7 @@ import 'package:mocktail/mocktail.dart';
 // Project imports:
 import 'package:gameon/features/search/data/models/search_page_model.dart';
 import 'package:gameon/features/search/data/models/searched_game_model.dart';
-import 'package:gameon/features/search/domain/repositories/search_repository.dart';
+import 'package:gameon/features/search/data/repositories/search_repository.dart';
 import 'package:gameon/features/search/presentation/bloc/search_bloc/search_bloc.dart';
 
 class MockSearchRepository extends Mock implements SearchRepository {}
@@ -16,7 +16,7 @@ void main() {
 
   setUp(() {
     searchRepository = MockSearchRepository();
-    sut = SearchBloc(searchRepository: searchRepository);
+    sut = SearchBloc(repository: searchRepository);
   });
 
   final testModel = [
@@ -35,16 +35,17 @@ void main() {
   ];
 
   test(
-    'should correctly add games to sink and obtaint them in [SearchedGamesState]',
+    'should correctly add games to sink and obtain them in [SearchedGamesState]',
     () {
       when(() => searchRepository.getSearchGames(searchQuery: '1', page: 1))
           .thenAnswer((_) async => testModel);
       expectLater(
-          sut.onNewListingState,
-          emitsInOrder([
-            emits(SearchState()),
-            emits(SearchState(searchedGames: testModel, page: null)),
-          ]));
+        sut.onNewListingState,
+        emitsInOrder([
+          emits(const SearchState()),
+          emits(SearchState(searchedGames: testModel, page: null)),
+        ]),
+      );
 
       sut.onPageRequestSink.add(SearchPageModel(searchQuery: '1', page: 1));
     },

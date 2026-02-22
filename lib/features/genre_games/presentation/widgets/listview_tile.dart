@@ -6,9 +6,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:gameon/features/game_details_screen/presentation/bloc/game_details_bloc/game_details_bloc.dart';
-import 'package:gameon/features/game_details_screen/presentation/game_details_screen.dart';
+import 'package:gameon/features/game_details/presentation/bloc/game_details_bloc/game_details_bloc.dart';
 import 'package:gameon/config/theme/custom_theme.dart';
+import 'package:gameon/features/game_details/presentation/game_details_screen.dart';
 
 class ListViewTile extends StatelessWidget {
   final String name;

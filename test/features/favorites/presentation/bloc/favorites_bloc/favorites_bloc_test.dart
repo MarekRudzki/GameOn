@@ -116,4 +116,62 @@ void main() {
     ),
     expect: () => [],
   );
+
+  group('Error handling tests', () {
+    blocTest<FavoritesBloc, FavoritesState>(
+      'emits [FavoritesLoading, FavoritesError] when getFavoriteGames throws exception',
+      build: () {
+        when(() => favoritesRepository.getFavoriteGames()).thenThrow(
+          Exception('Failed to load'),
+        );
+        return sut;
+      },
+      act: (bloc) => bloc.add(FavoritesRequested()),
+      expect: () => [
+        FavoritesLoading(),
+        isA<FavoritesError>(),
+      ],
+    );
+
+    blocTest<FavoritesBloc, FavoritesState>(
+      'emits [FavoritesError] when addGameToFavorites throws exception',
+      build: () {
+        when(
+          () => favoritesRepository.addGameToFavorites(
+            id: 1,
+            name: 'Test',
+            url: 'url',
+            popularity: 1,
+          ),
+        ).thenThrow(Exception('Failed to add'));
+        return sut;
+      },
+      act: (bloc) => bloc.add(
+        FavoritesAddPressed(id: 1, name: 'Test', url: 'url', popularity: 1),
+      ),
+      expect: () => [isA<FavoritesError>()],
+    );
+
+    blocTest<FavoritesBloc, FavoritesState>(
+      'emits [FavoritesError] when removeGameFromFavorites throws exception',
+      build: () {
+        when(() => favoritesRepository.removeGameFromFavorites(id: 1))
+            .thenThrow(Exception('Failed to remove'));
+        return sut;
+      },
+      act: (bloc) => bloc.add(FavoritesRemovePressed(id: 1)),
+      expect: () => [isA<FavoritesError>()],
+    );
+
+    blocTest<FavoritesBloc, FavoritesState>(
+      'emits [FavoritesError] when isGameFavorite throws exception',
+      build: () {
+        when(() => favoritesRepository.isGameFavorite(id: 1))
+            .thenThrow(Exception('Failed to check'));
+        return sut;
+      },
+      act: (bloc) => bloc.add(FavoriteCheckPressed(id: 1)),
+      expect: () => [isA<FavoritesError>()],
+    );
+  });
 }

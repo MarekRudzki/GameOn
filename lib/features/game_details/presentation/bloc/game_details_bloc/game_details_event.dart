@@ -1,0 +1,17 @@
+part of 'game_details_bloc.dart';
+
+sealed class GameDetailsEvent extends Equatable {
+  const GameDetailsEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+final class GameDetailsRequested extends GameDetailsEvent {
+  final int gameId;
+
+  const GameDetailsRequested({required this.gameId});
+
+  @override
+  List<Object> get props => [gameId];
+}

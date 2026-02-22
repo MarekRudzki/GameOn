@@ -14,7 +14,7 @@ import 'package:gameon/config/theme/custom_theme.dart';
 import 'package:gameon/core/network/presentation/bloc/internet_connection_bloc.dart';
 import 'package:gameon/core/network/presentation/widgets/network_listener_widget.dart';
 import 'package:gameon/features/favorites/presentation/bloc/favorites_bloc/favorites_bloc.dart';
-import 'package:gameon/features/game_details_screen/presentation/bloc/game_details_bloc/game_details_bloc.dart';
+import 'package:gameon/features/game_details/presentation/bloc/game_details_bloc/game_details_bloc.dart';
 import 'package:gameon/features/genre_games/presentation/bloc/genre_games_bloc/genre_games_bloc.dart';
 import 'package:gameon/features/genres/presentation/bloc/genres_bloc/genres_bloc.dart';
 import 'package:gameon/features/home_page/presentation/home_page.dart';

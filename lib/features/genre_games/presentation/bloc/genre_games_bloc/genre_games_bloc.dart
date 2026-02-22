@@ -10,7 +10,7 @@ import 'package:rxdart/rxdart.dart';
 // Project imports:
 import 'package:gameon/features/genre_games/data/models/genre_game_model.dart';
 import 'package:gameon/features/genre_games/data/models/genre_page_model.dart';
-import 'package:gameon/features/genre_games/domain/repositories/genre_games_repository.dart';
+import 'package:gameon/features/genre_games/data/repositories/genre_games_repository.dart';
 
 part 'genre_games_event.dart';
 part 'genre_games_state.dart';

@@ -1,6 +1,8 @@
 part of 'genre_games_bloc.dart';
 
-class GenreGamesEvent extends Equatable {
+sealed class GenreGamesEvent extends Equatable {
+  const GenreGamesEvent();
+
   @override
   List<Object> get props => [];
 }
