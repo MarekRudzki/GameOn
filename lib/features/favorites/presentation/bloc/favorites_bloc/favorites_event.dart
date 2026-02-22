@@ -1,15 +1,15 @@
 part of 'favorites_bloc.dart';
 
-class FavoritesEvent extends Equatable {
+sealed class FavoritesEvent extends Equatable {
   const FavoritesEvent();
 
   @override
   List<Object> get props => [];
 }
 
-class FavoritesRequested extends FavoritesEvent {}
+final class FavoritesRequested extends FavoritesEvent {}
 
-class FavoritesAddPressed extends FavoritesEvent {
+final class FavoritesAddPressed extends FavoritesEvent {
   final int id;
   final String name;
   final String url;
@@ -23,42 +23,31 @@ class FavoritesAddPressed extends FavoritesEvent {
   });
 
   @override
-  List<Object> get props => [
-        id,
-        name,
-        url,
-        popularity,
-      ];
+  List<Object> get props => [id, name, url, popularity];
 }
 
-class FavoritesRemovePressed extends FavoritesEvent {
+final class FavoritesRemovePressed extends FavoritesEvent {
   final int id;
 
-  const FavoritesRemovePressed({
-    required this.id,
-  });
+  const FavoritesRemovePressed({required this.id});
 
   @override
   List<Object> get props => [id];
 }
 
-class FavoriteCheckPressed extends FavoritesEvent {
+final class FavoriteCheckPressed extends FavoritesEvent {
   final int id;
 
-  const FavoriteCheckPressed({
-    required this.id,
-  });
+  const FavoriteCheckPressed({required this.id});
 
   @override
   List<Object> get props => [id];
 }
 
-class FavoritePopularityCheckRequested extends FavoritesEvent {
+final class FavoritePopularityCheckRequested extends FavoritesEvent {
   final int id;
 
-  const FavoritePopularityCheckRequested({
-    required this.id,
-  });
+  const FavoritePopularityCheckRequested({required this.id});
 
   @override
   List<Object> get props => [id];

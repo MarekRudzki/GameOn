@@ -10,7 +10,10 @@ class OnWillPopAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Please confirm', style: TextStyle(color: CustomTheme.theme.colorScheme.primary)),
+      title: Text(
+        'Please confirm',
+        style: TextStyle(color: CustomTheme.theme.colorScheme.primary),
+      ),
       backgroundColor: CustomTheme.theme.colorScheme.surface,
       content: Text(
         'Do you want to exit the app?',
@@ -19,11 +22,17 @@ class OnWillPopAlertDialog extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(false),
-          child: Text('No', style: TextStyle(color: CustomTheme.theme.colorScheme.primary)),
+          child: Text(
+            'No',
+            style: TextStyle(color: CustomTheme.theme.colorScheme.primary),
+          ),
         ),
         TextButton(
           onPressed: () => Navigator.of(context).pop(true),
-          child: Text('Yes', style: TextStyle(color: CustomTheme.theme.colorScheme.primary)),
+          child: Text(
+            'Yes',
+            style: TextStyle(color: CustomTheme.theme.colorScheme.primary),
+          ),
         ),
       ],
     );

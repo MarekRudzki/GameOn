@@ -5,7 +5,7 @@ import 'package:mocktail/mocktail.dart';
 
 // Project imports:
 import 'package:gameon/features/favorites/data/models/favorite_game_model.dart';
-import 'package:gameon/features/favorites/domain/repositories/favorites_repository.dart';
+import 'package:gameon/features/favorites/data/repositories/favorites_repository.dart';
 import 'package:gameon/features/favorites/presentation/bloc/favorites_bloc/favorites_bloc.dart';
 
 class MockFavoritesRepository extends Mock implements FavoritesRepository {}
@@ -16,7 +16,7 @@ void main() {
 
   setUp(() {
     favoritesRepository = MockFavoritesRepository();
-    sut = FavoritesBloc(favoritesRepository: favoritesRepository);
+    sut = FavoritesBloc(repository: favoritesRepository);
   });
 
   final testModel = FavoriteGameModel(
@@ -51,7 +51,7 @@ void main() {
   );
 
   blocTest<FavoritesBloc, FavoritesState>(
-    'emits [FavoritesLoaded] when FavoritesRequested is added.',
+    'emits [FavoritesLoading, FavoritesLoaded] when FavoritesRequested is added.',
     build: () {
       when(() => favoritesRepository.getFavoriteGames()).thenReturn(
         [testModel],
@@ -60,9 +60,8 @@ void main() {
     },
     act: (bloc) => bloc.add(FavoritesRequested()),
     expect: () => [
-      FavoritesLoaded(
-        favoriteGames: [testModel],
-      ),
+      FavoritesLoading(),
+      FavoritesLoaded(favoriteGames: [testModel]),
     ],
   );
 

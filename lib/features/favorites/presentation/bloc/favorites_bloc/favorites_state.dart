@@ -1,32 +1,39 @@
 part of 'favorites_bloc.dart';
 
-class FavoritesState extends Equatable {
+sealed class FavoritesState extends Equatable {
   const FavoritesState();
 
   @override
   List<Object> get props => [];
 }
 
-class FavoritesInitial extends FavoritesState {}
+final class FavoritesInitial extends FavoritesState {}
 
-class FavoritesLoaded extends FavoritesState {
+final class FavoritesLoading extends FavoritesState {}
+
+final class FavoritesLoaded extends FavoritesState {
   final List<FavoriteGameModel> favoriteGames;
 
-  const FavoritesLoaded({
-    required this.favoriteGames,
-  });
+  const FavoritesLoaded({required this.favoriteGames});
 
   @override
   List<Object> get props => [favoriteGames];
 }
 
-class FavoriteChecked extends FavoritesState {
+final class FavoriteChecked extends FavoritesState {
   final bool isFavorite;
 
-  const FavoriteChecked({
-    required this.isFavorite,
-  });
+  const FavoriteChecked({required this.isFavorite});
 
   @override
   List<Object> get props => [isFavorite];
+}
+
+final class FavoritesError extends FavoritesState {
+  final String message;
+
+  const FavoritesError({required this.message});
+
+  @override
+  List<Object> get props => [message];
 }

@@ -23,11 +23,29 @@ class FavoriteGameModel extends Equatable {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'popularity': popularity,
+      'id': gameId,
+      'url': url,
+    };
+  }
+
+  FavoriteGameModel copyWith({
+    String? name,
+    int? popularity,
+    int? gameId,
+    String? url,
+  }) {
+    return FavoriteGameModel(
+      name: name ?? this.name,
+      popularity: popularity ?? this.popularity,
+      gameId: gameId ?? this.gameId,
+      url: url ?? this.url,
+    );
+  }
+
   @override
-  List<Object?> get props => [
-        name,
-        popularity,
-        gameId,
-        url,
-      ];
+  List<Object?> get props => [name, popularity, gameId, url];
 }

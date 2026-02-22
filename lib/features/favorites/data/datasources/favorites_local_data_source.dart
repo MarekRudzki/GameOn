@@ -12,9 +12,9 @@ class FavoritesLocalDataSource {
     required String url,
     required int popularity,
   }) async {
-    final int favCounter = _favoritesBox.keys.length;
+    final favCounter = _favoritesBox.keys.length;
 
-    final Map<String, dynamic> gameData = {
+    final gameData = {
       'id': id,
       'name': name,
       'url': url,
@@ -26,31 +26,32 @@ class FavoritesLocalDataSource {
   }
 
   List<Map<String, dynamic>> getGamesData() {
-    final List<dynamic> gamesDynamic = [];
+    final gamesDynamic = <dynamic>[];
     for (int i = 0; i < _favoritesBox.length; i++) {
       gamesDynamic.add(_favoritesBox.getAt(i));
     }
 
     final gamesData = gamesDynamic.map((dynamic e) {
-      final Map<String, dynamic> gameMap = {};
+      final gameMap = <String, dynamic>{};
       (e as Map<dynamic, dynamic>).forEach((key, value) {
         gameMap[key.toString()] = value;
       });
       return gameMap;
     }).toList();
 
-    gamesData.sort(
-      (a, b) => (b['counter'] as int).compareTo(a['counter'] as int),
-    );
+    gamesData.sort((a, b) => (b['counter'] as int).compareTo(a['counter'] as int));
 
     return gamesData;
   }
 
-  Map<String, dynamic> getSingleGameData({
-    required int id,
-  }) {
-    final Map<String, dynamic> gameData = {};
+  Map<String, dynamic> getSingleGameData({required int id}) {
+    final gameData = <String, dynamic>{};
     final dynamicVal = _favoritesBox.get(id);
+    
+    if (dynamicVal == null) {
+      throw Exception('Game with id $id not found in favorites');
+    }
+    
     (dynamicVal as Map<dynamic, dynamic>).forEach((key, value) {
       gameData[key.toString()] = value;
     });
@@ -58,38 +59,34 @@ class FavoritesLocalDataSource {
     return gameData;
   }
 
-  void updatePopularity({
-    required int newPopularity,
-    required int id,
-  }) {
-    final Map<String, dynamic> gameData = {};
+  void updatePopularity({required int newPopularity, required int id}) {
+    final gameData = <String, dynamic>{};
     final dynamicVal = _favoritesBox.get(id);
+    
+    if (dynamicVal == null) return;
+    
     (dynamicVal as Map<dynamic, dynamic>).forEach((key, value) {
       gameData[key.toString()] = value;
     });
 
-    gameData.update('popularity', (value) => newPopularity);
+    gameData['popularity'] = newPopularity;
     _favoritesBox.put(id, gameData);
   }
 
-  bool isGameFavorite({
-    required int id,
-  }) {
+  bool isGameFavorite({required int id}) {
     return _favoritesBox.containsKey(id);
   }
 
-  Future<void> removeGameFromFavorites({
-    required int id,
-  }) async {
+  Future<void> removeGameFromFavorites({required int id}) async {
     await _favoritesBox.delete(id);
-    await updateCounters();
+    await _updateCounters();
   }
 
-  Future<void> updateCounters() async {
-    final List<Map<String, dynamic>> gamesData = getGamesData();
+  Future<void> _updateCounters() async {
+    final gamesData = getGamesData();
 
     for (int i = 0; i < gamesData.length; i++) {
-      final int newCounter = gamesData.length - i;
+      final newCounter = gamesData.length - i;
       if (gamesData[i]['counter'] != newCounter) {
         gamesData[i]['counter'] = newCounter;
         await _favoritesBox.put(gamesData[i]['id'], gamesData[i]);

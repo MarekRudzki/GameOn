@@ -1,17 +1,17 @@
 part of 'internet_connection_bloc.dart';
 
-abstract class InternetConnectionEvent extends Equatable {
+sealed class InternetConnectionEvent extends Equatable {
   const InternetConnectionEvent();
 
   @override
   List<Object?> get props => [];
 }
 
-class InternetConnectionStarted extends InternetConnectionEvent {
+final class InternetConnectionStarted extends InternetConnectionEvent {
   const InternetConnectionStarted();
 }
 
-class InternetConnectionStatusChanged extends InternetConnectionEvent {
+final class InternetConnectionStatusChanged extends InternetConnectionEvent {
   final InternetConnectionStatus status;
 
   const InternetConnectionStatusChanged({required this.status});
