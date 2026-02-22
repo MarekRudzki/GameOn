@@ -7,7 +7,7 @@ import 'package:el_tooltip/el_tooltip.dart';
 // Project imports:
 import 'package:gameon/config/theme/custom_theme.dart';
 import 'package:gameon/features/game_details/data/models/user_rating_model.dart';
-import 'package:gameon/l10n/app_localizations.dart';
+import 'package:gameon/generated/l10n/app_localizations.dart';
 
 class UserRating extends StatelessWidget {
   final UserRatingModel userRating;

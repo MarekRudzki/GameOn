@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_glow/flutter_glow.dart';
-import 'package:gameon/l10n/app_localizations.dart';
+import 'package:gameon/generated/l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // Project imports:

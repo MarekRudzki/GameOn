@@ -32,5 +32,8 @@
   "availableOn": "Available on: ",
   "readMore": " Read more",
   "showLess": " Show less",
-  "hoursShort": "h"
+  "hoursShort": "h",
+  "games": "Games",
+  "search": "Search",
+  "displayOptions": "Display options:"
 }

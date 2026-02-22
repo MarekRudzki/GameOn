@@ -14,6 +14,7 @@ import 'package:gameon/features/genres/presentation/genres_screen.dart';
 import 'package:gameon/features/home_page/presentation/widgets/icons.dart';
 import 'package:gameon/features/home_page/presentation/widgets/on_will_pop_alert_dialog.dart';
 import 'package:gameon/features/search/presentation/search_screen.dart';
+import 'package:gameon/generated/l10n/app_localizations.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -77,6 +78,7 @@ class _BottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return GNav(
       haptic: false,
       selectedIndex: selectedIndex,
@@ -86,10 +88,10 @@ class _BottomNavigationBar extends StatelessWidget {
       color: CustomTheme.theme.colorScheme.primary,
       activeColor: CustomTheme.theme.colorScheme.secondary,
       padding: const EdgeInsets.all(16),
-      tabs: const [
-        GButton(icon: MyIcons.gamepad, text: 'Games'),
-        GButton(icon: Icons.search, text: 'Search'),
-        GButton(icon: Icons.favorite, text: 'Favorites'),
+      tabs: [
+        GButton(icon: MyIcons.gamepad, text: l10n.games),
+        GButton(icon: Icons.search, text: l10n.search),
+        GButton(icon: Icons.favorite, text: l10n.favorites),
       ],
     );
   }

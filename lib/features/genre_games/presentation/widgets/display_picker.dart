@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:gameon/config/theme/custom_theme.dart';
+import 'package:gameon/generated/l10n/app_localizations.dart';
 
 class DisplayPicker extends StatelessWidget {
   final Function(int) callback;
@@ -12,11 +13,12 @@ class DisplayPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Text(
-          'Display options:',
+          l10n.displayOptions,
           style: TextStyle(color: CustomTheme.theme.colorScheme.primary, fontSize: 17),
         ),
         Container(

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:gameon/config/theme/custom_theme.dart';
-import 'package:gameon/l10n/app_localizations.dart';
+import 'package:gameon/generated/l10n/app_localizations.dart';
 
 class NoNetwork extends StatelessWidget {
   const NoNetwork({super.key});

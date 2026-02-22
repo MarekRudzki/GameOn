@@ -3,7 +3,7 @@ import 'dart:async';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:gameon/l10n/app_localizations.dart';
+import 'package:gameon/generated/l10n/app_localizations.dart';
 
 // Package imports:
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';

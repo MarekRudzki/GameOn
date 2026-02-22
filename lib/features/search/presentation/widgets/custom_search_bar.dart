@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:gameon/config/theme/custom_theme.dart';
+import 'package:gameon/generated/l10n/app_localizations.dart';
 
 class CustomSearchBar extends StatelessWidget {
   final TextEditingController controller;
@@ -20,6 +21,7 @@ class CustomSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final searchTextFieldWidth = MediaQuery.sizeOf(context).width * 0.7;
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
@@ -47,7 +49,7 @@ class CustomSearchBar extends StatelessWidget {
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                   border: InputBorder.none,
-                  hintText: 'Search...',
+                  hintText: '${l10n.search}...',
                   hintStyle: const TextStyle(color: Color.fromARGB(255, 53, 63, 78)),
                   suffixIcon: IconButton(
                     onPressed: () {

@@ -9,7 +9,7 @@ import 'package:gameon/common_widgets/data_provider_button.dart';
 import 'package:gameon/config/theme/custom_theme.dart';
 import 'package:gameon/features/genres/presentation/bloc/genres_bloc/genres_bloc.dart';
 import 'package:gameon/features/genres/presentation/widgets/genre_tile.dart';
-import 'package:gameon/l10n/app_localizations.dart';
+import 'package:gameon/generated/l10n/app_localizations.dart';
 
 class GenresScreen extends StatelessWidget {
   const GenresScreen({super.key});

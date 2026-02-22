@@ -108,4 +108,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get hoursShort => 'h';
+
+  @override
+  String get games => 'Games';
+
+  @override
+  String get search => 'Search';
+
+  @override
+  String get displayOptions => 'Display options:';
 }

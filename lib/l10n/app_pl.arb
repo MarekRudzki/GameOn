@@ -32,5 +32,8 @@
   "availableOn": "Dostępne na: ",
   "readMore": " Czytaj więcej",
   "showLess": " Pokaż mniej",
-  "hoursShort": "godz."
+  "hoursShort": "godz.",
+  "games": "Gry",
+  "search": "Szukaj",
+  "displayOptions": "Opcje wyświetlania:"
 }

@@ -108,4 +108,13 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get hoursShort => 'godz.';
+
+  @override
+  String get games => 'Gry';
+
+  @override
+  String get search => 'Szukaj';
+
+  @override
+  String get displayOptions => 'Opcje wyświetlania:';
 }
