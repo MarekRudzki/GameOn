@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_glow/flutter_glow.dart';
+import 'package:gameon/l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // Project imports:
@@ -35,10 +36,14 @@ class _DataProviderDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return AlertDialog(
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
       backgroundColor: CustomTheme.theme.colorScheme.onSurface,
-      title: Text('Data provider', style: TextStyle(color: CustomTheme.theme.colorScheme.primary)),
+      title: Text(
+        l10n.dataProvider,
+        style: TextStyle(color: CustomTheme.theme.colorScheme.primary),
+      ),
       actions: [
         Center(
           child: IconButton(
@@ -51,7 +56,7 @@ class _DataProviderDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'All games data, ratings and screenshots are from RAWG database.',
+            l10n.allGamesDataRatings,
             style: TextStyle(color: CustomTheme.theme.colorScheme.primary),
           ),
           const SizedBox(height: 16),
@@ -62,10 +67,11 @@ class _DataProviderDialog extends StatelessWidget {
   }
 
   void _showErrorMessage(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          'The browser cannot be opened.',
+          l10n.browserCannotBeOpened,
           style: TextStyle(color: CustomTheme.theme.colorScheme.primary),
         ),
         backgroundColor: const Color.fromARGB(255, 40, 40, 42),
@@ -82,13 +88,14 @@ class _RawgLinkButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
         backgroundColor: const Color.fromARGB(158, 68, 137, 255),
         side: const BorderSide(width: 2, color: Colors.white),
       ),
       onPressed: () => _launchRawgSite(context),
-      child: const Text('Visit RAWG site', style: TextStyle(fontSize: 15)),
+      child: Text(l10n.visitRawgSite, style: const TextStyle(fontSize: 15)),
     );
   }
 

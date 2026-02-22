@@ -3,6 +3,7 @@ import 'dart:async';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:gameon/l10n/app_localizations.dart';
 
 // Package imports:
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -42,20 +43,16 @@ class _GenreGamesScreenState extends State<GenreGamesScreen> {
   void initState() {
     super.initState();
     _pagingController.addPageRequestListener((pageKey) {
-      _bloc.onPageRequestSink.add(
-        GenrePageModel(page: pageKey, id: widget.genreId),
-      );
+      _bloc.onPageRequestSink.add(GenrePageModel(page: pageKey, id: widget.genreId));
     });
 
-    _blocListingStateSubscription = _bloc.onNewListingState.listen(
-      (listingState) {
-        _pagingController.value = PagingState(
-          nextPageKey: listingState.page,
-          error: listingState.error,
-          itemList: listingState.genreGames,
-        );
-      },
-    );
+    _blocListingStateSubscription = _bloc.onNewListingState.listen((listingState) {
+      _pagingController.value = PagingState(
+        nextPageKey: listingState.page,
+        error: listingState.error,
+        itemList: listingState.genreGames,
+      );
+    });
   }
 
   @override
@@ -79,18 +76,12 @@ class _GenreGamesScreenState extends State<GenreGamesScreen> {
               backgroundColor: CustomTheme.theme.colorScheme.onSurface,
               title: Text(
                 widget.name,
-                style: TextStyle(
-                  color: CustomTheme.theme.colorScheme.primary,
-                  fontSize: 21,
-                ),
+                style: TextStyle(color: CustomTheme.theme.colorScheme.primary, fontSize: 21),
               ),
               centerTitle: true,
               leading: IconButton(
                 onPressed: () => Navigator.of(context).pop(),
-                icon: Icon(
-                  Icons.arrow_back,
-                  color: CustomTheme.theme.colorScheme.primary,
-                ),
+                icon: Icon(Icons.arrow_back, color: CustomTheme.theme.colorScheme.primary),
               ),
               actions: const [DataProviderButton()],
               forceElevated: innerBoxIsScrolled,
@@ -118,8 +109,9 @@ class _GenreGamesScreenState extends State<GenreGamesScreen> {
                     childAspectRatio: 1 / 1.1,
                   ),
                   builderDelegate: PagedChildBuilderDelegate<GenreGameModel>(
-                    noItemsFoundIndicatorBuilder: (context) =>
-                        const PagedViewNoItemFound(text: 'Try restarting the page'),
+                    noItemsFoundIndicatorBuilder: (context) => PagedViewNoItemFound(
+                      text: AppLocalizations.of(context)!.tryRestartingThePage,
+                    ),
                     itemBuilder: (context, item, index) => GridViewTile(
                       name: item.name,
                       url: item.url,
@@ -131,8 +123,9 @@ class _GenreGamesScreenState extends State<GenreGamesScreen> {
               : PagedListView(
                   pagingController: _pagingController,
                   builderDelegate: PagedChildBuilderDelegate<GenreGameModel>(
-                    noItemsFoundIndicatorBuilder: (context) =>
-                        const PagedViewNoItemFound(text: 'Try restarting the page'),
+                    noItemsFoundIndicatorBuilder: (context) => PagedViewNoItemFound(
+                      text: AppLocalizations.of(context)!.tryRestartingThePage,
+                    ),
                     itemBuilder: (context, item, index) => ListViewTile(
                       name: item.name,
                       popularity: item.popularity,

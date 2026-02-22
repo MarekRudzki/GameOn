@@ -9,12 +9,12 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 // Project imports:
 import 'package:gameon/common_widgets/paged_view_no_item_found.dart';
+import 'package:gameon/config/di/di.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/gridview_tile.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/listview_tile.dart';
 import 'package:gameon/features/search/data/models/search_page_model.dart';
 import 'package:gameon/features/search/data/models/searched_game_model.dart';
 import 'package:gameon/features/search/presentation/bloc/search_bloc/search_bloc.dart';
-import 'package:gameon/config/di/di.dart';
 
 class SearchOutcome extends StatefulWidget {
   final String searchQuery;

@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:gameon/l10n/app_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
@@ -69,6 +71,13 @@ class GameOnApp extends StatelessWidget {
       ],
       child: MaterialApp(
         builder: (context, child) => NetworkListenerWidget(child: child!),
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [Locale('en'), Locale('pl')],
         theme: CustomTheme.theme,
         color: CustomTheme.theme.colorScheme.onSurface,
         debugShowCheckedModeBanner: false,
@@ -101,11 +110,7 @@ class ErrorApp extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  error,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 14),
-                ),
+                Text(error, textAlign: TextAlign.center, style: const TextStyle(fontSize: 14)),
               ],
             ),
           ),

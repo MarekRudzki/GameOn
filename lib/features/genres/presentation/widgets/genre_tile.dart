@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 // Project imports:
-import 'package:gameon/features/genre_games/presentation/genre_games_screen.dart';
 import 'package:gameon/config/theme/custom_theme.dart';
+import 'package:gameon/features/genre_games/presentation/genre_games_screen.dart';
 
 class GenreTile extends StatelessWidget {
   const GenreTile({

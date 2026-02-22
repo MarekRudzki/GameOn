@@ -1,11 +1,11 @@
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gameon/features/genre_games/data/repositories/genre_games_repository.dart';
 import 'package:mocktail/mocktail.dart';
 
 // Project imports:
 import 'package:gameon/features/genre_games/data/models/genre_game_model.dart';
 import 'package:gameon/features/genre_games/data/models/genre_page_model.dart';
+import 'package:gameon/features/genre_games/data/repositories/genre_games_repository.dart';
 import 'package:gameon/features/genre_games/presentation/bloc/genre_games_bloc/genre_games_bloc.dart';
 
 class MockGenreGamesRepository extends Mock implements GenreGamesRepository {}

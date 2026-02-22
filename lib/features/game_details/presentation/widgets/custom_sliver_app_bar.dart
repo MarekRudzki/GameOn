@@ -8,9 +8,9 @@ import 'package:nil/nil.dart';
 
 // Project imports:
 import 'package:gameon/common_widgets/data_provider_button.dart';
+import 'package:gameon/config/theme/custom_theme.dart';
 import 'package:gameon/features/favorites/presentation/bloc/favorites_bloc/favorites_bloc.dart';
 import 'package:gameon/features/game_details/presentation/widgets/favorite.dart';
-import 'package:gameon/config/theme/custom_theme.dart';
 
 class CustomSliverAppBar extends StatelessWidget {
   final String name;

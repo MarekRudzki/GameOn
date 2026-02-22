@@ -8,8 +8,8 @@ import 'package:like_button/like_button.dart';
 import 'package:nil/nil.dart';
 
 // Project imports:
-import 'package:gameon/features/favorites/presentation/bloc/favorites_bloc/favorites_bloc.dart';
 import 'package:gameon/config/theme/custom_theme.dart';
+import 'package:gameon/features/favorites/presentation/bloc/favorites_bloc/favorites_bloc.dart';
 
 class Favorite extends StatelessWidget {
   final int id;

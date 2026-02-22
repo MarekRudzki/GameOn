@@ -9,12 +9,14 @@ import 'package:gameon/common_widgets/data_provider_button.dart';
 import 'package:gameon/config/theme/custom_theme.dart';
 import 'package:gameon/features/genres/presentation/bloc/genres_bloc/genres_bloc.dart';
 import 'package:gameon/features/genres/presentation/widgets/genre_tile.dart';
+import 'package:gameon/l10n/app_localizations.dart';
 
 class GenresScreen extends StatelessWidget {
   const GenresScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: CustomTheme.theme.colorScheme.surface,
       body: NestedScrollView(
@@ -24,11 +26,8 @@ class GenresScreen extends StatelessWidget {
             elevation: 5,
             backgroundColor: CustomTheme.theme.colorScheme.onSurface,
             title: Text(
-              'Genres',
-              style: TextStyle(
-                color: CustomTheme.theme.colorScheme.primary,
-                fontSize: 21,
-              ),
+              l10n.genres,
+              style: TextStyle(color: CustomTheme.theme.colorScheme.primary, fontSize: 21),
             ),
             centerTitle: true,
             actions: const [DataProviderButton()],
@@ -40,7 +39,7 @@ class GenresScreen extends StatelessWidget {
             return switch (state) {
               GenresSuccess() => _buildSuccessState(state),
               GenresLoading() => const Center(child: CircularProgressIndicator()),
-              GenresError() => _buildErrorState(state.message),
+              GenresError() => _buildErrorState(state.message, l10n),
               _ => const SizedBox.shrink(),
             };
           },
@@ -68,23 +67,16 @@ class GenresScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildErrorState(String message) {
+  Widget _buildErrorState(String message, AppLocalizations l10n) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.error_outline,
-            size: 48,
-            color: CustomTheme.theme.colorScheme.error,
-          ),
+          Icon(Icons.error_outline, size: 48, color: CustomTheme.theme.colorScheme.error),
           const SizedBox(height: 16),
           Text(
-            'Error loading genres',
-            style: TextStyle(
-              fontSize: 18,
-              color: CustomTheme.theme.colorScheme.primary,
-            ),
+            l10n.errorLoadingGenres,
+            style: TextStyle(fontSize: 18, color: CustomTheme.theme.colorScheme.primary),
           ),
           const SizedBox(height: 8),
           Padding(

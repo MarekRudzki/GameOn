@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:el_tooltip/el_tooltip.dart';
 
 // Project imports:
-import 'package:gameon/features/game_details/data/models/user_rating_model.dart';
 import 'package:gameon/config/theme/custom_theme.dart';
+import 'package:gameon/features/game_details/data/models/user_rating_model.dart';
+import 'package:gameon/l10n/app_localizations.dart';
 
 class UserRating extends StatelessWidget {
   final UserRatingModel userRating;
@@ -16,6 +17,7 @@ class UserRating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final double barWidth = MediaQuery.sizeOf(context).width - 28;
     final double exceptionalWidth = barWidth * ((userRating.exceptional ?? 0) / reviewsCount);
     final double recommendedWidth = barWidth * ((userRating.recommended ?? 0) / reviewsCount);
@@ -27,7 +29,7 @@ class UserRating extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            'Players rating',
+            l10n.playersRating,
             style: TextStyle(
               color: CustomTheme.theme.colorScheme.scrim,
               fontSize: 15,
@@ -46,7 +48,7 @@ class UserRating extends StatelessWidget {
                       left: 0,
                       child: ElTooltip(
                         showChildAboveOverlay: false,
-                        content: const Text('Exceptional'),
+                        content: Text(l10n.exceptional),
                         modalConfiguration: const ModalConfiguration(opacity: 0.5),
                         child: Container(
                           width: exceptionalWidth,
@@ -65,7 +67,7 @@ class UserRating extends StatelessWidget {
                     Positioned(
                       left: exceptionalWidth,
                       child: ElTooltip(
-                        content: const Text('Recommended'),
+                        content: Text(l10n.recommended),
                         showChildAboveOverlay: false,
                         modalConfiguration: const ModalConfiguration(opacity: 0.5),
                         child: Container(
@@ -85,7 +87,7 @@ class UserRating extends StatelessWidget {
                     Positioned(
                       left: exceptionalWidth + recommendedWidth,
                       child: ElTooltip(
-                        content: const Text('Meh'),
+                        content: Text(l10n.meh),
                         showChildAboveOverlay: false,
                         modalConfiguration: const ModalConfiguration(opacity: 0.5),
                         child: Container(
@@ -105,7 +107,7 @@ class UserRating extends StatelessWidget {
                     Positioned(
                       left: exceptionalWidth + recommendedWidth + mehWidth,
                       child: ElTooltip(
-                        content: const Text('Skip'),
+                        content: Text(l10n.skip),
                         showChildAboveOverlay: false,
                         modalConfiguration: const ModalConfiguration(opacity: 0.5),
                         child: Container(

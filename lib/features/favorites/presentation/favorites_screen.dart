@@ -6,12 +6,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:gameon/common_widgets/data_provider_button.dart';
+import 'package:gameon/config/theme/custom_theme.dart';
 import 'package:gameon/features/favorites/data/models/favorite_game_model.dart';
 import 'package:gameon/features/favorites/presentation/bloc/favorites_bloc/favorites_bloc.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/display_picker.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/gridview_tile.dart';
 import 'package:gameon/features/genre_games/presentation/widgets/listview_tile.dart';
-import 'package:gameon/config/theme/custom_theme.dart';
+import 'package:gameon/l10n/app_localizations.dart';
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
@@ -31,6 +32,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: CustomTheme.theme.colorScheme.surface,
@@ -41,11 +43,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             backgroundColor: CustomTheme.theme.colorScheme.onSurface,
             collapsedHeight: 70,
             title: Text(
-              'Favorites',
-              style: TextStyle(
-                color: CustomTheme.theme.colorScheme.primary,
-                fontSize: 21,
-              ),
+              l10n.favorites,
+              style: TextStyle(color: CustomTheme.theme.colorScheme.primary, fontSize: 21),
             ),
             centerTitle: true,
             actions: const [DataProviderButton()],
@@ -87,25 +86,20 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   }
 
   Widget _buildEmptyState() {
+    final l10n = AppLocalizations.of(context)!;
     return Column(
       children: [
         SizedBox(height: MediaQuery.of(context).size.height * 0.1),
         Text(
-          'No favorite games found',
-          style: TextStyle(
-            fontSize: 18,
-            color: CustomTheme.theme.colorScheme.primary,
-          ),
+          l10n.noFavoriteGamesFound,
+          style: TextStyle(fontSize: 18, color: CustomTheme.theme.colorScheme.primary),
         ),
         Padding(
           padding: const EdgeInsets.all(15),
           child: Text(
-            'Try add some!',
+            l10n.tryAddSome,
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-              color: CustomTheme.theme.colorScheme.primary,
-            ),
+            style: TextStyle(fontSize: 16, color: CustomTheme.theme.colorScheme.primary),
           ),
         ),
       ],
@@ -142,22 +136,16 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   }
 
   Widget _buildErrorState(String message) {
+    final l10n = AppLocalizations.of(context)!;
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.error_outline,
-            size: 48,
-            color: CustomTheme.theme.colorScheme.error,
-          ),
+          Icon(Icons.error_outline, size: 48, color: CustomTheme.theme.colorScheme.error),
           const SizedBox(height: 16),
           Text(
-            'Error loading favorites',
-            style: TextStyle(
-              fontSize: 18,
-              color: CustomTheme.theme.colorScheme.primary,
-            ),
+            l10n.errorLoadingFavorites,
+            style: TextStyle(fontSize: 18, color: CustomTheme.theme.colorScheme.primary),
           ),
           const SizedBox(height: 8),
           Padding(

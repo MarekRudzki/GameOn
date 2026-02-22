@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:gameon/l10n/app_localizations.dart';
 
 // Package imports:
 import 'package:readmore/readmore.dart';
@@ -14,6 +15,7 @@ class GameDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final double dividerIndent = MediaQuery.sizeOf(context).width * 0.25;
     return Column(
       children: [
@@ -32,8 +34,8 @@ class GameDescription extends StatelessWidget {
             trimLines: 6,
             textAlign: TextAlign.justify,
             style: TextStyle(color: CustomTheme.theme.colorScheme.primary),
-            trimCollapsedText: ' Read more',
-            trimExpandedText: ' Show less',
+            trimCollapsedText: l10n.readMore,
+            trimExpandedText: l10n.showLess,
             moreStyle: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,

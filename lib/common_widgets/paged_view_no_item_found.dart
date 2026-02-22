@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:gameon/config/theme/custom_theme.dart';
+import 'package:gameon/l10n/app_localizations.dart';
 
 class PagedViewNoItemFound extends StatelessWidget {
   final String text;
@@ -11,11 +12,12 @@ class PagedViewNoItemFound extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Column(
       children: [
         SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
         Text(
-          'No games found',
+          l10n.noGamesFound,
           style: TextStyle(fontSize: 18, color: CustomTheme.theme.colorScheme.primary),
         ),
         Padding(

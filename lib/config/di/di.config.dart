@@ -9,8 +9,13 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+
+// Package imports:
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
+
+// Project imports:
+import '../../features/genres/data/repositories/genres_repository.dart' as _i75;
 
 import '../../features/favorites/data/datasources/favorites_local_data_source.dart'
     as _i654;
@@ -34,7 +39,6 @@ import '../../features/genre_games/presentation/bloc/genre_games_bloc/genre_game
     as _i205;
 import '../../features/genres/data/datasources/genres_remote_data_source.dart'
     as _i223;
-import '../../features/genres/data/repositories/genres_repository.dart' as _i75;
 import '../../features/genres/presentation/bloc/genres_bloc/genres_bloc.dart'
     as _i421;
 import '../../features/search/data/datasources/search_remote_data_source.dart'

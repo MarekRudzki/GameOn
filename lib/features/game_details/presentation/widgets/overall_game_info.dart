@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:gameon/config/theme/custom_theme.dart';
+import 'package:gameon/l10n/app_localizations.dart';
 
 class OverallGameInfo extends StatelessWidget {
   final String developers;
@@ -22,6 +23,7 @@ class OverallGameInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Column(
@@ -32,7 +34,10 @@ class OverallGameInfo extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    Text('Developer', style: TextStyle(color: CustomTheme.theme.colorScheme.scrim)),
+                    Text(
+                      l10n.developer,
+                      style: TextStyle(color: CustomTheme.theme.colorScheme.scrim),
+                    ),
                     const SizedBox(height: 4),
                     Text(
                       developers,
@@ -46,8 +51,8 @@ class OverallGameInfo extends StatelessWidget {
                 const VerticalDivider(color: Color.fromARGB(255, 127, 124, 124), thickness: 1),
                 Column(
                   children: [
-                    const Text(
-                      'ESRB rating',
+                    Text(
+                      l10n.esrbRating,
                       style: TextStyle(color: Color.fromARGB(255, 197, 194, 194)),
                     ),
                     const SizedBox(height: 4),
@@ -70,13 +75,13 @@ class OverallGameInfo extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    const Text(
-                      'Average playtime',
+                    Text(
+                      l10n.averagePlaytime,
                       style: TextStyle(color: Color.fromARGB(255, 197, 194, 194)),
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      playtime == 0 ? 'No data' : '$playtime h',
+                      playtime == 0 ? l10n.noData : '$playtime ${l10n.hoursShort}',
                       style: TextStyle(
                         color: CustomTheme.theme.colorScheme.primary,
                         fontWeight: FontWeight.w600,
@@ -87,13 +92,13 @@ class OverallGameInfo extends StatelessWidget {
                 const VerticalDivider(color: Color.fromARGB(255, 127, 124, 124), thickness: 1),
                 Column(
                   children: [
-                    const Text(
-                      'Metacritic',
+                    Text(
+                      l10n.metacritic,
                       style: TextStyle(color: Color.fromARGB(255, 197, 194, 194)),
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      metacritic == 0 ? 'No data' : metacritic.toString(),
+                      metacritic == 0 ? l10n.noData : metacritic.toString(),
                       style: TextStyle(
                         color: CustomTheme.theme.colorScheme.primary,
                         fontWeight: FontWeight.w600,
@@ -104,8 +109,8 @@ class OverallGameInfo extends StatelessWidget {
                 const VerticalDivider(color: Color.fromARGB(255, 127, 124, 124), thickness: 1),
                 Column(
                   children: [
-                    const Text(
-                      'Released',
+                    Text(
+                      l10n.released,
                       style: TextStyle(color: Color.fromARGB(255, 197, 194, 194)),
                     ),
                     const SizedBox(height: 4),
